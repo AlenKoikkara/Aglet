@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import axios from '../axios';
+import './FeatureBanner.scss';
 
-const FeatureBanner = () => {
+function FeatureBanner ({fetchUrl}) {
   const [featured, setFeatured] = useState();
 
   useEffect(() => {
@@ -13,11 +15,16 @@ const FeatureBanner = () => {
     fetchData();
   }, [fetchUrl]);
 
-  console.log(shoes);
+  console.log(featured);
   return (
     <div className='featureBannerWrapper'>
-      <div className='feature1'></div>
-      <div className='feature2'></div>
+      <div className='feature1'>
+        <img className='feature1img' src={featured?.imageUrl} alt=''></img>
+      </div>
+      <div className='feature2'>
+      <img className='feature2img'src={featured?.imageUrl} alt=''></img>
+
+      </div>
     </div>
   )
 }

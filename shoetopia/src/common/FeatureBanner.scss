@@ -1,0 +1,12 @@
+@import "../variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
+
+
+.featureBannerWrapper {
+  background-image: url('../assets/images/featurebg.png');
+  height: 550px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  position: relative;
+}
