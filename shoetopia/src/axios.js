@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://the-sndeaker-database.p.rapidapi.com/sneakers",
+  baseURL: "http://localhost:4000/",
 });
 
 export default instance;
