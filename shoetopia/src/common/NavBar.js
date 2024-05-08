@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react'
 
-import './NavBar.css'
+import './NavBar.scss'
 
 import logo from '../assets/images/logo.png';
 import profilepic from  '../assets/images/profilepic.webp'

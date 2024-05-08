@@ -1,5 +1,6 @@
 const requests = {
-  fetchProducts: `api/products${value}`
+  fetchProducts: (value) => `api/products?${value}`,
+  fetchFeatured: `api/products/featured`
 }
 
 

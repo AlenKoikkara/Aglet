@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './HomepageBanner.css'
+import './HomepageBanner.scss'
 
 const HomepageBanner = () => {
   
