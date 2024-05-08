@@ -1,5 +1,5 @@
 const requests = {
-  fetchProducts: `api/products`
+  fetchProducts: `api/products${value}`
 }
 
 
