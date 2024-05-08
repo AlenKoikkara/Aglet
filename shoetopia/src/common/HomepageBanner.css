@@ -1,0 +1,19 @@
+.bannerHeader {
+  background-image: url('../assets/images/banner.png');
+  height: 550px;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  .bannerButtons {
+    position: absolute;
+    display: flex;
+    right: 40px;
+    bottom: 40px;
+    gap: 20px;
+    .menbutton, .womenbutton {
+      padding: 10px 30px;
+      border: 1px solid #333;
+      border-radius: 10px;
+    }
+  }
+}

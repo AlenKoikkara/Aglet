@@ -1,0 +1,30 @@
+.navbarWrapper {
+  z-index: 1;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  transition: all 0.3s;
+  transition-timing-function: ease-in;
+  .logo {
+    margin-left: 100px;
+    width: 100px;
+    object-fit: contain;
+  }
+  .navbarLinks {
+    display: flex;
+    gap: 80px;
+  }
+  .profile {
+    margin-right: 100px;
+    .profilepic {
+      width: 50px;
+    }
+  }
+}
+
+.navfadein {
+  background-color: #fff;
+}
