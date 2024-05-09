@@ -15,51 +15,16 @@ const HomePage = () => {
       <HomepageBanner></HomepageBanner>
       <ShoeCarousel
         title="BasketBall"
-        fetchUrl={requests.fetchProducts('limit=10')}
+        fetchUrl={requests.fetchProducts('limit=10&subCategory=Basketball&category=Shoes')}
       ></ShoeCarousel>
       <FeatureBanner
       title="Air Force 1"
         fetchUrl={requests.fetchFeatured}
       ></FeatureBanner>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
-      <div>test</div>
+      <ShoeCarousel
+        title="Air Max"
+        fetchUrl={requests.fetchProducts('limit=10&productName=Nike Air Max Dn')}
+      ></ShoeCarousel>
       {/* body */}
       {/* footer */}
     </div>
