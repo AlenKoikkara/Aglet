@@ -30,6 +30,7 @@
       margin-top: 20px;
       display: flex;
       gap: 20px;
+      font-family: "Poppins";
       .mens, .womens, .kids {
         cursor: pointer;
         background-color: white;
@@ -37,6 +38,38 @@
         padding: 10px 30px;
         &:hover {
           color: #333;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .featureBannerWrapper {
+    .content {
+      bottom: 40px;
+      left: 30px;
+      .title {
+        margin-bottom: 5px;
+        @include text-style(25px, 700, 26px);
+      }
+      .desc {
+        margin-bottom: 10px;
+        @include text-style(15px, 400, 16px);
+      }
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        @include text-style(10px, 400, 11px);
+        .mens, .womens, .kids {
+          cursor: pointer;
+          background-color: white;
+          color: black;
+          padding: 10px 20px;
+          &:hover {
+            color: #333;
+          }
         }
       }
     }

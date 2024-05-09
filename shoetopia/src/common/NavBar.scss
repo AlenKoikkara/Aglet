@@ -1,4 +1,5 @@
 .navbarWrapper {
+  height: 75px;
   z-index: 1;
   width: 100%;
   position: fixed;
@@ -27,4 +28,16 @@
 
 .navfadein {
   background-color: #fff;
+}
+
+
+@media (max-width: 768px) {
+  .navbarWrapper {
+    .logo {
+      margin-left: 20px;
+    }
+    .profile {
+      margin-right: 20px;
+    }
+  }
 }
