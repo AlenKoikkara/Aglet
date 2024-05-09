@@ -18,6 +18,7 @@ const HomePage = () => {
         fetchUrl={requests.fetchProducts('limit=10')}
       ></ShoeCarousel>
       <FeatureBanner
+      title="Air Force 1"
         fetchUrl={requests.fetchFeatured}
       ></FeatureBanner>
       <div>test</div>

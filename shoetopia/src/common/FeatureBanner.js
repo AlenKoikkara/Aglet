@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import axios from '../axios';
-import './FeatureBanner.scss';
+import React from "react";
+import "./FeatureBanner.scss";
 
-function FeatureBanner ({fetchUrl}) {
-  const [featured, setFeatured] = useState();
+import video from "../assets/videos/feature.mp4";
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(fetchUrl);
-      // console.log(request.data )
-      setFeatured(request.data);
-      return request;
-    }
-    fetchData();
-  }, [fetchUrl]);
-
-  console.log(featured);
+function FeatureBanner({ title, fetchUrl }) {
   return (
-    <div className='featureBannerWrapper'>
-      <div className='feature1'>
-        <img className='feature1img' src={featured?.imageUrl} alt=''></img>
-      </div>
-      <div className='feature2'>
-      <img className='feature2img'src={featured?.imageUrl} alt=''></img>
-
+    <div className="featureBannerWrapper">
+      <video autoplay="true" muted loop>
+        <source src={video} type="video/mp4" />
+      </video>
+      <div className="content">
+        <div className="title">{title}</div>
+        <div className="desc">For any and every look</div>
+        <div className="buttons">
+          <div className="mens">Shop Mens</div>
+          <div className="womens">Shop Womens</div>
+          <div className="kids">Shop Kids</div>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default FeatureBanner
+export default FeatureBanner;
