@@ -7,13 +7,18 @@
   .bannerButtons {
     position: absolute;
     display: flex;
-    right: 40px;
-    bottom: 40px;
-    gap: 20px;
+    right: 70px;
+    bottom: 70px;
+    gap: 40px;
     .menbutton, .womenbutton {
+      cursor: pointer;
+      transform: scale(1.1);
       padding: 10px 30px;
       border: 1px solid #333;
       border-radius: 10px;
+      &:hover {
+        background-color: white;
+      }
     }
   }
 }

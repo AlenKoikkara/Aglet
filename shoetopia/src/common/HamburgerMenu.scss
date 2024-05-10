@@ -35,7 +35,7 @@
   height: 3px;
   width: 36px;
   border-radius: 3px;
-  background: #111;
+  background: $primary3;
 }
 
 .top {
@@ -145,7 +145,7 @@
   width: 30px;
   height: 34px;
   margin: 0 4px 0 0;
-  background: #111;
+  background: $primary3;
 }
 
 .hamburger.open .animate-path {
@@ -392,4 +392,49 @@
     transform: rotate(0deg);
   }
 
+}
+
+.navWrapper {
+  color: #DB9D6C;
+  position: absolute;
+  top: -350px;
+  right: 40px;
+  width: 250px;
+  height: 300px;
+  // background-color: black;
+  .navlink {
+    @include text-style(50px, 400, 51px);
+    margin-bottom: 30px;
+    text-align: right;
+  }
+}
+
+.navWrapper.closnav {
+  animation-name: closelinks;
+  animation-duration: 2s;
+  opacity: 0;
+}
+
+.navWrapper.opened {
+  animation-name: openlinks;
+  animation-duration: 2s;
+  opacity: 1;
+}
+
+@keyframes closelinks {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes openlinks {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

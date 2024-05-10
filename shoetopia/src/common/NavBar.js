@@ -34,6 +34,7 @@ const NavBar = () => {
           <HomeOutlinedIcon
             className="homeicon"
             fontSize="medium"
+            style={{color: '#DB9D6C'}}
           ></HomeOutlinedIcon>
         )}
         {!utils.isMobile() && (
