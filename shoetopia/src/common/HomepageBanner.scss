@@ -1,3 +1,5 @@
+@import "../variables.scss";
+
 .bannerHeader {
   background-image: url('../assets/images/banner.png');
   height: 550px;
@@ -13,11 +15,24 @@
     .menbutton, .womenbutton {
       cursor: pointer;
       transform: scale(1.1);
-      padding: 10px 30px;
-      border: 1px solid #333;
-      border-radius: 10px;
+      padding: 10px 40px;
+      color: $primary3;
+      background-color: white;
       &:hover {
-        background-color: white;
+        color: $primary2;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerHeader {
+    .bannerButtons {
+      left: 20px;
+      gap: 20px;
+      .menbutton, .womenbutton {
+        transform: scale(.9);
+        padding: 10px 40px;
       }
     }
   }

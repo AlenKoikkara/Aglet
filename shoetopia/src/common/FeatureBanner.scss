@@ -9,7 +9,7 @@
   background-position: center center;
   position: relative;
   video {
-    width: 100vw;
+    width: 100%;
   }
   .content {
     text-align: start;
@@ -34,10 +34,10 @@
       .mens, .womens, .kids {
         cursor: pointer;
         background-color: white;
-        color: black;
+        color: $primary3;
         padding: 10px 30px;
         &:hover {
-          color: #333;
+          color: $primary2;
         }
       }
     }
@@ -66,7 +66,7 @@
           cursor: pointer;
           background-color: white;
           color: black;
-          padding: 10px 20px;
+          padding: 10px 15px;
           &:hover {
             color: #333;
           }

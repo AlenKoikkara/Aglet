@@ -15,25 +15,31 @@
     justify-content: space-between;
     .logo {
       margin-left: 100px;
-      width: 100px;
+      width: 150px;
       object-fit: contain;
     }
     .navbarLinks {
+      @include text-style(22px, 400, 25px);
+      color: $primary3;
       display: flex;
       gap: 80px;
     }
-    .profile {
+    .profileicon {
       margin-right: 100px;
       .profilepic {
         width: 50px;
       }
+      .auth {
+        cursor: pointer;
+        padding: 10px 30px;
+        background-color: $primary4;        
+        @include text-style(22px, 400, 25px);
+        color: $primary3;
+        &:hover {
+          color: $primary2;
+        }
+      }
     }
-  }
-}
-
-.navfadein {
-  .wrapper {
-    background-color: #fff;
   }
 }
 
@@ -59,11 +65,9 @@
         width: 70px;
         margin-left: 20px;
       }
-      .homeicon {
-        color: #000;
-        margin-left: 20px;
-      }
-      .profile {
+      .profileicon {
+        position: absolute;
+        right: 0px;
         margin-right: 10px;
       }
     }

@@ -11,7 +11,7 @@ const HamburgerMenu = () => {
       element.classList.remove("open");
       element.classList.add("closed");
       
-      navWrapper.classList.add("closnav");
+      navWrapper.classList.add("closenav");
       navWrapper.classList.remove("opened");
       setClicked(false);
     } else {

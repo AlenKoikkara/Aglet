@@ -1,6 +1,7 @@
 $primary1 : #111;
 $primary2 : #333;
-$primary3 : #DB9D6C;
+$primary3 : #FF7517;
+$primary4 : #fff;
 
 @mixin flex($justify-content: normal, $align-items: normal, $direction: row){
   display: flex;

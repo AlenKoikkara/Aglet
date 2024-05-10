@@ -6,6 +6,7 @@
   margin: 40px auto;
   position: relative;
   display: block;
+  z-index: 1;
   width: 68px;
   height: 68px;
   -webkit-touch-callout: none;
@@ -14,6 +15,7 @@
   -ms-user-select: none;
   user-select: none;
   transform: scale(0.6);
+  background-color: black;
 }
 
 .burger-main {
@@ -395,29 +397,32 @@
 }
 
 .navWrapper {
-  color: #DB9D6C;
+  background-color: black;
+  padding: 20px 20px 0px 0px;
+  color: $primary3;
   position: absolute;
-  top: -350px;
-  right: 40px;
-  width: 250px;
+  top: -150%;
+  right: 19%;
+  width: 200px;
   height: 300px;
-  // background-color: black;
   .navlink {
-    @include text-style(50px, 400, 51px);
-    margin-bottom: 30px;
+    @include text-style(30px, 400, 32px);
+    margin-bottom: 25px;
     text-align: right;
   }
 }
 
-.navWrapper.closnav {
+.navWrapper.closenav {
   animation-name: closelinks;
-  animation-duration: 2s;
+  transition: ease-in;
+  animation-duration: 1s;
   opacity: 0;
 }
 
 .navWrapper.opened {
   animation-name: openlinks;
-  animation-duration: 2s;
+  transition: ease-in;
+  animation-duration: 1s;
   opacity: 1;
 }
 
