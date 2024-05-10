@@ -2,13 +2,13 @@ import { React, useState, useEffect } from "react";
 
 import "./NavBar.scss";
 
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import logo from "../assets/images/logo.png";
@@ -59,7 +59,9 @@ const NavBar = () => {
             <HamburgerMenu></HamburgerMenu>
           ) : (
             // <img className="profilepic" src={profilepic} alt=""></img>
-            <div onClick={() => handleClickOpen()} className="auth">Sign Up/In</div>
+            <div onClick={() => handleClickOpen()} className="auth">
+              Sign Up/In
+            </div>
           )}
         </div>
       </div>
@@ -67,7 +69,7 @@ const NavBar = () => {
         open={open}
         onClose={handleClose}
         PaperProps={{
-          component: 'form',
+          component: "form",
           onSubmit: (event) => {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
@@ -78,44 +80,45 @@ const NavBar = () => {
           },
         }}
       >
-        <DialogTitle>Login</DialogTitle>
-        <DialogContent>
+        
+        <DialogContent className="dWrapper">
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
           </DialogContentText> */}
+          <div className="dialogTitle">Login</div>
           <div className="dialogWrapper">
-            <div className="dialogbanner"></div>
-            <div className="form">
-
+            <div className="dialogbanner">
+              <img className="logo" src={logo} alt=""></img>
             </div>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="name"
-            name="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            required
-            margin="dense"
-            id="name"
-            name="password"
-            label="Password"
-            type="password"
-            fullWidth
-            variant="standard"
-          />
+            <div className="form">
+              <TextField
+                autoFocus
+                required
+                margin="dense"
+                id="name"
+                name="email"
+                label="Email Address"
+                type="email"
+                fullWidth
+                variant="standard"
+              />
+              <TextField
+                required
+                margin="dense"
+                id="name"
+                name="password"
+                label="Password"
+                type="password"
+                fullWidth
+                variant="standard"
+              />
+              <div className="signUpdirect">Don't have an account?</div>
+              <div className="signUp">SignUp here.</div>
+              <Button className="submitbutton" type="submit">Login</Button>
+            </div>
           </div>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
-        </DialogActions>
       </Dialog>
     </div>
   );
