@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./FeatureBanner.scss";
 
 import video from "../assets/videos/feature.mp4";

@@ -397,33 +397,48 @@
 }
 
 .navWrapper {
-  background-color: black;
-  padding: 20px 20px 0px 0px;
-  color: $primary3;
+  color: $primary1;
   position: absolute;
-  top: -150%;
+  top: -159%;
   right: 19%;
-  width: 200px;
-  height: 300px;
+  width: 180px;
+  height: 330px;
+  @include flex(top, end, column);
+  .blurfilterdiv {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    backdrop-filter: blur(5px);
+  }
   .navlink {
-    @include text-style(30px, 400, 32px);
-    margin-bottom: 25px;
+    padding: 20px 20px 0px 0px;
+    z-index: 1;
+    @include text-style(25px, 400, 27px);
     text-align: right;
+    div {
+      margin-bottom: 22px;
+    }
+  }
+  .carticon {
+    z-index: 1;
   }
 }
 
 .navWrapper.closenav {
   animation-name: closelinks;
   transition: ease-in;
-  animation-duration: 1s;
-  opacity: 0;
+  animation-duration: .5s;
+  display: none;
+  
 }
 
 .navWrapper.opened {
   animation-name: openlinks;
   transition: ease-in;
   animation-duration: 1s;
-  opacity: 1;
+  display: flex;
 }
 
 @keyframes closelinks {

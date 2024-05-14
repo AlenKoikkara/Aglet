@@ -1,10 +1,13 @@
 @import "../variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 .navbarWrapper {
-  height: 75px;
+  font-family: 'Poppins';
+  position: absolute;
+  padding-top: 10px;
+  // background-image: linear-gradient(0deg, transparent, #000000);
   z-index: 1;
   width: 100%;
-  position: fixed;
   transition: all 0.3s;
   transition-timing-function: ease-in;
   .wrapper {
@@ -15,31 +18,62 @@
     justify-content: space-between;
     .logo {
       margin-left: 100px;
-      width: 150px;
+      width: 130px;
       object-fit: contain;
     }
     .navbarLinks {
-      @include text-style(22px, 400, 25px);
-      color: $primary3;
+      position: absolute;
+      left: 30%;
+      cursor: pointer;
+      @include text-style(17px, 400, 20px);
+      color: $primary4;
       display: flex;
-      gap: 80px;
+      gap: 70px;
+      div {
+        transition-timing-function: ease-in;
+        transition: .5s;
+        &:hover {
+          color: $primary3;
+        }
+      }
     }
     .profileicon {
       margin-right: 100px;
-      .profilepic {
-        width: 50px;
+      .rightsideContent {
+        cursor: pointer;
+        display: flex;
+        align-items: start;
+        color: white;
+       
+        .profilepic {
+          width: 50px;
+        }
+        .carticon {
+          transition-timing-function: ease-in;
+          transition: .5s;
+          &:hover {
+            color: $primary3;
+          }
+        }
       }
       .auth {
         cursor: pointer;
         padding: 10px 30px;
-        background-color: $primary4;        
-        @include text-style(22px, 400, 25px);
-        color: $primary3;
+        @include text-style(17px, 600, 20px);
+        transition-timing-function: ease-in;
+        transition: .5s;
+        color: $primary4;
         &:hover {
-          color: $primary2;
+          color: $primary3;
         }
       }
     }
+  }
+}
+
+.navfadein {
+  .wrapper {
+    // background-color: white;
   }
 }
 
@@ -90,14 +124,29 @@
 
 @media (max-width: 768px) {
   .navbarWrapper {
+    position: fixed;
     height: 50px;
     bottom: 35px;
     width: 100%;
-    .logo {
+    .navheader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       position: fixed;
-      width: 100px;
       top: 20px;
       left: 20px;
+      width: 90%;
+      color: $primary4;
+      .logo {
+        width: 120px;
+      }
+      .carticon {
+        transition-timing-function: ease-in;
+        transition: .5s;
+        &:hover {
+          color: $primary3
+        }
+      }
     }
     .wrapper {
       padding: 2px 10px;

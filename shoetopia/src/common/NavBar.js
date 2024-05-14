@@ -10,10 +10,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import HamburgerMenu from "./HamburgerMenu";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+
 import logo from "../assets/images/logo.png";
 import profilepic from "../assets/images/profilepic.webp";
-import HamburgerMenu from "./HamburgerMenu";
 import utils from "../utils";
 
 const NavBar = () => {
@@ -44,7 +45,11 @@ const NavBar = () => {
 
   return (
     <div className={`navbarWrapper ${show && "navfadein"}`}>
-      {utils.isMobile() && <img className="logo" src={logo} alt=""></img>}
+      {utils.isMobile() && (
+        <div className="navheader">
+          <img className="logo" src={logo} alt=""></img>
+        </div>
+      )}
       <div className="wrapper">
         <img className="logo" src={logo} alt=""></img>
         {!utils.isMobile() && (
@@ -58,9 +63,15 @@ const NavBar = () => {
           {utils.isMobile() ? (
             <HamburgerMenu></HamburgerMenu>
           ) : (
-            // <img className="profilepic" src={profilepic} alt=""></img>
-            <div onClick={() => handleClickOpen()} className="auth">
-              Sign Up/In
+            <div className="rightsideContent">
+              <ShoppingBagOutlinedIcon
+                className="carticon"
+                fontSize="large"
+              ></ShoppingBagOutlinedIcon>
+              {/* <img className="profilepic" src={profilepic} alt=""></img> */}
+              <div onClick={() => handleClickOpen()} className="auth">
+                Sign Up/In
+              </div>
             </div>
           )}
         </div>
@@ -80,7 +91,6 @@ const NavBar = () => {
           },
         }}
       >
-        
         <DialogContent className="dWrapper">
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here. We
@@ -115,7 +125,9 @@ const NavBar = () => {
               />
               <div className="signUpdirect">Don't have an account?</div>
               <div className="signUp">SignUp here.</div>
-              <Button className="submitbutton" type="submit">Login</Button>
+              <Button className="submitbutton" type="submit">
+                Login
+              </Button>
             </div>
           </div>
         </DialogContent>
