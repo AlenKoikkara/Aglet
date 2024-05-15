@@ -2,20 +2,13 @@ import { React, useState, useEffect } from "react";
 
 import "./NavBar.scss";
 
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-
 import HamburgerMenu from "./HamburgerMenu";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import logo from "../assets/images/logo.png";
 import profilepic from "../assets/images/profilepic.webp";
 import utils from "../utils";
+import LoginDialog from "./LoginDialog";
 
 const NavBar = () => {
   const [show, handleShow] = useState(true);
@@ -75,63 +68,8 @@ const NavBar = () => {
             </div>
           )}
         </div>
+        <LoginDialog open={open} handleClose={handleClose}></LoginDialog>
       </div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
-      >
-        <DialogContent className="dWrapper">
-          {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText> */}
-          <div className="dialogTitle">Login</div>
-          <div className="dialogWrapper">
-            <div className="dialogbanner">
-              <img className="logo" src={logo} alt=""></img>
-            </div>
-            <div className="form">
-              <TextField
-                autoFocus
-                required
-                margin="dense"
-                id="name"
-                name="email"
-                label="Email Address"
-                type="email"
-                fullWidth
-                variant="standard"
-              />
-              <TextField
-                required
-                margin="dense"
-                id="name"
-                name="password"
-                label="Password"
-                type="password"
-                fullWidth
-                variant="standard"
-              />
-              <div className="signUpdirect">Don't have an account?</div>
-              <div className="signUp">SignUp here.</div>
-              <Button className="submitbutton" type="submit">
-                Login
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
