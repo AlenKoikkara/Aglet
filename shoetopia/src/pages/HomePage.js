@@ -8,6 +8,7 @@ import ShoeCarousel from "../common/ShoeCarousel";
 import requests from "../requests";
 import FeatureBanner from "../common/FeatureBanner";
 import Footer from "../common/Footer";
+import ColorWarp from "../common/ColorWarp";
 
 const HomePage = () => {
   return (
@@ -33,6 +34,7 @@ const HomePage = () => {
       {/* body */}
       {/* footer */}
       <Footer></Footer>
+      {/* <ColorWarp></ColorWarp> */}
     </div>
   );
 };

@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import "./ShoeCarousel.scss";
 
 import axios from "../axios";
 
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
 function ShoeCarousel({ title, fetchUrl }) {
   const [shoes, setShoes] = useState();
+  const scrollable = useRef(null);
+
+  const scrollIt = (toRight) => {
+    const scrollLength = 1000; //Calculate your scroll length however you want.
+    scrollable.current.scrollBy({left: scrollLength * (toRight ? 1 : -1), behavior: "smooth"});
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -22,9 +30,10 @@ function ShoeCarousel({ title, fetchUrl }) {
   return (
     <div className="shoeCarouselWrapper">
       <div className="title">{title}</div>
-      <div className="shoeRows">
+      <ChevronLeftRoundedIcon onClick={()=>scrollIt(false)} className="leftslide" fontSize="large"></ChevronLeftRoundedIcon>
+      <div className="shoeRows" ref={scrollable}>
         {shoes?.map((shoe) => (
-          <div className="productWrapper">
+          <div key={shoe._id} className="productWrapper">
             <div className="imgCart">
               <img
                 className="shoeimg"
@@ -46,6 +55,7 @@ function ShoeCarousel({ title, fetchUrl }) {
           </div>
         ))}
       </div>
+      <ChevronRightRoundedIcon onClick={()=>scrollIt(true)} className="rightslide" fontSize="large"></ChevronRightRoundedIcon>
     </div>
   );
 }

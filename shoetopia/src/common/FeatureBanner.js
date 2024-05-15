@@ -7,7 +7,7 @@ import video from "../assets/videos/feature.mp4";
 function FeatureBanner({ title, fetchUrl }) {
   return (
     <div className="featureBannerWrapper">
-      <video autoplay="true" muted loop>
+      <video autoPlay={true} muted loop>
         <source src={video} type="video/mp4" />
       </video>
       <div className="content">

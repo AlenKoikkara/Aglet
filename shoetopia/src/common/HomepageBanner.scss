@@ -2,12 +2,13 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,400,600,700");
 
 .bannerHeader {
-  background-color: rgb(25, 24, 24);
+  background-color: $primary2;
   height: 650px;
   background-size: cover;
   background-position: center center;
   position: relative;
   .content {
+    z-index: 1;
     position: absolute;
     top: 250px;
     left: 10%;
@@ -25,15 +26,17 @@
     }
   }
   .bannerimg {
+    z-index: 1;
     position: absolute;
-    width: 57%;
+    width: 45%;
     right: 5%;
-    bottom: -21%;
+    bottom: 5%;
     transform: scaleY(-1) rotate(20deg);
     transition: .1s;
     transition-timing-function: ease-in;
   }
   .bannerButtons {
+    z-index: 1;
     position: absolute;
     display: flex;
     right: 70px;
