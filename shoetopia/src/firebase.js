@@ -1,3 +1,6 @@
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDRLFvpF6tqBHcqMFK2mOBuGH-niu0K1bA",
   authDomain: "shoetop-e5612.firebaseapp.com",
@@ -7,3 +10,8 @@ const firebaseConfig = {
   appId: "1:1017120741280:web:3b31f66dda4989520d76c5",
   measurementId: "G-SYXCN29038"
 };
+
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+export default app;

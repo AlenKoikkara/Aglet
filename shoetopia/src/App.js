@@ -1,29 +1,57 @@
-import React from "react";
-import { Counter } from "./features/counter/Counter";
+import React, { useEffect } from "react";
 import "./App.scss";
 import HomePage from "./pages/HomePage";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "./firebase";
+
 import CategoryPage from "./pages/CategoryPage";
+import {login, logout, selectUser} from './features/userSlice'
+import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('usersigned in')
+        dispatch(login({
+          userId: user.uid,
+          email: user.email
+        }))
+      } else {
+        console.log('user signed out')
+        dispatch(logout())
+      }
+    });
+    return () => {
+      
+    }
+  }, [])
+  
+
   const router = createBrowserRouter([
     {
-      path: '/mens',
-      element: <CategoryPage></CategoryPage>
+      path: "/mens",
+      element: user && <CategoryPage></CategoryPage>,
     },
     {
       path: "/",
       element: <HomePage></HomePage>,
     },
+    {
+      path: "/",
+      element: <HomePage />,
+      errorElement: <HomePage />,
+    },
   ]);
 
   return (
     <div className="App">
-          <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </div>
   );
 }

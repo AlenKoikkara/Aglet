@@ -8,9 +8,65 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 function LoginDialog({ open, handleClose }) {
   const [isSignup, setIsSignup] = useState(false);
+
+  
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Required";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+    ) {
+      errors.email = "Invalid email address";
+    }
+    
+    if (!values.password) {
+      errors.password = "Required";
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(values.password)
+    ) {
+      errors.password =
+      "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number";
+    }
+    
+    if (isSignup) {
+      if (!values.confirmPassword && isSignup) {
+        errors.confirmPassword = "Required";
+      } else if (values.confirmPassword != values.password) {
+        errors.confirmPassword = "Password does not match";
+      }
+    }
+    
+
+    return errors;
+  };
+
+  async function register(email, password) {
+    await createUserWithEmailAndPassword(auth, email, password)
+    .then((authUser) => {
+      console.log(authUser);
+      handleClose()
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+  }
+  
+  async function login(email, password) {
+    await signInWithEmailAndPassword(auth, email, password)
+    .then((authUser) => {
+      console.log(authUser);
+      handleClose()
+    })
+    .catch((error) => {
+      alert(error.message);
+    })
+  }
 
   const formData = useFormik({
     initialValues: {
@@ -18,14 +74,27 @@ function LoginDialog({ open, handleClose }) {
       password: "",
       confirmPassword: "",
     },
+    validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      formData.setTouched(true)
+      isSignup ? register(values.email, values.password) : login(values.email, values.password);
     },
   });
+  
+  const handleSignup = () => {
+    setIsSignup(!isSignup);
+    formData.setTouched(true)
+    formData.resetForm()
+  }
+
+  const closeDialog = () => {
+    formData.resetForm()
+    handleClose()
+  }
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={closeDialog}>
         <DialogContent className="dWrapper">
           <div className="dialogTitle"> {isSignup ? `Sign Up` : `Login`}</div>
           <div className="dialogWrapper">
@@ -35,8 +104,6 @@ function LoginDialog({ open, handleClose }) {
             <div className="form">
               <form onSubmit={formData.handleSubmit}>
                 <TextField
-                  autoFocus
-                  required
                   margin="dense"
                   id="email"
                   name="email"
@@ -44,9 +111,13 @@ function LoginDialog({ open, handleClose }) {
                   type="email"
                   fullWidth
                   variant="standard"
+                  onBlur={formData.handleBlur}
                   value={formData.values.email}
                   onChange={formData.handleChange}
                 />
+                {formData.errors.email ? (
+                  <div className="errorText">{formData.errors.email}</div>
+                ) : null}
                 <TextField
                   required
                   margin="dense"
@@ -56,30 +127,41 @@ function LoginDialog({ open, handleClose }) {
                   type="password"
                   fullWidth
                   variant="standard"
+                  onBlur={formData.handleBlur}
                   value={formData.values.password}
                   onChange={formData.handleChange}
                 />
+                {formData.errors.password ? (
+                  <div className="errorText">{formData.errors.password}</div>
+                ) : null}
+
                 {isSignup && (
-                  <TextField
-                    required
-                    margin="dense"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    label="Confirm Password"
-                    type="confirmPassword"
-                    fullWidth
-                    variant="standard"
-                    value={formData.values.confirmPassword}
-                    onChange={formData.handleChange}
-                  />
+                  <>
+                    <TextField
+                      required
+                      margin="dense"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      label="Confirm Password"
+                      type="confirmPassword"
+                      fullWidth
+                      variant="standard"
+                      onBlur={formData.handleBlur}
+                      value={formData.values.confirmPassword}
+                      onChange={formData.handleChange}
+                    />
+                    {(formData.errors.confirmPassword && isSignup) ? (
+                      <div className="errorText">{formData.errors.confirmPassword}</div>
+                    ) : null}
+                  </>
                 )}
                 <div className="signUpdirect">
                   {isSignup ? `Already a user?` : `Don't have an account?`}
                 </div>
-                <div className="signUp" onClick={() => setIsSignup(!isSignup)}>
+                <div className="signUp" onClick={() => handleSignup()}>
                   {isSignup ? `Login here.` : `SignUp here.`}
                 </div>
-                <Button className="submitbutton" type="submit">
+                <Button disabled={!(formData.isValid && formData.values)} className="submitbutton" type="submit">
                   {isSignup ? `Sign Up` : `Login`}
                 </Button>
               </form>
