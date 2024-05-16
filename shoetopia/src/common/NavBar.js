@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
 
 import "./NavBar.scss";
@@ -8,7 +8,7 @@ import HamburgerMenu from "./HamburgerMenu";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
 import { auth } from "../firebase";
-import { selectUser, logout } from "../features/userSlice";
+import { selectUser } from "../features/userSlice";
 import logo from "../assets/images/logo.png";
 import profilepic from "../assets/images/profilepic.webp";
 import utils from "../utils";
@@ -16,7 +16,6 @@ import LoginDialog from "./LoginDialog";
 
 const NavBar = () => {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
   const [show, handleShow] = useState(true);
   const [open, setOpen] = useState(false);
 
@@ -31,7 +30,6 @@ const NavBar = () => {
   const logOut = () => {
     signOut(auth)
     .then(() => {
-      // dispatch(logout())
       console.log('userSigned out')
     })
     .catch((error) => {

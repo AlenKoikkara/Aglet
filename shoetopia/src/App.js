@@ -30,7 +30,7 @@ function App() {
     return () => {
       
     }
-  }, [])
+  }, [dispatch])
   
 
   const router = createBrowserRouter([

@@ -37,7 +37,7 @@ function LoginDialog({ open, handleClose }) {
     if (isSignup) {
       if (!values.confirmPassword && isSignup) {
         errors.confirmPassword = "Required";
-      } else if (values.confirmPassword != values.password) {
+      } else if (values.confirmPassword !== values.password) {
         errors.confirmPassword = "Password does not match";
       }
     }
