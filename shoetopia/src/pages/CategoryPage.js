@@ -1,10 +1,14 @@
-import React from 'react'
-import './CategoryPage.scss';
+import React from "react";
+import "./CategoryPage.scss";
+
+import NavBar from "../common/NavBar";
 
 const CategoryPage = () => {
   return (
-    <div>CategoryPage</div>
-  )
-}
+    <div>
+      <NavBar></NavBar>
+    </div>
+  );
+};
 
-export default CategoryPage
+export default CategoryPage;

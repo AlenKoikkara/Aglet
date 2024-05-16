@@ -3,18 +3,16 @@ import { useFormik } from "formik";
 
 import "./LoginDialog.scss";
 import logo from "../assets/images/logo.png";
+import requests from "../requests";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
 
 function LoginDialog({ open, handleClose }) {
   const [isSignup, setIsSignup] = useState(false);
 
-  
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
@@ -24,16 +22,16 @@ function LoginDialog({ open, handleClose }) {
     ) {
       errors.email = "Invalid email address";
     }
-    
+
     if (!values.password) {
       errors.password = "Required";
     } else if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(values.password)
     ) {
       errors.password =
-      "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number";
+        "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number";
     }
-    
+
     if (isSignup) {
       if (!values.confirmPassword && isSignup) {
         errors.confirmPassword = "Required";
@@ -41,32 +39,8 @@ function LoginDialog({ open, handleClose }) {
         errors.confirmPassword = "Password does not match";
       }
     }
-    
-
     return errors;
   };
-
-  async function register(email, password) {
-    await createUserWithEmailAndPassword(auth, email, password)
-    .then((authUser) => {
-      console.log(authUser);
-      handleClose()
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
-  }
-  
-  async function login(email, password) {
-    await signInWithEmailAndPassword(auth, email, password)
-    .then((authUser) => {
-      console.log(authUser);
-      handleClose()
-    })
-    .catch((error) => {
-      alert(error.message);
-    })
-  }
 
   const formData = useFormik({
     initialValues: {
@@ -76,21 +50,33 @@ function LoginDialog({ open, handleClose }) {
     },
     validate,
     onSubmit: (values) => {
-      formData.setTouched(true)
-      isSignup ? register(values.email, values.password) : login(values.email, values.password);
+      formData.setTouched(true);
+      isSignup
+        ? requests.registerUser(
+            values.email,
+            values.password,
+            handleClose,
+            formData
+          )
+        : requests.loginUser(
+            values.email,
+            values.password,
+            handleClose,
+            formData
+          );
     },
   });
-  
+
   const handleSignup = () => {
     setIsSignup(!isSignup);
-    formData.setTouched(true)
-    formData.resetForm()
-  }
+    formData.setTouched(true);
+    formData.resetForm();
+  };
 
   const closeDialog = () => {
-    formData.resetForm()
-    handleClose()
-  }
+    formData.resetForm();
+    handleClose();
+  };
 
   return (
     <div>
@@ -150,8 +136,10 @@ function LoginDialog({ open, handleClose }) {
                       value={formData.values.confirmPassword}
                       onChange={formData.handleChange}
                     />
-                    {(formData.errors.confirmPassword && isSignup) ? (
-                      <div className="errorText">{formData.errors.confirmPassword}</div>
+                    {formData.errors.confirmPassword && isSignup ? (
+                      <div className="errorText">
+                        {formData.errors.confirmPassword}
+                      </div>
                     ) : null}
                   </>
                 )}
@@ -161,7 +149,11 @@ function LoginDialog({ open, handleClose }) {
                 <div className="signUp" onClick={() => handleSignup()}>
                   {isSignup ? `Login here.` : `SignUp here.`}
                 </div>
-                <Button disabled={!(formData.isValid && formData.values)} className="submitbutton" type="submit">
+                <Button
+                  disabled={!(formData.isValid && formData.values)}
+                  className="submitbutton"
+                  type="submit"
+                >
                   {isSignup ? `Sign Up` : `Login`}
                 </Button>
               </form>

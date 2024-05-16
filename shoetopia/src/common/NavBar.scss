@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 .navbarWrapper {
+  background-color: $primary2;
   padding-top: 10px;
   font-family: 'Poppins';
   position: absolute;
@@ -25,8 +26,10 @@
       @include text-style(17px, 400, 20px);
       color: $primary4;
       display: flex;
-      gap: 70px;
-      div {
+      gap: 130px;
+      .link {
+        text-decoration: none;
+        color: $primary4;
         transition-timing-function: ease-in;
         transition: .5s;
         &:hover {

@@ -1,18 +1,18 @@
 import { React, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { signOut } from "firebase/auth";
 
 import "./NavBar.scss";
 
 import HamburgerMenu from "./HamburgerMenu";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
-import { auth } from "../firebase";
+import requests from "../requests";
 import { selectUser } from "../features/userSlice";
 import logo from "../assets/images/logo.png";
 import profilepic from "../assets/images/profilepic.webp";
 import utils from "../utils";
 import LoginDialog from "./LoginDialog";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const user = useSelector(selectUser);
@@ -25,16 +25,6 @@ const NavBar = () => {
 
   function handleClose() {
     setOpen(false);
-  }
-
-  const logOut = () => {
-    signOut(auth)
-    .then(() => {
-      console.log('userSigned out')
-    })
-    .catch((error) => {
-      console.log(error.message)
-    })
   }
 
   const navbarAnimation = () => {
@@ -62,9 +52,9 @@ const NavBar = () => {
         <img className="logo" src={logo} alt=""></img>
         {!utils.isMobile() && (
           <div className="navbarLinks">
-            <div>Mens</div>
-            <div>Womens</div>
-            <div>Kids</div>
+            <NavLink className="link" to="/products">Mens</NavLink>
+            <NavLink className="link" to="/products">Womens</NavLink>
+            <NavLink className="link" to="/products">Kids</NavLink>
           </div>
         )}
         <div className="profileicon">
@@ -77,7 +67,7 @@ const NavBar = () => {
                 fontSize="large"
               ></ShoppingBagOutlinedIcon>
               {user ? (
-                <img className="profilepic" onClick={() => logOut()} src={profilepic} alt=""></img>
+                <img className="profilepic" onClick={() => requests.logoutUser()} src={profilepic} alt=""></img>
               ) : (
                 <div onClick={() => handleClickOpen()} className="auth">
                   Sign Up/In

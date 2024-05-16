@@ -1,11 +1,26 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./HamburgerMenu.scss";
 
+import requests from "../requests";
+import { selectUser } from "../features/userSlice";
+
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import LoginDialog from "./LoginDialog";
 
 const HamburgerMenu = () => {
+  const user = useSelector(selectUser);
   const [clicked, setClicked] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  function handleClose() {
+    setOpen(false);
+  }
 
   const handleClick = () => {
     const element = document.getElementById("hamburger");
@@ -49,7 +64,13 @@ const HamburgerMenu = () => {
       <div id="navWrapper" className="navWrapper closenav">
         <div className="blurfilterdiv"></div>
         <div className="navlink">
-          <div className="profile">Profile</div>
+          <div className="profile">{user ? (
+                <div className="profilepic" onClick={() => requests.logoutUser()}>Profile</div>
+              ) : (
+                <div onClick={() => handleClickOpen()} className="profile">
+                  Sign Up/In
+                </div>
+              )}</div>
           <div className="mens">Mens</div>
           <div className="womens">Womens</div>
           <div className="kids">Kids</div>
@@ -57,6 +78,9 @@ const HamburgerMenu = () => {
             className="carticon "
             fontSize="large"
           ></ShoppingBagOutlinedIcon>
+        </div>
+        <div style={{ display: "none" }}>
+          <LoginDialog open={open} handleClose={handleClose}></LoginDialog>
         </div>
       </div>
     </>

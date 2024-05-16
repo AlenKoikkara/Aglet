@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./App.scss";
 import HomePage from "./pages/HomePage";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
 
@@ -35,18 +35,17 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/mens",
-      element: user && <CategoryPage></CategoryPage>,
+      path: `/products`,
+      element: <CategoryPage></CategoryPage>,
     },
     {
       path: "/",
       element: <HomePage></HomePage>,
     },
     {
-      path: "/",
-      element: <HomePage />,
-      errorElement: <HomePage />,
-    },
+      path: "*",
+      element: <Navigate to="/"></Navigate>
+    }
   ]);
 
   return (

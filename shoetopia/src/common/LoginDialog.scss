@@ -7,3 +7,19 @@
   @include text-style(13px, 400, 14px);
   color: #FF3333;
 }
+
+@media (max-width: 768px) {
+  .dialogTitle {
+    @include text-style(25px, 700, 26px);
+  }
+  .dialogWrapper {
+    min-width: 230px;
+    padding: 0px;
+    .dialogbanner {
+      display: none;
+    }
+    .form {
+      width: 100%;
+    }
+  }
+}
