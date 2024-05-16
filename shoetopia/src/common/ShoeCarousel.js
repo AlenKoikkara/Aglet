@@ -29,7 +29,6 @@ function ShoeCarousel({ title, fetchUrl }) {
     fetchData();
   }, [fetchUrl]);
 
-  console.log(shoes);
   return (
     <div className="shoeCarouselWrapper">
       <div className="title">{title}</div>

@@ -1,51 +1,62 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import "./App.scss";
-import HomePage from "./pages/HomePage";
-
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { auth } from "./firebase";
-
-import CategoryPage from "./pages/CategoryPage";
-import {login, logout, selectUser} from './features/userSlice'
 import { onAuthStateChanged } from "firebase/auth";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+// import HomePage from "./pages/HomePage";
+import CategoryPage from "./pages/CategoryPage";
+
+import { auth } from "./firebase";
+import { login, logout, selectUser } from "./features/userSlice";
 
 function App() {
+  const HomePage = lazy(() => import("./pages/HomePage"));
+
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('usersigned in')
-        dispatch(login({
-          userId: user.uid,
-          email: user.email
-        }))
+        console.log("usersigned in");
+        dispatch(
+          login({
+            userId: user.uid,
+            email: user.email,
+          })
+        );
       } else {
-        console.log('user signed out')
-        dispatch(logout())
+        console.log("user signed out");
+        dispatch(logout());
       }
     });
-    return () => {
-      
-    }
-  }, [dispatch])
-  
+    return () => {};
+  }, [dispatch]);
 
   const router = createBrowserRouter([
     {
-      path: `/products`,
-      element: <CategoryPage></CategoryPage>,
+      path: "/products",
+      async lazy() {
+        let CategoryPage = await import("./pages/CategoryPage");
+        return { Component: CategoryPage.default };
+      },
     },
     {
       path: "/",
-      element: <HomePage></HomePage>,
+      async lazy() {
+        let HomePage = await import("./pages/HomePage");
+        return { Component: HomePage.default };
+      }
     },
     {
       path: "*",
-      element: <Navigate to="/"></Navigate>
-    }
+      element: <Navigate to="/"></Navigate>,
+    },
   ]);
 
   return (

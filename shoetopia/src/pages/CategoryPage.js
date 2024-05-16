@@ -7,6 +7,7 @@ const CategoryPage = () => {
   return (
     <div>
       <NavBar></NavBar>
+      <div>thisi is cateogru</div>
     </div>
   );
 };

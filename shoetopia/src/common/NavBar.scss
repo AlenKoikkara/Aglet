@@ -17,11 +17,11 @@
     align-items: center;
     justify-content: space-between;
     .logo {
+      cursor: pointer;
       width: 130px;
       object-fit: contain;
     }
     .navbarLinks {
-     
       cursor: pointer;
       @include text-style(17px, 400, 20px);
       color: $primary4;
@@ -67,12 +67,6 @@
         }
       }
     }
-  }
-}
-
-.navfadein {
-  .wrapper {
-    // background-color: white;
   }
 }
 
@@ -123,6 +117,7 @@
 
 @media (max-width: 768px) {
   .navbarWrapper {
+    background-color: transparent;
     position: fixed;
     height: 50px;
     bottom: 35px;

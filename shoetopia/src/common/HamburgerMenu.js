@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import "./HamburgerMenu.scss";
 
@@ -71,9 +72,15 @@ const HamburgerMenu = () => {
                   Sign Up/In
                 </div>
               )}</div>
-          <div className="mens">Mens</div>
-          <div className="womens">Womens</div>
-          <div className="kids">Kids</div>
+          <div className="mens">
+            <NavLink className="link " to="/products">Mens</NavLink>
+          </div>
+          <div className="womens">
+            <NavLink className="link" to="/products">Womens</NavLink>
+          </div>
+          <div className="kids">
+            <NavLink className="link" to="/products">Kids</NavLink>
+          </div>
           <ShoppingBagOutlinedIcon
             className="carticon "
             fontSize="large"

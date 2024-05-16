@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import "./NavBar.scss";
 
@@ -16,8 +17,10 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const user = useSelector(selectUser);
+  const [searchParams, setSearchParams] = useState();
   const [show, handleShow] = useState(true);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,8 +39,8 @@ const NavBar = () => {
   };
 
   useEffect(() => {
+    setSearchParams(utils.getQueryParams());
     window.addEventListener("scroll", navbarAnimation);
-
     return () => window.removeEventListener("scroll", navbarAnimation);
   }, []);
 
@@ -49,12 +52,12 @@ const NavBar = () => {
         </div>
       )}
       <div className="wrapper">
-        <img className="logo" src={logo} alt=""></img>
+        <img className="logo" onClick={() => navigate(utils.getUrlWithParams("/home?", {mens: 'true'}))} src={logo} alt=""></img>
         {!utils.isMobile() && (
           <div className="navbarLinks">
-            <NavLink className="link" to="/products">Mens</NavLink>
-            <NavLink className="link" to="/products">Womens</NavLink>
-            <NavLink className="link" to="/products">Kids</NavLink>
+            <NavLink className="link" to={utils.getUrlWithParams("/products?", {mens: 'true'})}>Mens</NavLink>
+            <NavLink className="link" to={utils.getUrlWithParams("/products?", {womens: 'true'})}>Womens</NavLink>
+            <NavLink className="link" to={utils.getUrlWithParams("/products?", {kids: 'true'})}>Kids</NavLink>
           </div>
         )}
         <div className="profileicon">
