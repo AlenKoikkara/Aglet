@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 .navbarWrapper {
-  background-color: $primary2;
+  // background-color: $primary2;
   padding-top: 10px;
   font-family: 'Poppins';
   position: fixed;
@@ -11,6 +11,12 @@
   transition: all 0.3s;
   transition-timing-function: ease-in;
   .wrapper {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 2px solid black;
+    margin: 10px 10px;
+    border-radius: 10px;
     padding: 10px 40px;
     height: 75px;
     display: flex;
@@ -23,13 +29,13 @@
     }
     .navbarLinks {
       cursor: pointer;
-      @include text-style(17px, 400, 20px);
+      @include text-style(20px, 400, 21px);
       color: $primary4;
       display: flex;
       gap: 130px;
       .link {
         text-decoration: none;
-        color: $primary4;
+        color: $primary1;
         transition-timing-function: ease-in;
         transition: .5s;
         &:hover {
@@ -42,7 +48,7 @@
         cursor: pointer;
         display: flex;
         align-items: start;
-        color: white;
+        color: $primary1;
         .profilepic {
           margin-left: 20px;
           width: 50px;
@@ -61,7 +67,7 @@
         @include text-style(17px, 600, 20px);
         transition-timing-function: ease-in;
         transition: .5s;
-        color: $primary4;
+        color: $primary1;
         &:hover {
           color: $primary3;
         }
@@ -118,10 +124,18 @@
 @media (max-width: 768px) {
   .navbarWrapper {
     background-color: transparent;
+    box-shadow: none;
+    border: 0px;
     position: fixed;
     height: 50px;
     bottom: 35px;
     width: 100%;
+    .wrapper {
+      box-shadow: none;
+      border: none;
+      backdrop-filter: none;
+      background: none;
+    }
     .navheader {
       display: flex;
       justify-content: space-between;

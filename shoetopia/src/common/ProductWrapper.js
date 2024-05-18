@@ -10,6 +10,7 @@ function ProductWrapper({ title, fetchUrl }) {
   const [pageCount, setPageCount] = useState(0);
   const page = useMemo(() => ({pageNo}), [pageNo])
   const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get('category')
 
   const scroller = () => {
     const scrolledTo = window.scrollY + window.innerHeight;
@@ -37,7 +38,7 @@ function ProductWrapper({ title, fetchUrl }) {
     }
     window.addEventListener("scroll", scroller);
     return () => window.removeEventListener("scroll", scroller);
-  }, [fetchUrl, page]);
+  }, [fetchUrl, page, category]);
 
   return (
     <div className="categoryWrapper">
