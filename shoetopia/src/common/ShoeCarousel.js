@@ -20,12 +20,12 @@ function ShoeCarousel({ title, fetchUrl }) {
     });
   };
 
+  async function fetchData() {
+    const request = await axios.get(fetchUrl);
+    setShoes(request.data.products);
+    return request;
+  }
   useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(fetchUrl);
-      setShoes(request.data);
-      return request;
-    }
     fetchData();
   }, [fetchUrl]);
 

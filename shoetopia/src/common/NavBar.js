@@ -14,6 +14,7 @@ import profilepic from "../assets/images/profilepic.webp";
 import utils from "../utils";
 import LoginDialog from "./LoginDialog";
 import { NavLink } from "react-router-dom";
+import { replace } from "formik";
 
 const NavBar = () => {
   const user = useSelector(selectUser);
@@ -52,12 +53,12 @@ const NavBar = () => {
         </div>
       )}
       <div className="wrapper">
-        <img className="logo" onClick={() => navigate(utils.getUrlWithParams("/home?", {mens: 'true'}))} src={logo} alt=""></img>
+        <img className="logo" onClick={() => navigate("/")} src={logo} alt=""></img>
         {!utils.isMobile() && (
           <div className="navbarLinks">
-            <NavLink className="link" to={utils.getUrlWithParams("/products?", {mens: 'true'})}>Mens</NavLink>
-            <NavLink className="link" to={utils.getUrlWithParams("/products?", {womens: 'true'})}>Womens</NavLink>
-            <NavLink className="link" to={utils.getUrlWithParams("/products?", {kids: 'true'})}>Kids</NavLink>
+            <div onClick={() => navigate(utils.getUrlWithParams("/products?", {category: 'Men'}), {replace: true})} className="link">Men</div>
+            <div onClick={() => navigate(utils.getUrlWithParams("/products?", {category: 'Women'}), {replace: true})} className="link">Women</div>
+            <div onClick={() => navigate(utils.getUrlWithParams("/products?", {category: 'Kids'}))} className="link">Kids</div>
           </div>
         )}
         <div className="profileicon">

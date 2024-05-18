@@ -1,18 +1,27 @@
 const Product = require('../models/productModel')
 const mongoose = require('mongoose')
 
-// get all workouts
+// get all products
 const getProducts = async (req, res) => {
-  const excludeFields = ["limit"];
+  const excludeFields = ["limit", "page", "productCount"];
   const querObj = {...req.query};
   excludeFields.forEach((item) => {
     delete querObj[item];
   })
-  const products = await Product.find(querObj).limit(req.query?.limit || "");
+  const count = await Product.countDocuments(querObj)
+  const skip = (req.query?.page || 0) * (req.query?.productCount || 20);
+  const products = await Product.find(querObj).limit(req.query?.limit || "").skip(skip);
+  const pageCount = Math.round(count / req.query.productCount)
+  console.log(count)
   if (!products) {
     return res.status(404).json({ error: "no products" });
   }
-  res.status(200).json(products)
+  res.status(200).json({pageCount:pageCount,products:products})
+  try {
+  } catch (e) {
+    console.log(e);
+    return e
+  }
 }
 
 // get a single workout

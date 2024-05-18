@@ -1,0 +1,87 @@
+@import "../variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
+
+.categoryWrapper {
+  position: relative;
+  padding: 160px 40px 0px;
+  .titleContent {
+    @include flex(space-between, center);
+    .title {
+      @include text-style(50px, 600, 51px);
+      font-family: "Poppins";
+    }
+    .filterOptions {
+      gap: 40px;
+      @include flex(center, space-between);
+    }
+  }
+  .content {
+    margin-top: 60px;
+    width: 100%;
+    .productsList {
+      max-width: 100%;
+      display: grid;
+      justify-content: space-around;
+      grid-template-columns: auto auto auto auto;
+      .productWrapper {
+        max-width: 350px;
+        transition-timing-function: ease;
+        transition: 0.3s;
+        cursor: pointer;
+        .imgCart {
+          position: relative;
+          .shoeimg {
+            pointer-events: auto;
+            background-color: black;
+            border-radius: 20px;
+            object-fit: cover;
+            max-width: 100%;
+            height: auto;
+          }
+          .addCart {
+            pointer-events: auto;
+            width: 40px;
+            height: 40px;
+            color: $primary3;
+            position: absolute;
+            background-color: $primary4;
+            border-radius: 15px;
+            bottom: 12px;
+            right: 2%;
+            transition-timing-function: ease;
+            transition: 0.3s;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+        .shoedetails {
+          padding: 20px;
+          display: flex;
+          justify-content: space-between;
+          color: $primary1;
+          .desc {
+            .productname,
+            .division {
+              text-align: left;
+            }
+            .productname {
+              @include text-style(20px, 600, 21px);
+            }
+            .division {
+              margin-top: 5px;
+              @include text-style(18px, 400, 20px);
+            }
+          }
+          .price {
+            color: $primary3;
+            @include text-style(20px, 600, 21px);
+          }
+        }
+      }
+      .productWrapper:hover {
+        transform: scale(1.09);
+      }
+    }
+  }
+}
