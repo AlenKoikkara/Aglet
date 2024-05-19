@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 .navbarWrapper {
+  display: block;
   // background-color: $primary2;
   padding-top: 10px;
   font-family: 'Poppins';
@@ -74,6 +75,10 @@
       }
     }
   }
+}
+
+.navfadeout {
+  display: none;
 }
 
 .dWrapper {

@@ -13,13 +13,12 @@ import logo from "../assets/images/logo.png";
 import profilepic from "../assets/images/profilepic.webp";
 import utils from "../utils";
 import LoginDialog from "./LoginDialog";
-import { NavLink } from "react-router-dom";
-import { replace } from "formik";
 
-const NavBar = () => {
+function NavBar({products, setProducts}) {
   const user = useSelector(selectUser);
   const [searchParams, setSearchParams] = useState();
-  const [show, handleShow] = useState(true);
+  const [hide, handleHide] = useState(false);
+  const [prevScrollpos , setPrevScrollpos] = useState(0)
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -31,34 +30,43 @@ const NavBar = () => {
     setOpen(false);
   }
 
-  const navbarAnimation = () => {
-    if (window.scrollY > 100) {
-      handleShow(true);
-    } else {
-      handleShow(false);
+  const navigateTo = (category) =>{
+    navigate(utils.getUrlWithParams("/products?", {category: category}))
+    if(products) {
+      setProducts([])
     }
+  }
+
+  const navbarAnimation = () => {
+    console.log(window.scrollY)
+    if (window.scrollY > prevScrollpos) {
+      handleHide(true);
+    } else {
+      handleHide(false);
+    }
+    setPrevScrollpos(window.scrollY);
   };
 
   useEffect(() => {
     setSearchParams(utils.getQueryParams());
     window.addEventListener("scroll", navbarAnimation);
     return () => window.removeEventListener("scroll", navbarAnimation);
-  }, []);
+  }, [prevScrollpos]);
 
   return (
-    <div className={`navbarWrapper ${show && "navfadein"}`}>
+    <div className={`navbarWrapper ${hide && "navfadeout"}`}>
       {utils.isMobile() && (
         <div className="navheader">
           <img className="logo" src={logo} alt=""></img>
         </div>
       )}
       <div className="wrapper">
-        <img className="logo" onClick={() => navigate("/")} src={logo} alt=""></img>
+        <img loading="lazy" className="logo" onClick={() => navigate("/")} src={logo} alt=""></img>
         {!utils.isMobile() && (
           <div className="navbarLinks">
-            <div onClick={() => navigate(utils.getUrlWithParams("/products?", {category: 'Men'}), {replace: true})} className="link">Men</div>
-            <div onClick={() => navigate(utils.getUrlWithParams("/products?", {category: 'Women'}), {replace: true})} className="link">Women</div>
-            <div onClick={() => navigate(utils.getUrlWithParams("/products?", {category: 'Kids'}))} className="link">Kids</div>
+            <div onClick={() => navigateTo('Men')} className="link">Men</div>
+            <div onClick={() => navigateTo('Women')} className="link">Women</div>
+            <div onClick={() => navigateTo('Kids')} className="link">Kids</div>
           </div>
         )}
         <div className="profileicon">

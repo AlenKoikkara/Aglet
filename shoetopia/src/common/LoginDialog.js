@@ -85,7 +85,7 @@ function LoginDialog({ open, handleClose }) {
           <div className="dialogTitle"> {isSignup ? `Sign Up` : `Login`}</div>
           <div className="dialogWrapper">
             <div className="dialogbanner">
-              <img className="logo" src={logo} alt=""></img>
+              <img loading="lazy" className="logo" src={logo} alt=""></img>
             </div>
             <div className="form">
               <form onSubmit={formData.handleSubmit}>

@@ -12,16 +12,11 @@ const getProducts = async (req, res) => {
   const skip = (req.query?.page || 0) * (req.query?.productCount || 20);
   const products = await Product.find(querObj).limit(req.query?.limit || "").skip(skip);
   const pageCount = Math.round(count / req.query.productCount)
-  console.log(count)
+  console.log(products.length)
   if (!products) {
     return res.status(404).json({ error: "no products" });
   }
-  res.status(200).json({pageCount:pageCount,products:products})
-  try {
-  } catch (e) {
-    console.log(e);
-    return e
-  }
+  res.status(200).json({productCount:count,products:products})
 }
 
 // get a single workout

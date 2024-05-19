@@ -21,9 +21,14 @@ function ShoeCarousel({ title, fetchUrl }) {
   };
 
   async function fetchData() {
-    const request = await axios.get(fetchUrl);
-    setShoes(request.data.products);
-    return request;
+    await axios.get(fetchUrl)
+    .then((request) => {
+      setShoes(request.data.products);
+      return request;
+    })
+    .catch((error) => {
+      console.log(error.message)
+    })
   }
   useEffect(() => {
     fetchData();
@@ -42,6 +47,7 @@ function ShoeCarousel({ title, fetchUrl }) {
           <div key={shoe._id} className="productWrapper">
             <div className="imgCart">
               <img
+                loading="lazy"
                 onClick={() => console.log("clicked")}
                 className="shoeimg"
                 src={shoe.imageUrl}

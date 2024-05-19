@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 
 import "./HomePage.scss";
 
@@ -30,10 +30,7 @@ const HomePage = () => {
           "limit=10&productName=Nike Air Max Dn"
         )}
       ></ShoeCarousel>
-      {/* body */}
-      {/* footer */}
       <Footer></Footer>
-      {/* <ColorWarp></ColorWarp> */}
     </div>
   );
 };

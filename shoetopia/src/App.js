@@ -8,15 +8,10 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-// import HomePage from "./pages/HomePage";
-import CategoryPage from "./pages/CategoryPage";
-
 import { auth } from "./firebase";
 import { login, logout, selectUser } from "./features/userSlice";
 
 function App() {
-  const HomePage = lazy(() => import("./pages/HomePage"));
-
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 

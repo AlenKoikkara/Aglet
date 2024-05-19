@@ -17,7 +17,7 @@ const HomepageBanner = () => {
           fun.
         </div>
       </div>
-      <img className="bannerimg" src={bannerimg} alt="bannerimg"></img>
+      <img loading="lazy" className="bannerimg" src={bannerimg} alt="bannerimg"></img>
       <ColorWarp className="colorwarp" width={800} lines={10}></ColorWarp>
       <div className="bannerButtons">
         <div className="menbutton">Mens</div>

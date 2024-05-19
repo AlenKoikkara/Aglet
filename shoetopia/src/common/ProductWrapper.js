@@ -4,13 +4,11 @@ import axios from "../axios";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { useSearchParams } from "react-router-dom";
 
-function ProductWrapper({ title, fetchUrl }) {
-  const [products, setProducts] = useState([]);
+function ProductWrapper({ title, fetchUrl, products, setProducts }) {
   const [pageNo, setPageNo] = useState(0);
-  const [pageCount, setPageCount] = useState(0);
+  const [productCount, setProductCount] = useState(0);
   const page = useMemo(() => ({pageNo}), [pageNo])
   const [searchParams, setSearchParams] = useSearchParams();
-  const category = searchParams.get('category')
 
   const scroller = () => {
     const scrolledTo = window.scrollY + window.innerHeight;
@@ -27,18 +25,18 @@ function ProductWrapper({ title, fetchUrl }) {
     const url = fetchUrl.concat(`&page=${page}`);
     await axios.get(url).then((request) => {
       setProducts([...products, ...request.data.products]);
-      setPageCount(request.data.pageCount);
+      setProductCount(request.data.productCount);
       return request;
     });
   }
 
   useEffect(() => {
-    if (searchParams?.get("category")) {
+    if (searchParams?.get("category") && products.length <= productCount) {
       fetchData(pageNo);
     }
     window.addEventListener("scroll", scroller);
     return () => window.removeEventListener("scroll", scroller);
-  }, [fetchUrl, page, category]);
+  }, [fetchUrl, page]);
 
   return (
     <div className="categoryWrapper">
@@ -56,6 +54,7 @@ function ProductWrapper({ title, fetchUrl }) {
               <div key={product._id} className="productWrapper">
                 <div className="imgCart">
                   <img
+                    loading="lazy"
                     onClick={() => console.log("clicked")}
                     className="shoeimg"
                     src={product.imageUrl}

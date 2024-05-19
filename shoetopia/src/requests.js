@@ -3,8 +3,9 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 
 const requests = {
   fetchProducts: (value) => `api/products?${value}`,
-
   fetchFeatured: `api/products/featured`,
+  fetchUser: (userId) => `api/user/${userId}`,
+  addUser: (userId) => `api/user/${userId}`,
 
   registerUser: async ( email, password, handleClose, formData ) => {
     await createUserWithEmailAndPassword(auth, email, password)
