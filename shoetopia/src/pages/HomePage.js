@@ -16,17 +16,17 @@ const HomePage = () => {
       <HomepageBanner></HomepageBanner>
       <ShoeCarousel
         title="BasketBall"
-        fetchUrl={requests.fetchProducts(
+        fetchUrl={requests?.fetchProducts(
           "limit=10&subCategory=Basketball&category=Shoes"
         )}
       ></ShoeCarousel>
       <FeatureBanner
         title="Air Force 1"
-        fetchUrl={requests.fetchFeatured}
+        fetchUrl={requests?.fetchFeatured}
       ></FeatureBanner>
       <ShoeCarousel
         title="Air Max"
-        fetchUrl={requests.fetchProducts(
+        fetchUrl={requests?.fetchProducts(
           "limit=10&productName=Nike Air Max Dn"
         )}
       ></ShoeCarousel>

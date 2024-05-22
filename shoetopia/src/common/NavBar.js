@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import "./NavBar.scss";
@@ -7,7 +7,7 @@ import "./NavBar.scss";
 import HamburgerMenu from "./HamburgerMenu";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
-import requests from "../requests";
+import { authFunctions } from "../requests";
 import { selectUser } from "../features/userSlice";
 import logo from "../assets/images/logo.png";
 import profilepic from "../assets/images/profilepic.webp";
@@ -20,6 +20,7 @@ function NavBar({products, setProducts}) {
   const [hide, handleHide] = useState(false);
   const [prevScrollpos , setPrevScrollpos] = useState(0)
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClickOpen = () => {
@@ -38,7 +39,6 @@ function NavBar({products, setProducts}) {
   }
 
   const navbarAnimation = () => {
-    console.log(window.scrollY)
     if (window.scrollY > prevScrollpos) {
       handleHide(true);
     } else {
@@ -79,7 +79,7 @@ function NavBar({products, setProducts}) {
                 fontSize="large"
               ></ShoppingBagOutlinedIcon>
               {user ? (
-                <img className="profilepic" onClick={() => requests.logoutUser()} src={profilepic} alt=""></img>
+                <img className="profilepic" onClick={() => authFunctions.logoutUser(dispatch)} src={profilepic} alt=""></img>
               ) : (
                 <div onClick={() => handleClickOpen()} className="auth">
                   Sign Up/In

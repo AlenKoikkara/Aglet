@@ -60,7 +60,7 @@
           }
         }
         .shoedetails {
-          padding: 20px;
+          padding: 10px 20px 30px;
           display: flex;
           justify-content: space-between;
           color: $primary1;
@@ -85,6 +85,18 @@
       }
       .productWrapper:hover {
         transform: scale(1.09);
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .categoryWrapper {
+    padding: 100px 20px 0px;
+    .content {
+      .productsList {
+        grid-template-columns: auto;
       }
     }
   }

@@ -4,13 +4,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const productRoutes = require('./routes/product')
 const userRoutes = require('./routes/user')
+const cartRoutes = require('./routes/cart')
 
 // express app
 const app = express()
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 
@@ -25,6 +27,8 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/products', productRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/cart', cartRoutes)
+
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

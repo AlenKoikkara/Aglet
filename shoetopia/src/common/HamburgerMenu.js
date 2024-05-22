@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import "./HamburgerMenu.scss";
 
-import requests from "../requests";
+import requests, { authFunctions } from "../requests";
 import { selectUser } from "../features/userSlice";
 
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
@@ -66,7 +66,7 @@ const HamburgerMenu = () => {
         <div className="blurfilterdiv"></div>
         <div className="navlink">
           <div className="profile">{user ? (
-                <div className="profilepic" onClick={() => requests.logoutUser()}>Profile</div>
+                <div className="profilepic" onClick={() => authFunctions.logoutUser()}>Profile</div>
               ) : (
                 <div onClick={() => handleClickOpen()} className="profile">
                   Sign Up/In
