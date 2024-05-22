@@ -59,7 +59,6 @@ const utils = {
       if (index === -1) {
         let newObj = Object.assign({}, productObj, { count: 1 });
         newObj = Object.assign({}, newObj, { index: cart?.length });
-        // productObj.count = 1;
         dispatch(addCart(newObj));
         console.log(productObj);
       } else {
