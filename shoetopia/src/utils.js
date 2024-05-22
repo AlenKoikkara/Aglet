@@ -67,26 +67,10 @@ const utils = {
           count: cart[index].count + 1,
         });
         newObj = Object.assign({}, newObj, { index: index });
-        // productObj.count = item.count + 1;
         dispatch(addCart(newObj));
         console.log(newObj);
       }
     }
-    // if (cart?.length !== 0) {
-    //   cart.map((item, i) => {
-    //     if (item.productId !== product._id) {
-    //       let newObj = Object.assign({}, productObj, { count: 1 });
-    //       // productObj.count = 1;
-    //       dispatch(addCart(newObj));
-    //       console.log(productObj);
-    //     } else if (item.productId === product._id && item.count > 1) {
-    //       let newObj = Object.assign({}, productObj, { count: item.count + 1 });
-    //       // productObj.count = item.count + 1;
-    //       dispatch(addCart(newObj));
-    //       console.log(newObj);
-    //     }
-    //   });
-    // }
   },
 
   removeFromCart: (product, dispatch) => {
