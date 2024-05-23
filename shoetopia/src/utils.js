@@ -1,4 +1,6 @@
 import { addCart, removeCart, selectCart } from "./features/cartSlice";
+import axios from "./axios";
+import requests from "./requests";
 
 const utils = {
   isMobile: () => {
@@ -34,46 +36,44 @@ const utils = {
     return url;
   },
 
-  addtoCart: (user, product, dispatch, cart) => {
-    const index = cart.findIndex((item) => item.productId === product._id);
-
-    var productObj = {
-      index: 0,
-      productId: product._id,
-      productName: product.productName,
-      subCategory: product.subCategory,
-      company: product.company,
-      imageUrl: product.imageUrl,
-      listPrice: product.listPrice,
-      count: 0,
+  addtoCart: async (user, product, dispatch, cart) => {
+    var cartObj = {
+      userId: user,
+      cart: {
+        productId: product._id,
+        productName: product.productName,
+        subCategory: product.subCategory,
+        company: product.company,
+        imageUrl: product.imageUrl,
+        listPrice: product.listPrice,
+        count: 1,
+      },
     };
 
-    if (cart?.length === 0) {
-      productObj.index = 0;
-      productObj.count = 1;
-      dispatch(addCart(productObj));
-      console.log(productObj);
-    }
-
-    if (cart.length !== 0) {
-      if (index === -1) {
-        let newObj = Object.assign({}, productObj, { count: 1 });
-        newObj = Object.assign({}, newObj, { index: cart?.length });
-        dispatch(addCart(newObj));
-        console.log(productObj);
-      } else {
-        let newObj = Object.assign({}, productObj, {
-          count: cart[index].count + 1,
-        });
-        newObj = Object.assign({}, newObj, { index: index });
-        dispatch(addCart(newObj));
-        console.log(newObj);
-      }
-    }
+    await axios.post(requests.addToCart, cartObj).then((res) => {
+      console.log(res);
+      dispatch(addCart(res.data.cart));
+    });
   },
 
-  removeFromCart: (product, dispatch) => {
-    dispatch(removeCart(product._id));
+  removeFromCart: async (user, product, dispatch) => {
+    var cartObj = {
+      userId: user,
+      productId: product._id,
+    };
+    await axios.post(requests.removeFromCart, cartObj).then((res) => {
+      console.log(res);
+      dispatch(removeCart(res.data.cart));
+    });
+  },
+
+  isProductInCart: (product, cart) => {
+    return cart.findIndex((item) => item.productId === product._id);
+  },
+
+  itemCountInCart: (product, cart) => {
+    return cart[cart.findIndex((item) => item.productId === product._id)]
+      ?.count;
   },
 };
 

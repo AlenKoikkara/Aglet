@@ -8,6 +8,8 @@ const requests = {
   fetchFeatured: `api/products/featured`,
   fetchUser: (userId) => `api/user/${userId}`,
   addUser: (userId) => `api/user/add/${userId}`,
+  addToCart: 'api/cart/add',
+  removeFromCart: 'api/cart/remove',
 }
 
 const authFunctions = {

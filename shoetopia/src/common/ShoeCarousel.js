@@ -9,7 +9,9 @@ import axios from "../axios";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import utils from "../utils";
+import RemoveRounded from "@mui/icons-material/RemoveRounded";
 
 function ShoeCarousel({ title, fetchUrl }) {
   const [shoes, setShoes] = useState();
@@ -26,22 +28,23 @@ function ShoeCarousel({ title, fetchUrl }) {
   };
 
   async function fetchData() {
-    await axios.get(fetchUrl)
-    .then((request) => {
-      setShoes(request.data.products);
-      return request;
-    })
-    .catch((error) => {
-      console.log(error.message)
-    })
+    await axios
+      .get(fetchUrl)
+      .then((request) => {
+        setShoes(request.data.products);
+        return request;
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }
 
-  function addCart(number, shoe){
-    utils.addtoCart(number, shoe, dispatch, cart)
+  function addCart(number, shoe) {
+    utils.addtoCart(number, shoe, dispatch, cart);
   }
 
-  function removeCart(shoe) {
-    utils.removeFromCart(shoe, dispatch)
+  function removeCart(user, shoe) {
+    utils.removeFromCart(user, shoe, dispatch);
   }
   useEffect(() => {
     fetchData();
@@ -61,16 +64,23 @@ function ShoeCarousel({ title, fetchUrl }) {
             <div className="imgCart">
               <img
                 loading="lazy"
-                onClick={() => removeCart(shoe)}
                 className="shoeimg"
                 src={shoe.imageUrl}
                 alt={shoe.producName}
               ></img>
-              <AddRoundedIcon
-                onClick={() => addCart('123123', shoe)}
-                className="addCart"
-                fontSize="medium"
-              ></AddRoundedIcon>
+              <div className={`cartfunction ${utils.isProductInCart(shoe, cart) > -1 ?  'showcartfunction' : 'hidecartfunction'}`}>
+                <RemoveRounded
+                  className="removeCart"
+                  fontSize="medium"
+                  onClick={() => removeCart("123123", shoe)}
+                ></RemoveRounded>
+                <div className="totalItem">{utils.itemCountInCart(shoe, cart)}</div>
+                <AddRoundedIcon
+                  onClick={() => addCart("123123", shoe)}
+                  className="addCart"
+                  fontSize="medium"
+                ></AddRoundedIcon>
+              </div>
             </div>
             <div className="shoedetails">
               <div className="desc">

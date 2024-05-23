@@ -8,15 +8,16 @@ export const cartSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     addCart: (state, action) => {
-      state.cart[action.payload.index] = action.payload;
+      state.cart = action.payload;
     },
     removeCart: (state, action)  => {
-      const index = state.cart.findIndex(item => item.productId === action.payload)
-      if ((state.cart[index].productId === action.payload) && state.cart[index].count === 1) {
-        state.cart.splice(index, 1);
-      } else if ((state.cart[index].productId === action.payload) && state.cart[index].count > 1) {
-        state.cart[index].count -= 1
-      }
+      // const index = state.cart.findIndex(item => item.productId === action.payload)
+      // if ((state.cart[index].productId === action.payload) && state.cart[index].count === 1) {
+      //   state.cart.splice(index, 1);
+      // } else if ((state.cart[index].productId === action.payload) && state.cart[index].count > 1) {
+      //   state.cart[index].count -= 1
+      // }
+      state.cart = action.payload;
     }
   },  
 });

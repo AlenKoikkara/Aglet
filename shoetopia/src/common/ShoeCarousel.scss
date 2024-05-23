@@ -53,25 +53,90 @@
           pointer-events: auto;
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           background: rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(5px);          border-radius: 20px;
+          backdrop-filter: blur(5px);
+          border-radius: 20px;
           object-fit: cover;
           width: 308px;
         }
-        .addCart {
-          pointer-events: auto;
+        .cartfunction {
           width: 40px;
-          height: 40px;
-          color: $primary3;
+          overflow: hidden;
+          display: flex;
+          // flex-direction: row-reverse;
+          // max-width: fit-content;
+          justify-content: flex-end;
+          align-items: center;
           position: absolute;
           background-color: $primary4;
           border: 1px solid $primary3;
           border-radius: 15px;
           bottom: 12px;
           right: 5px;
-          transition-timing-function: ease;
-          transition: 0.3s;
-          &:hover {
-            transform: scale(1.1);
+          gap: 10px;
+          .removeCart {
+            pointer-events: auto;
+            width: 40px;
+            height: 40px;
+            color: $primary3;
+            &:hover {
+              transform: scale(1.1);
+            }
+            &.show {
+              display: block;
+            }
+          }
+          .totalItem {
+            display: none;
+          }
+          .addCart {
+            pointer-events: auto;
+            width: 40px;
+            height: 40px;
+            color: $primary3;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+        .showcartfunction {
+          width: auto;
+          // width: 100px;
+          bottom: 12px;
+          right: 5px;
+          animation-name: cartanimation;
+          animation-duration: 1s;
+          .removeCart {
+            animation-name: cartbuttonanim;
+            animation-duration: 1s;
+            scale: 0.7;
+            display: block;
+          }
+          .totalItem {
+            display: block;
+          }
+          .addCart {
+            animation-name: cartbuttonanim;
+            animation-duration: 1s;
+            scale: 0.7;
+          }
+        }
+        .hidecartfunction {
+          width: 40px;
+          animation-name: cartanimationhide;
+          animation-duration: 1s;
+          .removeCart {
+            animation-name: cartbuttonanimhide;
+            animation-duration: 1s;
+            scale: 1;
+            display: none;
+          }
+          .totalItem {
+            display: none;
+          }
+          .addCart {
+            animation-name: cartbuttonanimhide;
+            animation-duration: 1s;
+            scale: 1;
           }
         }
       }
@@ -99,9 +164,7 @@
         }
       }
     }
-    .productWrapper:hover {
-      transform: scale(1.09);
-    }
+    
   }
 }
 
@@ -109,6 +172,11 @@
   .shoeCarouselWrapper {
     .shoeRows::-webkit-scrollbar {
       display: none;
+    }
+    .productWrapper {
+      &:hover {
+        transform: scale(1.09);
+      }
     }
   }
 }
@@ -128,5 +196,41 @@
         }
       }
     }
+  }
+}
+
+@keyframes cartanimation {
+  from {
+    width: 40px;
+  }
+  to {
+    width: 105px;
+  }
+}
+
+@keyframes cartanimationhide {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 40px;
+  }
+}
+
+@keyframes cartbuttonanim {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 0.7;
+  }
+}
+
+@keyframes cartbuttonanimhide {
+  from {
+    scale: 0.7;
+  }
+  to {
+    scale: 1;
   }
 }

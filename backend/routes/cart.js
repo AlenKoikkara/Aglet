@@ -8,10 +8,10 @@ const {
 const router = express.Router()
 
 
-router.post('', addCart);
+router.post('/add/', addCart);
 
 router.post('', getCart);
-router.post('', removeCart);
+router.post('/remove/', removeCart);
 
 
 module.exports = router

@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const getProducts = async (req, res) => {
   const excludeFields = ["limit", "page", "productCount"];
   const querObj = {...req.query};
+  console.log(querObj)
   excludeFields.forEach((item) => {
     delete querObj[item];
   })
