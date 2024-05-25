@@ -2,8 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,400,600,700");
 
 .bannerHeader {
-  background-color: $primary2;
-  height: 650px;
+  background-color: $primary1;
+  height: 750px;
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -11,16 +11,15 @@
     z-index: 1;
     position: absolute;
     top: 250px;
-    left: 10%;
+    left: -30%;
     text-align: start;
     color: white;
-    .title {
-      width: 500px;
+    .title1, .title2 {
       font-family: 'Times New Roman', Times, serif;
       @include text-style(90px, 200, 91px);
     }
     .desc {
-      @include text-style(20px, 200, 30px);
+      @include text-style(20px, 400, 30px);
       margin-top: 10px;
       width: 500px;
     }
@@ -28,7 +27,7 @@
   .bannerimg {
     z-index: 1;
     position: absolute;
-    width: 45%;
+    width: 65%;
     right: 5%;
     bottom: 5%;
     transform: scaleY(-1) rotate(20deg);
@@ -57,15 +56,53 @@
   }
 }
 
+@media (min-width: 767px) {
+  .bannerHeader {
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    width: 75%;
+    margin-left: auto;
+    .content {
+      z-index: 1;
+      position: absolute;
+      top: 250px;
+      left: -18%;
+      text-align: start;
+      color: white;
+      .title1, .title2 {
+        width: max-content;
+        padding: 10px 90px;
+        border-radius: 20px;
+        color: $primary3;
+        background: white;
+      }
+      .title2 {
+        position: absolute;
+        top: 90px;
+      }
+      .desc {
+        font-family: 'Poppins';
+        position: absolute;
+        transform: rotate(-90deg);
+        left: -65%;
+        top: 180px;
+        padding: 0px 90px;
+        color: $primary3;
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .bannerHeader {
     .content {
       left: 7%;
-      .title {
+      .title1, .title2 {
         @include text-style(50px, 200, 51px);
         width: 300px;
       }
       .desc {
+        @include text-style(20px, 200, 24px);
         width: 300px;
       }
     }

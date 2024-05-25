@@ -1,0 +1,52 @@
+@import "../variables.scss";
+
+.featuredCarousel {
+  position: absolute;
+  z-index: 100;
+  bottom: 20px;
+  margin-left: 20px;
+  border-radius: 20px;
+  padding: 6px;
+  width: 400px;
+  background-color: $primary4;
+  .carouselContent {
+    @include flex(center, center);
+    .contentImage {
+      width: 50%;
+      border-radius: 14px;
+    }
+    .featuredcontent {
+      padding: 5px 0px;
+      width: 60%;
+      margin-left: 20px;
+      color: $primary1;
+      @include flex(space-between, start, column);
+      .description {
+        @include flex(center, start, column);
+        gap: 5px;
+        .brandName {
+          @include text-style(13px, 400, 16px);
+        }
+        .productName {
+          @include text-style(23px, 400, 25px);
+        }
+        .producttype {
+          @include text-style(18px, 400, 18px);
+        }
+      }
+      .cartfunction {
+        margin-top: 5px;
+        @include text-style(22px, 400, 24px);
+      }
+    }
+  }
+  horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+    top: -3px;
+    left: 150px !important;
+    width: 100%;
+    .swiper-pagination-bullet-active {
+      background: $primary3;
+  }
+  }
+}
+
