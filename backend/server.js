@@ -4,10 +4,6 @@ var cors = require('cors');
 const express = require('express')
 const mongoose = require('mongoose')
 
-const productRoutes = require('./routes/product')
-const userRoutes = require('./routes/user')
-const cartRoutes = require('./routes/cart')
-
 // express app
 const app = express()
 
@@ -18,6 +14,10 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
+
+const productRoutes = require('./routes/product')
+const userRoutes = require('./routes/user')
+const cartRoutes = require('./routes/cart')
 
 // middleware
 app.use(express.json())

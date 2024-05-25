@@ -58,7 +58,9 @@ const addCart = async (req, res) => {
 
 const removeCart = async (req, res) => {
 
-  const cart = await Cart.findOneAndUpdate(
+  let cart;
+
+  cart = await Cart.findOneAndUpdate(
     {
       userId: req.body.userId,
       "cart.productId": req.body?.productId,
@@ -68,10 +70,36 @@ const removeCart = async (req, res) => {
   ).catch((error) => {
     return res.status(404).json({ error: error.message });
   });
+  
+  const item = await Cart.find({
+    userId: req.body.userId,
+    cart: { $elemMatch: { count: 0} },
+  });
+  console.log(item)
+  if (item.length > 0) {
+    cart = await Cart.findOneAndUpdate(
+      {
+        userId: req.body.userId,
+      },
+      {
+        $pull: {
+          cart : { count: 0},
+        },
+      },
+      { new: true }
+    )
+  }
+  await Cart.deleteOne({cart: {$exists: true, $size:0}})
   res.status(200).json(cart);
 };
 
-const getCart = async (req, res) => {};
+const getCart = async (req, res) => {
+  const { id } = req.params
+
+  const cart = await Cart.findOne({userId: id})
+
+  res.status(200).json(cart)
+};
 
 
 module.exports = {

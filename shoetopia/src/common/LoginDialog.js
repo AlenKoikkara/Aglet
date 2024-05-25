@@ -3,16 +3,21 @@ import { useFormik } from "formik";
 
 import "./LoginDialog.scss";
 import logo from "../assets/images/logo.png";
-import { authFunctions } from "../requests";
+import  authFunctions  from "../authFunctions";
 import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 
-function LoginDialog({ open, handleClose }) {
+function LoginDialog({ open, setOpen }) {
   const [isSignup, setIsSignup] = useState(false);
+  // const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  
+  function handleClose() {
+    setOpen(false);
+  }
 
   const validate = (values) => {
     const errors = {};

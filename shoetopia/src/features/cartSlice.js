@@ -11,12 +11,6 @@ export const cartSlice = createSlice({
       state.cart = action.payload;
     },
     removeCart: (state, action)  => {
-      // const index = state.cart.findIndex(item => item.productId === action.payload)
-      // if ((state.cart[index].productId === action.payload) && state.cart[index].count === 1) {
-      //   state.cart.splice(index, 1);
-      // } else if ((state.cart[index].productId === action.payload) && state.cart[index].count > 1) {
-      //   state.cart[index].count -= 1
-      // }
       state.cart = action.payload;
     }
   },  

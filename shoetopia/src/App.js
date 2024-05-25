@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 import { onAuthStateChanged } from "firebase/auth";
 import {
@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { auth } from "./firebase";
 import { login, logout, selectUser } from "./features/userSlice";
+import utils from "./utils";
+import { removeCart } from "./features/cartSlice";
 
 function App() {
   const user = useSelector(selectUser);
@@ -25,11 +27,17 @@ function App() {
             email: user.email,
           })
         );
+        utils.getCart(user.uid, dispatch)
       } else {
         console.log("user signed out");
         dispatch(logout());
+        dispatch(removeCart([]))
       }
     });
+
+    if (user) {
+    }
+    console.log(user)
     return () => {};
   }, [dispatch]);
 

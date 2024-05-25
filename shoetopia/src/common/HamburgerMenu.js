@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import "./HamburgerMenu.scss";
 
-import requests, { authFunctions } from "../requests";
+import authFunctions from "../authFunctions";
 import { selectUser } from "../features/userSlice";
 
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";

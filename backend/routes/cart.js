@@ -7,10 +7,10 @@ const {
 
 const router = express.Router()
 
+router.get('/fetch/:id', getCart);
 
 router.post('/add/', addCart);
 
-router.post('', getCart);
 router.post('/remove/', removeCart);
 
 

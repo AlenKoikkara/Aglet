@@ -1,4 +1,4 @@
-import { addCart, removeCart, selectCart } from "./features/cartSlice";
+import { addCart, removeCart } from "./features/cartSlice";
 import axios from "./axios";
 import requests from "./requests";
 
@@ -36,7 +36,7 @@ const utils = {
     return url;
   },
 
-  addtoCart: async (user, product, dispatch, cart) => {
+  addtoCart: async (user, product, dispatch) => {
     var cartObj = {
       userId: user,
       cart: {
@@ -63,12 +63,21 @@ const utils = {
     };
     await axios.post(requests.removeFromCart, cartObj).then((res) => {
       console.log(res);
-      dispatch(removeCart(res.data.cart));
+      dispatch(removeCart(res.data?.cart));
+    });
+  },
+
+  getCart: async (userId, dispatch) => {
+    await axios.get(requests.fetchCart(userId)).then((res) => {
+      console.log(res);
+      if (res.data?.cart) {
+        dispatch(removeCart(res.data?.cart));
+      }
     });
   },
 
   isProductInCart: (product, cart) => {
-    return cart.findIndex((item) => item.productId === product._id);
+    return cart?.findIndex((item) => item.productId === product._id);
   },
 
   itemCountInCart: (product, cart) => {

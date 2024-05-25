@@ -7,7 +7,7 @@ import "./NavBar.scss";
 import HamburgerMenu from "./HamburgerMenu";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 
-import { authFunctions } from "../requests";
+import authFunctions from "../authFunctions";
 import { selectUser } from "../features/userSlice";
 import logo from "../assets/images/logo.png";
 import profilepic from "../assets/images/profilepic.webp";
@@ -16,7 +16,6 @@ import LoginDialog from "./LoginDialog";
 
 function NavBar({products, setProducts}) {
   const user = useSelector(selectUser);
-  const [searchParams, setSearchParams] = useState();
   const [hide, handleHide] = useState(false);
   const [prevScrollpos , setPrevScrollpos] = useState(0)
   const [open, setOpen] = useState(false);
@@ -26,10 +25,6 @@ function NavBar({products, setProducts}) {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-  function handleClose() {
-    setOpen(false);
-  }
 
   const navigateTo = (category) =>{
     navigate(utils.getUrlWithParams("/products?", {category: category}))
@@ -48,7 +43,6 @@ function NavBar({products, setProducts}) {
   };
 
   useEffect(() => {
-    setSearchParams(utils.getQueryParams());
     window.addEventListener("scroll", navbarAnimation);
     return () => window.removeEventListener("scroll", navbarAnimation);
   }, [prevScrollpos]);
@@ -89,7 +83,7 @@ function NavBar({products, setProducts}) {
           )}
         </div>
         <div style={{ display: "none" }}>
-          <LoginDialog open={open} handleClose={handleClose}></LoginDialog>
+          <LoginDialog open={open} setOpen={setOpen}></LoginDialog>
         </div>
       </div>
     </div>
