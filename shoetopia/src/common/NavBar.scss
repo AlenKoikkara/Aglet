@@ -73,7 +73,6 @@
 
 .navfadeout {
   display: none;
-  // background-color: black;
 }
 
 .navfadein {
@@ -146,9 +145,7 @@
       background: none;
     }
     .navheader {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex(space-between, center);
       position: fixed;
       top: 20px;
       left: 20px;

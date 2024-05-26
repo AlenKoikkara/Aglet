@@ -51,7 +51,7 @@ function NavBar({products, setProducts}) {
   }, [prevScrollpos]);
 
   return (
-    <div className={`navbarWrapper ${hide}`}>
+    <div className={`navbarWrapper ${utils.isMobile() ? '' : hide}`}>
       {utils.isMobile() && (
         <div className="navheader">
           <img className="logo" src={logo} alt=""></img>

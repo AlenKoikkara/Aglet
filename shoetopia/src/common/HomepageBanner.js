@@ -2,6 +2,7 @@ import React from "react";
 
 import "./HomepageBanner.scss";
 import FeaturedCarousel from "./FeaturedCarousel";
+import utils from "../utils";
 
 const HomepageBanner = () => {
   return (
@@ -14,12 +15,12 @@ const HomepageBanner = () => {
           goal, to make you smile! So, kick off your old kicks and join the
           fun.
         </div>
-        <div className="bannerButtons">
+       {!utils.isMobile() && <div className="bannerButtons">
           <div className="menbutton">mens</div>
           <div className="womenbutton">womens</div>
-        </div>
+        </div>}
       </div>
-      <FeaturedCarousel></FeaturedCarousel>
+      {!utils.isMobile() && <FeaturedCarousel></FeaturedCarousel>}
     </header>
   );
 };
