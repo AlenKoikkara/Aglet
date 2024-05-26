@@ -77,7 +77,7 @@
       color: white;
       .title1, .title2 {
         width: max-content;
-        padding: 15px 250px 15px 0px;
+        padding: 15px 150px 15px 0px;
         border-radius: 20px;
         color: $primary1;
         background: white;
@@ -103,11 +103,11 @@
       top: 190px;
       left: 7%;
       .title1, .title2 {
-        @include text-style(50px, 200, 51px);
+        @include text-style(50px, 400, 51px);
         width: 300px;
       }
       .desc {
-        @include text-style(20px, 200, 24px);
+        @include text-style(15px, 200, 20px);
         width: 300px;
       }
     }

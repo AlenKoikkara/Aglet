@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("usersigned in");
+        // console.log("usersigned in");
         dispatch(
           login({
             userId: user.uid,
@@ -29,7 +29,7 @@ function App() {
         );
         utils.getCart(user.uid, dispatch)
       } else {
-        console.log("user signed out");
+        // console.log("user signed out");
         dispatch(logout());
         dispatch(removeCart([]))
       }
@@ -37,7 +37,7 @@ function App() {
 
     if (user) {
     }
-    console.log(user)
+    // console.log(user)
     return () => {};
   }, [dispatch]);
 

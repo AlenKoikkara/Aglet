@@ -22,7 +22,6 @@ const FeaturedCarousel = () => {
       .get(requests.fetchFeatured, featureObj)
       .then((res) => {
         setFeaturedProduct(res.data);
-        console.log(res.data);
         return res;
       })
       .catch((error) => {
@@ -39,8 +38,6 @@ const FeaturedCarousel = () => {
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         autoplay={{ delay: 7000 }}
         grabCursor={true}
         effect={"creative"}
