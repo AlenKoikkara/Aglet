@@ -81,7 +81,7 @@ const utils = {
   },
 
   itemCountInCart: (product, cart) => {
-    return cart[cart.findIndex((item) => item.productId === product._id)]
+    return cart[cart?.findIndex((item) => item.productId === product._id)]
       ?.count;
   },
 };

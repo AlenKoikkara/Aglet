@@ -16,7 +16,7 @@ import LoginDialog from "./LoginDialog";
 
 function NavBar({products, setProducts}) {
   const user = useSelector(selectUser);
-  const [hide, handleHide] = useState(false);
+  const [hide, handleHide] = useState('top');
   const [prevScrollpos , setPrevScrollpos] = useState(0)
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
@@ -35,11 +35,14 @@ function NavBar({products, setProducts}) {
 
   const navbarAnimation = () => {
     if (window.scrollY > prevScrollpos) {
-      handleHide(true);
+      handleHide('navfadeout');
     } else {
-      handleHide(false);
+      handleHide('navfadein');
     }
     setPrevScrollpos(window.scrollY);
+    if (prevScrollpos < 100) {
+      handleHide('top')
+    }
   };
 
   useEffect(() => {
@@ -48,7 +51,7 @@ function NavBar({products, setProducts}) {
   }, [prevScrollpos]);
 
   return (
-    <div className={`navbarWrapper ${hide && "navfadeout"}`}>
+    <div className={`navbarWrapper ${hide}`}>
       {utils.isMobile() && (
         <div className="navheader">
           <img className="logo" src={logo} alt=""></img>
@@ -58,9 +61,9 @@ function NavBar({products, setProducts}) {
         <img loading="lazy" className="logo" onClick={() => navigate("/")} src={logo} alt=""></img>
         {!utils.isMobile() && (
           <div className="navbarLinks">
-            <div onClick={() => navigateTo('Men')} className="link">Men</div>
-            <div onClick={() => navigateTo('Women')} className="link">Women</div>
-            <div onClick={() => navigateTo('Kids')} className="link">Kids</div>
+            <div onClick={() => navigateTo('Men')} className="link">men</div>
+            <div onClick={() => navigateTo('Women')} className="link">women</div>
+            <div onClick={() => navigateTo('Kids')} className="link">kids</div>
           </div>
         )}
         <div className="profileicon">
@@ -76,7 +79,7 @@ function NavBar({products, setProducts}) {
                 <img className="profilepic" onClick={() => authFunctions.logoutUser(dispatch)} src={profilepic} alt=""></img>
               ) : (
                 <div onClick={() => handleClickOpen()} className="auth">
-                  Sign Up/In
+                  Sign in
                 </div>
               )}
             </div>

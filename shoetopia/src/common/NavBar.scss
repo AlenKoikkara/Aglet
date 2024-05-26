@@ -3,8 +3,7 @@
 
 .navbarWrapper {
   display: block;
-  // background-color: $primary2;
-  padding-top: 10px;
+  padding: 10px;
   font-family: 'Poppins';
   position: fixed;
   z-index: 99;
@@ -12,29 +11,24 @@
   transition: all 0.3s;
   transition-timing-function: ease-in;
   .wrapper {
-    // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    // background: rgba(255, 255, 255, 0.2);
-    // backdrop-filter: blur(5px);
-    // border: 2px solid black;
-    margin: 10px 10px;
-    // border-radius: 10px;
-    padding: 10px 40px;
+    padding: 0px 40px;
     height: 75px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     .logo {
       cursor: pointer;
-      width: 130px;
+      width: 150px;
       object-fit: contain;
     }
     .navbarLinks {
-      cursor: pointer;
-      @include text-style(20px, 200, 21px);
+      margin-left: 35%;
       color: $primary4;
       display: flex;
       gap: 100px;
       .link {
+        @include text-style(18px, 400, 21px);
+        cursor: pointer;
         text-decoration: none;
         color: $primary4;
         transition-timing-function: ease-in;
@@ -45,7 +39,6 @@
       }
     }
     .profileicon {
-      margin-left: 15%;
       .rightsideContent {
         cursor: pointer;
         display: flex;
@@ -80,6 +73,16 @@
 
 .navfadeout {
   display: none;
+  // background-color: black;
+}
+
+.navfadein {
+  display: block;
+  background-color: black;
+}
+
+.top {
+  background: none;
 }
 
 .dWrapper {

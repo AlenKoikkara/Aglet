@@ -2,8 +2,9 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,400,600,700");
 
 .bannerHeader {
-  background-color: $primary1;
-  height: 750px;
+  background-image: url(../assets/images/banner.png);
+  height: 680px;
+  width: 1080px;
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -11,17 +12,17 @@
     z-index: 1;
     position: absolute;
     top: 250px;
-    left: -30%;
+    left: -35%;
     text-align: start;
     color: white;
     .title1, .title2 {
-      font-family: 'Times New Roman', Times, serif;
-      @include text-style(90px, 200, 91px);
+      // font-family: 'Times New Roman', Times, serif;
+      @include text-style(100px, 600, 101px);
     }
     .desc {
-      @include text-style(20px, 400, 30px);
+      @include text-style(15px, 400, 22px);
       margin-top: 10px;
-      width: 500px;
+      width: 350px;
     }
   }
   .bannerimg {
@@ -38,15 +39,15 @@
     z-index: 1;
     position: absolute;
     display: flex;
-    right: 70px;
-    bottom: 70px;
+    top: 400px;
     gap: 40px;
     .menbutton, .womenbutton {
       cursor: pointer;
       transform: scale(1.1);
       padding: 10px 40px;
-      color: $primary2;
-      background-color: $primary4;
+      color: $primary4;
+      border-radius: 10px;
+      background-color: $primary1;
       transition-timing-function: ease-in;
       transition: .5s;
       &:hover {
@@ -60,34 +61,40 @@
   .bannerHeader {
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
-    width: 75%;
+    // width: 90%;
     margin-left: auto;
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    .featuredCarousel {
+      position: absolute;
+      z-index: 2;
+      bottom: 20px;
+    }
     .content {
       z-index: 1;
       position: absolute;
-      top: 250px;
-      left: -18%;
+      top: 220px;
+      left: -40%;
       text-align: start;
       color: white;
       .title1, .title2 {
         width: max-content;
-        padding: 10px 90px;
+        padding: 15px 250px 15px 0px;
         border-radius: 20px;
-        color: $primary3;
+        color: $primary1;
         background: white;
       }
       .title2 {
         position: absolute;
-        top: 90px;
+        top: 105px;
       }
       .desc {
         font-family: 'Poppins';
         position: absolute;
-        transform: rotate(-90deg);
-        left: -65%;
-        top: 180px;
-        padding: 0px 90px;
-        color: $primary3;
+        top: 220px;
+        color: $primary1;
       }
     }
   }
@@ -117,5 +124,14 @@
         padding: 10px 40px;
       }
     }
+  }
+}
+
+@keyframes slide {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 65%;
   }
 }
