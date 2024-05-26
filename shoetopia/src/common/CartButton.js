@@ -1,41 +1,38 @@
-import React, { useEffect, useState, useRef } from "react";
-import './CartButton.scss'
+import React, { useState } from "react";
+import "./CartButton.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCart } from "../features/cartSlice";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import RemoveRounded from "@mui/icons-material/RemoveRounded";
 
-import "./ShoeCarousel.scss";
+import { selectCart } from "../features/cartSlice";
+import { selectUser } from "../features/userSlice";
 import LoginDialog from "../common/LoginDialog";
 
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import utils from "../utils";
-import RemoveRounded from "@mui/icons-material/RemoveRounded";
-import { selectUser } from "../features/userSlice";
 
 function CartButton({ shoe }) {
   const dispatch = useDispatch();
-
   const cart = useSelector(selectCart);
-
   const user = useSelector(selectUser);
   const [open, setOpen] = useState(false);
 
   function addCart() {
     if (user) {
-      utils.addtoCart(user.userId, shoe, dispatch, cart);
+      utils.addtoCart(user?.userId, shoe, dispatch, cart);
     } else {
       setOpen(true);
     }
   }
 
   function removeCart() {
-    utils.removeFromCart(user.userId, shoe, dispatch);
+    utils.removeFromCart(user?.userId, shoe, dispatch);
   }
 
   return (
     <div
       className={`cartfunction ${
-        cart.length &&
-        (utils.isProductInCart(shoe, cart) > -1
+        cart?.length &&
+        (utils?.isProductInCart(shoe, cart) > -1
           ? "showcartfunction"
           : "hidecartfunction")
       }`}
@@ -46,7 +43,7 @@ function CartButton({ shoe }) {
         onClick={() => removeCart()}
       ></RemoveRounded>
       <div className="totalItem">
-        {cart.length && utils.itemCountInCart(shoe, cart)}
+        {cart?.length && utils.itemCountInCart(shoe, cart)}
       </div>
       <AddRoundedIcon
         onClick={() => addCart()}

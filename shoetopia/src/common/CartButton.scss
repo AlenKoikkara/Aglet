@@ -5,8 +5,6 @@
   width: 40px;
   overflow: hidden;
   display: flex;
-  // flex-direction: row-reverse;
-  // max-width: fit-content;
   justify-content: flex-end;
   align-items: center;
   position: absolute;
@@ -43,7 +41,6 @@
 }
 .showcartfunction {
   width: auto;
-  // width: 100px;
   bottom: 12px;
   right: 5px;
   animation-name: cartanimation;

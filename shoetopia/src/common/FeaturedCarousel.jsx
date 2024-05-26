@@ -7,8 +7,8 @@ import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import requests from "../requests";
 import axios from "../axios";
-import 'swiper/css/effect-creative';
-import { EffectCreative } from 'swiper/modules';
+import "swiper/css/effect-creative";
+import { EffectCreative } from "swiper/modules";
 
 const FeaturedCarousel = () => {
   const [featuredProduct, setFeaturedProduct] = useState();
@@ -30,7 +30,6 @@ const FeaturedCarousel = () => {
       });
   }
 
-
   useEffect(() => {
     fetchData();
   }, [requests.fetchFeatured]);
@@ -44,14 +43,14 @@ const FeaturedCarousel = () => {
         onSwiper={(swiper) => console.log(swiper)}
         autoplay={{ delay: 7000 }}
         grabCursor={true}
-        effect={'creative'}
+        effect={"creative"}
         creativeEffect={{
           prev: {
             shadow: true,
             translate: [0, 0, -400],
           },
           next: {
-            translate: ['100%', 0, 0],
+            translate: ["100%", 0, 0],
           },
         }}
         className="mySwiper"

@@ -12,7 +12,6 @@ import DialogContent from "@mui/material/DialogContent";
 
 function LoginDialog({ open, setOpen }) {
   const [isSignup, setIsSignup] = useState(false);
-  // const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   
   function handleClose() {

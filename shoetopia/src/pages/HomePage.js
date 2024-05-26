@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
 
 import "./HomePage.scss";
 
@@ -8,7 +8,6 @@ import ShoeCarousel from "../common/ShoeCarousel";
 import requests from "../requests";
 import FeatureBanner from "../common/FeatureBanner";
 import Footer from "../common/Footer";
-import FeaturedCarousel from "../common/FeaturedCarousel";
 
 const HomePage = () => {
   return (

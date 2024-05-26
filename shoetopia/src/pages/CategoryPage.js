@@ -5,7 +5,7 @@ import requests from "../requests";
 import NavBar from "../common/NavBar";
 import ProductWrapper from "../common/ProductWrapper";
 import { useSearchParams } from "react-router-dom";
-import { useLocation } from 'react-router-dom'; // Assuming you're using React Router
+import { useLocation } from 'react-router-dom';
 
 const CategoryPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();

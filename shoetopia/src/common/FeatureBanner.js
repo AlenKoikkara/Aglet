@@ -4,7 +4,7 @@ import "./FeatureBanner.scss";
 
 import video from "../assets/videos/feature.mp4";
 
-function FeatureBanner({ title, fetchUrl }) {
+function FeatureBanner({ title }) {
   return (
     <div className="featureBannerWrapper">
       <video autoPlay={true} muted loop>
