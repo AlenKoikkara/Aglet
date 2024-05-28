@@ -24,7 +24,7 @@ function App() {
         dispatch(
           login({
             userId: user.uid,
-            email: user.email,
+            emailId: user.email,
           })
         );
         utils.getCart(user.uid, dispatch)

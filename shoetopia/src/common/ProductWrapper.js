@@ -27,6 +27,9 @@ function ProductWrapper({ title, fetchUrl, products, setProducts }) {
       setProducts([...products, ...request.data.products]);
       setProductCount(request.data.productCount);
       return request;
+    })
+    .catch((error) => {
+      console.log(error.message)
     });
   }
 
@@ -39,41 +42,45 @@ function ProductWrapper({ title, fetchUrl, products, setProducts }) {
   }, [fetchUrl, page]);
 
   return (
-    <div className="categoryWrapper">
-      <div className="titleContent">
-        <div className="title">{title}'s Shoes</div>
-        <div className="filterOptions">
-          <div className="hideFilter">HideFilter</div>
-          <div className="sortByDropdown">Dropdown menu</div>
-        </div>
-      </div>
-      <div className="content">
-        {products && (
-          <div className="productsList">
-            {products?.map((product) => (
-              <div key={product._id} className="productWrapper">
-                <div className="imgCart">
-                  <img
-                    loading="lazy"
-                    className="shoeimg"
-                    src={product.imageUrl}
-                    alt={product.producName}
-                  ></img>
-                  <CartButton shoe={product}></CartButton>
-                </div>
-                <div className="shoedetails">
-                  <div className="desc">
-                    <div className="productname">{product.productName}</div>
-                    <div className="division">{product.division}</div>
-                  </div>
-                  <div className="price">${product.listPrice}</div>
-                </div>
-              </div>
-            ))}
+    <>
+      {products.length > 0 && (
+        <div className="categoryWrapper">
+          <div className="titleContent">
+            <div className="title">{title}'s Shoes</div>
+            {/* <div className="filterOptions">
+              <div className="hideFilter">HideFilter</div>
+              <div className="sortByDropdown">Dropdown menu</div>
+            </div> */}
           </div>
-        )}
-      </div>
-    </div>
+          <div className="content">
+            <div className="productsList">
+              {products?.map((product) => (
+                <div key={product._id} className="productWrapper">
+                  <div className="imgCart">
+                    <img
+                      loading="lazy"
+                      className="shoeimg"
+                      src={product.imageUrl}
+                      alt={product.producName}
+                    ></img>
+                    <div className="cartButton">
+                    <CartButton shoe={product}></CartButton>
+                    </div>
+                  </div>
+                  <div className="shoedetails">
+                    <div className="desc">
+                      <div className="productname">{product.productName}</div>
+                      <div className="division">{product.division}</div>
+                    </div>
+                    <div className="price">${product.listPrice}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

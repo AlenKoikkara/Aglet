@@ -2,11 +2,15 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 .categoryWrapper {
+  width: 100%;
   position: relative;
-  padding: 160px 40px 0px;
+  padding: 40px 0px;
   .titleContent {
     @include flex(space-between, center);
     .title {
+      text-align: start;
+      width: 85%;
+      margin-left: auto;
       @include text-style(50px, 600, 51px);
       font-family: "Poppins";
     }
@@ -17,32 +21,37 @@
   }
   .content {
     margin-top: 60px;
-    width: 100%;
+    width: 85%;
+    margin-left: auto;
     .productsList {
       max-width: 100%;
       display: grid;
-      justify-content: space-around;
-      grid-template-columns: auto auto auto auto;
+      justify-content: space-between;
+      grid-template-columns: 
+       auto auto auto;
       .productWrapper {
-        max-width: 330px;
+        padding: 0px 30px 0px 0px;
+        max-width: 350px;
         transition-timing-function: ease;
         transition: 0.3s;
         cursor: pointer;
         .imgCart {
           position: relative;
           .shoeimg {
-            pointer-events: auto;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);            
+            pointer-events: auto;        
             border-radius: 20px;
             object-fit: cover;
             max-width: 100%;
             height: auto;
           }
+          .cartButton {
+            position: absolute;
+            bottom: 12px;
+            right: 8px;
+          }
         }
         .shoedetails {
-          padding: 10px 20px 30px;
+          padding: 10px 10px 30px;
           display: flex;
           justify-content: space-between;
           color: $primary1;
@@ -52,7 +61,7 @@
               text-align: left;
             }
             .productname {
-              @include text-style(20px, 600, 21px);
+              @include text-style(20px, 400, 21px);
             }
             .division {
               margin-top: 5px;
@@ -67,6 +76,11 @@
       }
       .productWrapper:hover {
         transform: scale(1.09);
+        .imgCart {
+          .shoeimg {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          }
+        }
       }
     }
   }
@@ -84,38 +98,3 @@
   }
 }
 
-@keyframes cartanimation {
-  from {
-    width: 40px;
-  }
-  to {
-    width: 105px;
-  }
-}
-
-@keyframes cartanimationhide {
-  from {
-    width: 100px;
-  }
-  to {
-    width: 40px;
-  }
-}
-
-@keyframes cartbuttonanim {
-  from {
-    scale: 1;
-  }
-  to {
-    scale: 0.7;
-  }
-}
-
-@keyframes cartbuttonanimhide {
-  from {
-    scale: 0.7;
-  }
-  to {
-    scale: 1;
-  }
-}

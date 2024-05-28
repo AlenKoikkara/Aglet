@@ -53,8 +53,9 @@ function ShoeCarousel({ title, fetchUrl }) {
                 src={shoe.imageUrl}
                 alt={shoe.producName}
               ></img>
-              <CartButton shoe={shoe}></CartButton>
-            </div>
+ <div className="cartButton">
+                    <CartButton shoe={shoe}></CartButton>
+                    </div>            </div>
             <div className="shoedetails">
               <div className="desc">
                 <div className="productname">{shoe.productName}</div>

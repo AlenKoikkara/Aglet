@@ -84,6 +84,10 @@ const utils = {
     return cart[cart?.findIndex((item) => item.productId === product._id)]
       ?.count;
   },
+
+  getUserInitial: (username) => {
+    return username?.substring(0,1).toUpperCase();
+  }
 };
 
 export default utils;

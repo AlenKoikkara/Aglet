@@ -20,7 +20,7 @@ const CategoryPage = () => {
   }, [location.search])
   
   return (
-    <div>
+    <div className="body">
       <NavBar
       products={products}
       setProducts={setProducts}>

@@ -6,18 +6,17 @@ import "./NavBar.scss";
 
 import HamburgerMenu from "./HamburgerMenu";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-
+import FaceIcon from "@mui/icons-material/Face";
 import authFunctions from "../authFunctions";
 import { selectUser } from "../features/userSlice";
 import logo from "../assets/images/logo.png";
-import profilepic from "../assets/images/profilepic.webp";
 import utils from "../utils";
 import LoginDialog from "./LoginDialog";
 
-function NavBar({products, setProducts}) {
+function NavBar({ products, setProducts }) {
   const user = useSelector(selectUser);
-  const [hide, handleHide] = useState('top');
-  const [prevScrollpos , setPrevScrollpos] = useState(0)
+  const [hide, handleHide] = useState("top");
+  const [prevScrollpos, setPrevScrollpos] = useState(0);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,22 +25,15 @@ function NavBar({products, setProducts}) {
     setOpen(true);
   };
 
-  const navigateTo = (category) =>{
-    navigate(utils.getUrlWithParams("/products?", {category: category}))
-    if(products) {
-      setProducts([])
-    }
-  }
-
   const navbarAnimation = () => {
     if (window.scrollY > prevScrollpos) {
-      handleHide('navfadeout');
+      handleHide("navfadeout");
     } else {
-      handleHide('navfadein');
+      handleHide("navfadein");
     }
     setPrevScrollpos(window.scrollY);
-    if (prevScrollpos < 100) {
-      handleHide('top')
+    if (prevScrollpos < 50) {
+      handleHide("top");
     }
   };
 
@@ -51,37 +43,41 @@ function NavBar({products, setProducts}) {
   }, [prevScrollpos]);
 
   return (
-    <div className={`navbarWrapper ${utils.isMobile() ? '' : hide}`}>
-      {utils.isMobile() && (
-        <div className="navheader">
-          <img className="logo" src={logo} alt=""></img>
-        </div>
-      )}
+    <div className={`navbarWrapper ${hide}`}>
       <div className="wrapper">
-        <img loading="lazy" className="logo" onClick={() => navigate("/")} src={logo} alt=""></img>
-        {!utils.isMobile() && (
-          <div className="navbarLinks">
-            <div onClick={() => navigateTo('Men')} className="link">men</div>
-            <div onClick={() => navigateTo('Women')} className="link">women</div>
-            <div onClick={() => navigateTo('Kids')} className="link">kids</div>
+        <div className="menuandlogo">
+          <div className="navHamburger">
+            <HamburgerMenu
+              config={{ products: products, setProducts: setProducts }}
+              products={products}
+              setProducts={setProducts}
+            ></HamburgerMenu>
           </div>
-        )}
-        <div className="profileicon">
-          {utils.isMobile() ? (
-            <HamburgerMenu></HamburgerMenu>
+          <img
+            loading="lazy"
+            className="logo"
+            onClick={() => navigate("/")}
+            src={logo}
+            alt=""
+          ></img>
+        </div>
+        <div className="rightsideContent">
+          <ShoppingBagOutlinedIcon
+            className="carticon"
+            fontSize="large"
+          ></ShoppingBagOutlinedIcon>
+          {user?.emailId ? (
+            <div
+              onClick={() => authFunctions.logoutUser(dispatch)}
+              className="auth"
+            >
+              <div className="profile" fontSize="large">
+                {utils.getUserInitial(user?.emailId)}
+              </div>
+            </div>
           ) : (
-            <div className="rightsideContent">
-              <ShoppingBagOutlinedIcon
-                className="carticon"
-                fontSize="large"
-              ></ShoppingBagOutlinedIcon>
-              {user ? (
-                <img className="profilepic" onClick={() => authFunctions.logoutUser(dispatch)} src={profilepic} alt=""></img>
-              ) : (
-                <div onClick={() => handleClickOpen()} className="auth">
-                  Sign in
-                </div>
-              )}
+            <div onClick={() => handleClickOpen()} className="auth">
+              <FaceIcon className="login" fontSize="large"></FaceIcon>
             </div>
           )}
         </div>
@@ -91,6 +87,6 @@ function NavBar({products, setProducts}) {
       </div>
     </div>
   );
-};
+}
 
 export default NavBar;

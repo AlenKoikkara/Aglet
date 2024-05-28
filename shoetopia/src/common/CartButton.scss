@@ -2,22 +2,20 @@
 
 
 .cartfunction {
-  width: 40px;
+  width: 30px;
   overflow: hidden;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  position: absolute;
-  background-color: $primary4;
-  border: 1px solid $primary3;
-  border-radius: 15px;
-  bottom: 12px;
-  right: 5px;
+  background: $primary4;
+  border: 1px solid $primary1;
+  border-radius: 10px;
+ 
   gap: 10px;
   .removeCart {
     pointer-events: auto;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     color: $primary3;
     &:hover {
       transform: scale(1.1);
@@ -31,8 +29,8 @@
   }
   .addCart {
     pointer-events: auto;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     color: $primary3;
     &:hover {
       transform: scale(1.1);
@@ -60,8 +58,9 @@
     scale: 0.7;
   }
 }
+
 .hidecartfunction {
-  width: 40px;
+  width: 30px;
   animation-name: cartanimationhide;
   animation-duration: 1s;
   .removeCart {
@@ -76,6 +75,43 @@
   .addCart {
     animation-name: cartbuttonanimhide;
     animation-duration: 1s;
+    scale: 1;
+  }
+}
+
+
+@keyframes cartanimation {
+  from {
+    width: 30px;
+  }
+  to {
+    width: 88px;
+  }
+}
+
+@keyframes cartanimationhide {
+  from {
+    width: 88px;
+  }
+  to {
+    width: 30px;
+  }
+}
+
+@keyframes cartbuttonanim {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 0.7;
+  }
+}
+
+@keyframes cartbuttonanimhide {
+  from {
+    scale: 0.7;
+  }
+  to {
     scale: 1;
   }
 }

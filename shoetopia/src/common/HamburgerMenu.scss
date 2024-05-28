@@ -1,164 +1,231 @@
 @import "../variables.scss";
 
-.hamburger {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  margin: 40px auto;
+
+
+.hamburgerWrapper {
   position: relative;
-  display: block;
-  z-index: 1;
-  width: 68px;
-  height: 68px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  transform: scale(0.6);
-  background-color: black;
+  .navWrapper {
+    padding: 0px 20px;
+    color: $primary1;
+    position: absolute;
+    top: 70px;
+    width: 180px;
+    @include flex(top, flex-start, column);
+    .navlink {
+      padding: 20px 20px 0px 0px;
+      z-index: 1;
+      @include text-style(20px, 400, 24px);
+      text-align: start;
+      div {
+        cursor: pointer;
+        margin-bottom: 22px;
+        transition-timing-function: ease-in;
+        transition: 0.5s;
+        &:hover {
+          color: $primary3;
+        }
+      }
+    }
+    .carticon {
+      z-index: 1;
+    }
+  }
+  
+  .navWrapper.closenav {
+    animation-name: closelinks;
+    transition: ease-in;
+    animation-duration: .5s;
+    display: none;
+    
+  }
+  
+  .navWrapper.opened {
+    animation-name: openlinks;
+    transition: ease-in;
+    animation-duration: .5s;
+    display: flex;
+  }
+
+  .hamburger {
+    cursor: pointer;
+    -webkit-transform: scale(0.6);
+    position: relative;
+    display: block;
+    z-index: 1;
+    height: 68px;
+    width: 68px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transform: scale(0.6);
+    background-color: $primary4;
+  }
+  
+  .burger-main {
+    position: absolute;
+    padding: 20px 16px;
+    height: 68px;
+    width: 68px;
+  }
+  
+  .burger-inner {
+    position: relative;
+    height: 28px;
+    width: 36px;
+  }
+  
+  .burger-main span {
+    position: absolute;
+    display: block;
+    height: 3px;
+    width: 36px;
+    border-radius: 3px;
+    background: $primary1;
+  }
+  
+  .top {
+    top: 0;
+    transform-origin: 34px 2px;
+  }
+  
+  .bot {
+    bottom: 0;
+    transform-origin: 34px 2px;
+  }
+  
+  .mid {
+    top: 12px;
+  }
+  
+  .svg-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 68px;
+    height: 68px;
+  }
+  
+  .circle {
+    width: 68px;
+    height: 68px;
+  }
+  
+  .path {
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    stroke-linejoin: round;
+  }
+  
+  .hamburger.open .path {
+    animation: dash-in 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.closed .path {
+    animation: dash-out 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.open .top {
+    animation: close-top-out 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.open .bot {
+    animation: close-bot-out 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.closed .top {
+    animation: close-top-in 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.closed .bot {
+    animation: close-bot-in 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.open .mid {
+    animation: burger-fill-out 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.closed .mid {
+    animation: burger-fill-in 0.6s linear normal;
+  }
+  
+  .path-burger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 68px;
+    width: 68px;
+    -webkit-mask: url(#mask);
+    mask: url(#mask);
+    -webkit-mask-box-image: url(http://dev.awsm.in/codepen/mask.svg);
+  }
+  
+  .animate-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 68px;
+    height: 68px;
+  }
+  
+  .path-rotation {
+    height: 34px;
+    width: 34px;
+    margin: 34px 34px 0 0;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+  }
+  
+  .path-rotation:before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 34px;
+    margin: 0 4px 0 0;
+    background: $primary3;
+  }
+  
+  .hamburger.open .animate-path {
+    animation: circle-in 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
+  .hamburger.closed .animate-path {
+    animation: circle-out 0.6s linear normal;
+    animation-fill-mode: forwards;
+  }
+  
 }
 
-.burger-main {
-  position: absolute;
-  padding: 20px 16px;
-  height: 68px;
-  width: 68px;
+@keyframes closelinks {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
-.burger-inner {
-  position: relative;
-  height: 28px;
-  width: 36px;
+@keyframes openlinks {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.burger-main span {
-  position: absolute;
-  display: block;
-  height: 3px;
-  width: 36px;
-  border-radius: 3px;
-  background: $primary3;
-}
 
-.top {
-  top: 0;
-  transform-origin: 34px 2px;
-}
-
-.bot {
-  bottom: 0;
-  transform-origin: 34px 2px;
-}
-
-.mid {
-  top: 12px;
-}
-
-.svg-main {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 68px;
-  height: 68px;
-}
-
-.circle {
-  width: 68px;
-  height: 68px;
-}
-
-.path {
-  stroke-dasharray: 240;
-  stroke-dashoffset: 240;
-  stroke-linejoin: round;
-}
-
-.hamburger.open .path {
-  animation: dash-in 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.closed .path {
-  animation: dash-out 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.open .top {
-  animation: close-top-out 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.open .bot {
-  animation: close-bot-out 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.closed .top {
-  animation: close-top-in 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.closed .bot {
-  animation: close-bot-in 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.open .mid {
-  animation: burger-fill-out 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.closed .mid {
-  animation: burger-fill-in 0.6s linear normal;
-}
-
-.path-burger {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 68px;
-  width: 68px;
-  -webkit-mask: url(#mask);
-  mask: url(#mask);
-  -webkit-mask-box-image: url(http://dev.awsm.in/codepen/mask.svg);
-}
-
-.animate-path {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 68px;
-  height: 68px;
-}
-
-.path-rotation {
-  height: 34px;
-  width: 34px;
-  margin: 34px 34px 0 0;
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transform-origin: 100% 0;
-  transform-origin: 100% 0;
-}
-
-.path-rotation:before {
-  content: '';
-  display: block;
-  width: 30px;
-  height: 34px;
-  margin: 0 4px 0 0;
-  background: $primary3;
-}
-
-.hamburger.open .animate-path {
-  animation: circle-in 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
-
-.hamburger.closed .animate-path {
-  animation: circle-out 0.6s linear normal;
-  animation-fill-mode: forwards;
-}
 
 @-webkit-keyframes dash-in {
   0% {
@@ -394,67 +461,4 @@
     transform: rotate(0deg);
   }
 
-}
-
-.navWrapper {
-  color: $primary1;
-  position: absolute;
-  top: -159%;
-  right: 19%;
-  width: 180px;
-  height: 330px;
-  @include flex(top, end, column);
-  .blurfilterdiv {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.2);
-    width: inherit;
-    height: inherit;
-    position: absolute;
-    backdrop-filter: blur(5px);
-  }
-  .navlink {
-    padding: 20px 20px 0px 0px;
-    z-index: 1;
-    @include text-style(25px, 400, 27px);
-    text-align: right;
-    div {
-      margin-bottom: 22px;
-    }
-  }
-  .carticon {
-    z-index: 1;
-  }
-}
-
-.navWrapper.closenav {
-  animation-name: closelinks;
-  transition: ease-in;
-  animation-duration: .5s;
-  display: none;
-  
-}
-
-.navWrapper.opened {
-  animation-name: openlinks;
-  transition: ease-in;
-  animation-duration: 1s;
-  display: flex;
-}
-
-@keyframes closelinks {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes openlinks {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }

@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const getProducts = async (req, res) => {
   const excludeFields = ["limit", "page", "productCount"];
   const querObj = {...req?.query};
-  console.log(querObj)
   excludeFields.forEach((item) => {
     delete querObj[item];
   })
@@ -13,7 +12,6 @@ const getProducts = async (req, res) => {
   const skip = (req?.query?.page || 0) * (req?.query?.productCount || 20);
   const products = await Product.find(querObj).limit(req?.query?.limit || "").skip(skip);
   const pageCount = Math.round(count / req?.query?.productCount)
-  console.log(products?.length)
   if (!products) {
     return res.status(404).json({ error: "no products" });
   }
@@ -39,9 +37,7 @@ const getProduct = async (req, res) => {
 
 const getFeatured = async (req, res) => {
   const queryObj = req.body
-  console.log(queryObj)
   const products = await Product.find(queryObj).limit(4)
-  console.log(products)
   if (!products) {
     return res.status(404).json({ error: "no products" });
   }

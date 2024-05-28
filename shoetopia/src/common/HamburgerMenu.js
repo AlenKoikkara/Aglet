@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./HamburgerMenu.scss";
 
@@ -9,11 +10,13 @@ import { selectUser } from "../features/userSlice";
 
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import LoginDialog from "./LoginDialog";
+import utils from "../utils";
 
-const HamburgerMenu = () => {
+function HamburgerMenu ({config}) {
   const user = useSelector(selectUser);
   const [clicked, setClicked] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,6 +24,13 @@ const HamburgerMenu = () => {
 
   function handleClose() {
     setOpen(false);
+  }
+
+  const navigateTo = (category) =>{
+    navigate(utils.getUrlWithParams("/products?", {category: category}))
+    if(config.products) {
+      config.setProducts([])
+    }
   }
 
   const handleClick = () => {
@@ -43,54 +53,49 @@ const HamburgerMenu = () => {
   };
 
   return (
-    <>
+    <div className="hamburgerWrapper">
       <div
         onClick={() => handleClick()}
         id="hamburger"
-        class="hamburger closed"
+        className="hamburger closed"
       >
-        <div class="burger-main">
-          <div class="burger-inner">
-            <span class="top"></span>
-            <span class="mid"></span>
-            <span class="bot"></span>
+        <div className="burger-main">
+          <div className="burger-inner">
+            <span className="top"></span>
+            <span className="mid"></span>
+            <span className="bot"></span>
           </div>
         </div>
-        <div class="path-burger">
-          <div class="animate-path">
-            <div class="path-rotation"></div>
+        <div className="path-burger">
+          <div className="animate-path">
+            <div className="path-rotation"></div>
           </div>
         </div>
       </div>
       <div id="navWrapper" className="navWrapper closenav">
         <div className="blurfilterdiv"></div>
         <div className="navlink">
-          <div className="profile">{user ? (
-                <div className="profilepic" onClick={() => authFunctions.logoutUser()}>Profile</div>
-              ) : (
-                <div onClick={() => handleClickOpen()} className="profile">
-                  Sign Up/In
-                </div>
-              )}</div>
           <div className="mens">
-            <NavLink className="link " to="/products">Mens</NavLink>
+            <div onClick={() => navigateTo("Men")} className="link">
+              Shop men
+            </div>
           </div>
           <div className="womens">
-            <NavLink className="link" to="/products">Womens</NavLink>
+            <div onClick={() => navigateTo("Women")} className="link">
+            Shop women
+            </div>
           </div>
           <div className="kids">
-            <NavLink className="link" to="/products">Kids</NavLink>
+            <div onClick={() => navigateTo("Kids")} className="link">
+            Shop kids
+            </div>
           </div>
-          <ShoppingBagOutlinedIcon
-            className="carticon "
-            fontSize="large"
-          ></ShoppingBagOutlinedIcon>
         </div>
         <div style={{ display: "none" }}>
-          <LoginDialog open={open} handleClose={handleClose}></LoginDialog>
+          <LoginDialog open={open} setOpen={setOpen}></LoginDialog>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
