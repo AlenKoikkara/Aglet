@@ -12,9 +12,11 @@ import { selectUser } from "../features/userSlice";
 import logo from "../assets/images/logo.png";
 import utils from "../utils";
 import LoginDialog from "./LoginDialog";
+import { selectCart } from "../features/cartSlice";
 
 function NavBar({ products, setProducts }) {
   const user = useSelector(selectUser);
+  const cart = useSelector(selectCart);
   const [hide, handleHide] = useState("top");
   const [prevScrollpos, setPrevScrollpos] = useState(0);
   const [open, setOpen] = useState(false);
@@ -62,10 +64,13 @@ function NavBar({ products, setProducts }) {
           ></img>
         </div>
         <div className="rightsideContent">
-          <ShoppingBagOutlinedIcon
-            className="carticon"
-            fontSize="large"
-          ></ShoppingBagOutlinedIcon>
+          <div className="cartIcon">
+            <ShoppingBagOutlinedIcon
+              className="carticon"
+              fontSize="large"
+            ></ShoppingBagOutlinedIcon>
+            {cart.length > 0 && <div className="cartCount">20</div>}
+          </div>
           {user?.emailId ? (
             <div
               onClick={() => authFunctions.logoutUser(dispatch)}

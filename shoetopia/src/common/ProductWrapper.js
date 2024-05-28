@@ -43,7 +43,7 @@ function ProductWrapper({ title, fetchUrl, products, setProducts }) {
 
   return (
     <>
-      {products.length > 0 && (
+      {products?.length > 0 && (
         <div className="categoryWrapper">
           <div className="titleContent">
             <div className="title">{title}'s Shoes</div>

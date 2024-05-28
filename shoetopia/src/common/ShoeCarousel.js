@@ -53,9 +53,10 @@ function ShoeCarousel({ title, fetchUrl }) {
                 src={shoe.imageUrl}
                 alt={shoe.producName}
               ></img>
- <div className="cartButton">
-                    <CartButton shoe={shoe}></CartButton>
-                    </div>            </div>
+              <div className="cartButton">
+                <CartButton shoe={shoe}></CartButton>
+              </div>{" "}
+            </div>
             <div className="shoedetails">
               <div className="desc">
                 <div className="productname">{shoe.productName}</div>
@@ -71,7 +72,6 @@ function ShoeCarousel({ title, fetchUrl }) {
         className="rightslide"
         fontSize="large"
       ></ChevronRightRoundedIcon>
-      
     </div>
   );
 }

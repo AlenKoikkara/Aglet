@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState, lazy } from "react";
 import "./CartButton.scss";
 import { useDispatch, useSelector } from "react-redux";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -6,11 +6,13 @@ import RemoveRounded from "@mui/icons-material/RemoveRounded";
 
 import { selectCart } from "../features/cartSlice";
 import { selectUser } from "../features/userSlice";
-import LoginDialog from "../common/LoginDialog";
 
 import utils from "../utils";
+import { LinearProgress } from "@mui/material";
 
 function CartButton({ shoe }) {
+  const LoginDialog = lazy(() => import("./LoginDialog"));
+
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
   const user = useSelector(selectUser);
@@ -51,7 +53,9 @@ function CartButton({ shoe }) {
         fontSize="medium"
       ></AddRoundedIcon>
       <div style={{ display: "none" }}>
-        <LoginDialog open={open} setOpen={setOpen}></LoginDialog>
+        <Suspense fallback={<LinearProgress />}>
+          <LoginDialog open={open} setOpen={setOpen}></LoginDialog>
+        </Suspense>{" "}
       </div>
     </div>
   );

@@ -29,11 +29,24 @@
         margin-left: 20px;
         width: 50px;
       }
-      .carticon {
-        transition-timing-function: ease-in;
-        transition: 0.5s;
-        &:hover {
-          color: $primary3;
+      .cartIcon {
+        position: relative;
+        .carticon {
+          transition-timing-function: ease-in;
+          transition: 0.5s;
+          &:hover {
+            color: $primary3;
+          }
+        }
+        .cartCount {
+          position: absolute;
+          @include text-style(12px, 400, 13px);
+          background: $primary3;
+          padding: 5px;
+          top: -5px;
+          right: -8px;
+          color: $primary4;
+          border-radius: 17kpx;
         }
       }
       .profile {
