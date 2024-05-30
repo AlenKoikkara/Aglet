@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { LinearProgress } from "@mui/material";
 
 const CategoryPage = () => {
-  const ProductWrapper = lazy(() => import('../common/ProductWrapper'));
+  const ProductsWrapper = lazy(() => import('../common/ProductsWrapper'));
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
@@ -30,14 +30,14 @@ const CategoryPage = () => {
       </NavBar>
       {searchParams?.get('category') && (
         <Suspense fallback={<LinearProgress />}>
-          <ProductWrapper
+          <ProductsWrapper
              title={searchParams?.get('category')}
              fetchUrl={requests.fetchProducts(
                `limit=20&category=Shoes&division=${searchParams?.get('category')}&productCount=20`
              )}
              products={products}
              setProducts={setProducts}
-          ></ProductWrapper>
+          ></ProductsWrapper>
         </Suspense>
       )}
     </div>

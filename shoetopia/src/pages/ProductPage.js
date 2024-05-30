@@ -1,9 +1,57 @@
-import React from 'react'
+import React, { useState } from "react";
+import SingleProduct from "../common/SingleProduct";
+import NavBar from "../common/NavBar";
+import { useEffect } from "react";
+import axios from "../axios";
+import requests from "../requests";
+
+import './ProductPage.scss'
+import Footer from "../common/Footer";
+import { useParams } from "react-router-dom";
 
 const ProductPage = () => {
-  return (
-    <div>ProductPage</div>
-  )
-}
+  const [singleProduct, setSingleProduct] = useState();
+  const [featured, setFeatured] = useState();
 
-export default ProductPage
+  let { id } = useParams();
+
+  async function fetchSingleProduct() {
+    await axios
+      .get(requests.fetchProduct(id))
+      .then((res) => {
+        console.log(res)
+        setSingleProduct(res.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
+  async function fetchFeatured() {
+    await axios
+      .get(requests?.fetchFeatured)
+      .then((res) => {
+        setFeatured(res.data);
+        return res;
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
+  useEffect(() => {
+    fetchSingleProduct();
+    fetchFeatured()
+    return () => {};
+  }, []);
+
+  return (
+    <div className="body">
+      <NavBar></NavBar>
+      {(singleProduct && featured) && <SingleProduct config={{ singleProduct: singleProduct, featured: featured }}></SingleProduct>}
+      <Footer></Footer>
+    </div>
+  );
+};
+
+export default ProductPage;

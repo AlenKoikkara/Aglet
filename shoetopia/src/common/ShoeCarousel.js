@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 
 import "./ShoeCarousel.scss";
-import axios from "../axios";
+import { useNavigate } from "react-router-dom";
 
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import CartButton from "./CartButton";
+import utils from "../utils";
 
-function ShoeCarousel({ title, fetchUrl }) {
-  const [shoes, setShoes] = useState();
+function ShoeCarousel({ config }) {
   const scrollable = useRef(null);
+  const navigate = useNavigate();
 
   const scrollIt = (toRight) => {
     const scrollLength = 1000;
@@ -19,33 +20,25 @@ function ShoeCarousel({ title, fetchUrl }) {
     });
   };
 
-  async function fetchData() {
-    await axios
-      .get(fetchUrl)
-      .then((request) => {
-        setShoes(request.data.products);
-        return request;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+  function navigateTo(productId) {
+    navigate(`/products/${productId}`);
   }
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchUrl]);
 
   return (
     <div className="shoeCarouselWrapper">
-      <div className="title">{title}</div>
+      <div className="title">{config?.title}</div>
       <ChevronLeftRoundedIcon
         onClick={() => scrollIt(false)}
         className="leftslide"
         fontSize="large"
       ></ChevronLeftRoundedIcon>
       <div className="shoeRows" ref={scrollable}>
-        {shoes?.map((shoe) => (
-          <div key={shoe._id} className="productWrapper">
+        {config.shoes?.map((shoe) => (
+          <div
+            onClick={() => navigateTo(shoe._id)}
+            key={shoe._id}
+            className="productWrapper"
+          >
             <div className="imgCart">
               <img
                 loading="lazy"

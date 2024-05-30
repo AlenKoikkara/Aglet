@@ -1,0 +1,100 @@
+@import "../variables.scss";
+
+.productWrapper {
+  margin: 40px;
+  .productFirstfold {
+    max-width: 85%;
+    margin-left: auto;
+    height: max-content;
+    @include flex(flex-start, flex-start);
+    .productDetails {
+      padding: 10px;
+      margin-right: 10px;
+      width: 20%;
+      ul {
+        padding-left: 0px;
+        list-style-type: none;
+        li {
+          @include flex(flex-start, center, row);
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .productImg {
+      width: 40%;
+      height: 550px;
+      object-fit: cover;
+    }
+    .productDescription {
+      max-height: 550px;
+      padding: 20px 45px;
+      max-width: 45%;
+      text-align: start;
+      @include flex(space-between, flex-start, column);
+      .productTitle {
+        margin-bottom: 80px;
+        .productType {
+          @include text-style(15px, 600, 16px);
+        }
+        .productName {
+          max-width: 350px;
+          @include text-style(40px, 600, 43px);
+        }
+      }
+      .productBody {
+        .productPrice {
+          @include text-style(55px, 600, 58px);
+          margin-bottom: 10px;
+        }
+        .productRating {
+          margin-bottom: 20px;
+          color: $primary3
+        }
+        .productSizes {
+          .sizeTitle {
+          @include text-style(15px, 600, 18px);
+          margin-bottom: 10px
+          }
+          .sizeList {
+            @include flex();
+            gap: 10px;
+            margin-bottom: 30px;
+            .sizeBox {
+              cursor: pointer;
+              @include flex(center, center);
+              border: 1px solid $primary1;
+              width: 40px;
+              height: 40px;
+              &:hover {
+                border: 1px solid $primary3;
+              }
+            }
+          }
+        }
+        .productButtons {
+          @include flex(flex-start, center);
+          gap: 10px;
+          .buyNow {
+            cursor: pointer;
+            @include flex(center, center);
+            width: max-content;
+            height: 40px;
+            padding: 0px 30px;
+            border: 1px solid $primary1;
+            border-radius: 10px;
+            &:hover {
+              background-color: $primary1;
+              color: $primary4;
+            }
+          }
+        }
+      }
+    }
+  }
+  .productSecondfold {
+    margin-top: 40px;
+    max-width: 85%;
+    margin-left: auto;
+  }
+}

@@ -2,7 +2,7 @@
 
 
 .cartfunction {
-  width: 30px;
+  width: 40px;
   overflow: hidden;
   display: flex;
   justify-content: flex-end;
@@ -13,9 +13,10 @@
  
   gap: 10px;
   .removeCart {
+    cursor: pointer;
     pointer-events: auto;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     color: $primary3;
     &:hover {
       transform: scale(1.1);
@@ -28,9 +29,10 @@
     display: none;
   }
   .addCart {
+    cursor: pointer;
     pointer-events: auto;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     color: $primary3;
     &:hover {
       transform: scale(1.1);
@@ -60,7 +62,7 @@
 }
 
 .hidecartfunction {
-  width: 30px;
+  width: 40px;
   animation-name: cartanimationhide;
   animation-duration: 1s;
   .removeCart {
@@ -85,13 +87,13 @@
     width: 30px;
   }
   to {
-    width: 88px;
+    width: 100px;
   }
 }
 
 @keyframes cartanimationhide {
   from {
-    width: 88px;
+    width: 100px;
   }
   to {
     width: 30px;

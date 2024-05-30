@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import "./ProductWrapper.scss";
+import "./ProductsWrapper.scss";
 import axios from "../axios";
 import { useSearchParams } from "react-router-dom";
 

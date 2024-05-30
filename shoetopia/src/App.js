@@ -43,6 +43,13 @@ function App() {
 
   const router = createBrowserRouter([
     {
+      path: "/products/:id",
+      async lazy() {
+        let ProductPage = await import("./pages/ProductPage");
+        return { Component: ProductPage.default };
+      },
+    },
+    {
       path: "/products",
       async lazy() {
         let CategoryPage = await import("./pages/CategoryPage");

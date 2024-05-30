@@ -1,6 +1,7 @@
 
 const requests = {
   fetchProducts: (value) => `api/products?${value}`,
+  fetchProduct: (value) => `api/products/${value}`,
   fetchFeatured: `api/products/featured`,
   fetchUser: (userId) => `api/user/${userId}`,
   addUser: (userId) => `api/user/add/${userId}`,

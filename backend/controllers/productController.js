@@ -20,19 +20,19 @@ const getProducts = async (req, res) => {
 
 // get a single product
 const getProduct = async (req, res) => {
-  const { id } = req?.params || '';
-
+  const { id } = req.params
+  console.log('hjfgh')
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: 'No such workout'})
+    return res.status(404).json({error: 'No such product'})
   }
 
-  const product = await Product.findById(id)
+  const product = await Product.findById({_id: id})
 
-  if (!products) {
-    return res.status(404).json({error: 'No such workout'})
+  if (!product) {
+    return res.status(404).json({error: 'No such product'})
   }
 
-  res.status(200).json(products)
+  res.status(200).json(product)
 }
 
 const getFeatured = async (req, res) => {
