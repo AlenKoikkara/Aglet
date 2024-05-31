@@ -1,9 +1,45 @@
 @import "../variables.scss";
 
-.cartItem {
-  @include flex(flex-start, center);
-  padding: 10px;
-  .cartImage {
-    width: 50%;
+.cartDrawer {
+  padding: 20px 10px;
+  .header {
+    margin-bottom: 20px;
+    @include flex(space-between, center);
+    padding: 20px;
+    .title {
+      @include text-style(30px, 600, 31px);
+    }
+    .cartClose {
+      cursor: pointer;
+    }
+  }
+  .cartItem {
+    @include flex(flex-start, center);
+    margin: 20px;
+    width: 400px;
+    border: 1px solid $primary1;
+    .cartImage {
+      width: 40%;
+      margin-right: 20px;
+    }
+    .cartBody {
+      .productName {
+        margin-bottom: 10px;
+        @include text-style(16px, 600, 15px);
+      }
+      .productSize {
+        @include text-style(12px, 400, 15px);
+      }
+      .productQty {
+        margin-bottom: 4px;
+        @include text-style(12px, 400, 15px);
+      }
+      .productprice {
+        @include text-style(14px, 600, 15px);
+      }
+    }
+    .cartremovebutton {
+      margin-left: 30px;
+    }
   }
 }
