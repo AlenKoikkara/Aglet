@@ -13,6 +13,7 @@ import logo from "../assets/images/logo.png";
 import utils from "../utils";
 import LoginDialog from "./LoginDialog";
 import { selectCart } from "../features/cartSlice";
+import CartDrawer from "./CartDrawer";
 
 function NavBar({ products, setProducts }) {
   const user = useSelector(selectUser);
@@ -65,11 +66,9 @@ function NavBar({ products, setProducts }) {
         </div>
         <div className="rightsideContent">
           <div className="cartIcon">
-            <ShoppingBagOutlinedIcon
-              className="carticon"
-              fontSize="large"
-            ></ShoppingBagOutlinedIcon>
-            {cart.length > 0 && <div className="cartCount">20</div>}
+            <CartDrawer></CartDrawer>
+           
+            {cart?.length > 0 && <div className="cartCount">{cart?.length}</div>}
           </div>
           {user?.emailId ? (
             <div

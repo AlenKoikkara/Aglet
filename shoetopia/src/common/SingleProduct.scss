@@ -2,7 +2,10 @@
 
 .productWrapper {
   margin: 40px;
+  height: 100%;
   .productFirstfold {
+    position: relative;
+    z-index: 1;
     max-width: 85%;
     margin-left: auto;
     height: max-content;
@@ -18,19 +21,25 @@
           @include flex(flex-start, center, row);
           gap: 10px;
           margin-bottom: 10px;
+          color: $primary1;
+          .tick {
+            color: $primary3;
+          }
         }
       }
     }
     .productImg {
+      border-radius: 20px;
       width: 40%;
       height: 550px;
       object-fit: cover;
     }
     .productDescription {
       max-height: 550px;
-      padding: 20px 45px;
+      padding: 20px 55px;
       max-width: 45%;
       text-align: start;
+      color: $primary1;
       @include flex(space-between, flex-start, column);
       .productTitle {
         margin-bottom: 80px;
@@ -49,16 +58,17 @@
         }
         .productRating {
           margin-bottom: 20px;
-          color: $primary3
+          color: $primary3;
         }
         .productSizes {
           .sizeTitle {
-          @include text-style(15px, 600, 18px);
-          margin-bottom: 10px
+            @include text-style(15px, 600, 18px);
+            margin-bottom: 10px;
           }
           .sizeList {
             @include flex();
             gap: 10px;
+            flex-wrap: wrap;
             margin-bottom: 30px;
             .sizeBox {
               cursor: pointer;
@@ -66,9 +76,16 @@
               border: 1px solid $primary1;
               width: 40px;
               height: 40px;
+              transition-timing-function: ease-in;
+              transition: 0.5s;
               &:hover {
-                border: 1px solid $primary3;
+                background-color: $primary1;
+                color: $primary4;
               }
+            }
+            .sizeBox.active {
+              background-color: $primary1;
+                color: $primary4;
             }
           }
         }
@@ -80,9 +97,15 @@
             @include flex(center, center);
             width: max-content;
             height: 40px;
-            padding: 0px 30px;
+            text-transform: none;
+            padding: 10px 30px;
+            box-shadow: none;
             border: 1px solid $primary1;
             border-radius: 10px;
+            background-color: white;
+            color: $primary1;
+            transition-timing-function: ease-in;
+            transition: 0.5s;
             &:hover {
               background-color: $primary1;
               color: $primary4;
@@ -93,7 +116,23 @@
     }
   }
   .productSecondfold {
-    margin-top: 40px;
+    margin-top: 80px;
+    max-width: 85%;
+    margin-left: auto;
+    .shoeDescription {
+      width: 600px;
+      text-align: start;
+      .descTitle {
+        margin-bottom: 20px;
+        @include text-style(50px, 600, 52px);
+      }
+      .descBody {
+        padding: 10px;
+      }
+    }
+  }
+  .productThirdfold {
+    margin-top: 80px;
     max-width: 85%;
     margin-left: auto;
   }

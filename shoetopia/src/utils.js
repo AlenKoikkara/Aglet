@@ -40,13 +40,14 @@ const utils = {
     var cartObj = {
       userId: user,
       cart: {
-        productId: product._id,
+        productId: product._id || product.productId,
         productName: product.productName,
         subCategory: product.subCategory,
         company: product.company,
         imageUrl: product.imageUrl,
         listPrice: product.listPrice,
         count: 1,
+        size: product.size,
       },
     };
 
@@ -59,7 +60,8 @@ const utils = {
   removeFromCart: async (user, product, dispatch) => {
     var cartObj = {
       userId: user,
-      productId: product._id,
+      productId: product._id || product.productId,
+      size: product.size,
     };
     await axios.post(requests.removeFromCart, cartObj).then((res) => {
       console.log(res);
@@ -71,17 +73,17 @@ const utils = {
     await axios.get(requests.fetchCart(userId)).then((res) => {
       console.log(res);
       if (res.data?.cart) {
-        dispatch(removeCart(res.data?.cart));
+        dispatch(addCart(res.data?.cart));
       }
     });
   },
 
   isProductInCart: (product, cart) => {
-    return cart?.findIndex((item) => item.productId === product._id);
+    return cart?.findIndex((item) => item.productId === (product._id || product.productId));
   },
 
   itemCountInCart: (product, cart) => {
-    return cart[cart?.findIndex((item) => item.productId === product._id)]
+    return cart[cart?.findIndex((item) => (item.productId === (product._id || product.productId)) && item.size === product.size)]
       ?.count;
   },
 

@@ -1,16 +1,14 @@
 import React, { Suspense, useState, lazy } from "react";
 import "./CartButton.scss";
 import { useDispatch, useSelector } from "react-redux";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import RemoveRounded from "@mui/icons-material/RemoveRounded";
 
 import { selectCart } from "../features/cartSlice";
 import { selectUser } from "../features/userSlice";
 
 import utils from "../utils";
-import { LinearProgress } from "@mui/material";
+import { Button, LinearProgress } from "@mui/material";
 
-function CartButton({ shoe }) {
+function CartButton({ config }) {
   const LoginDialog = lazy(() => import("./LoginDialog"));
 
   const dispatch = useDispatch();
@@ -19,39 +17,35 @@ function CartButton({ shoe }) {
   const [open, setOpen] = useState(false);
 
   function addCart() {
-    if (user) {
-      utils.addtoCart(user?.userId, shoe, dispatch, cart);
-    } else {
+    if (user && config?.shoe?.size) {
+      utils.addtoCart(user?.userId, config?.shoe, dispatch, cart);
+    }
+
+    if (user && !config?.shoe?.size) {
+      alert("Please enter shoe size!!");
+    }
+
+    if (!user) {
       setOpen(true);
     }
   }
 
   function removeCart() {
-    utils.removeFromCart(user?.userId, shoe, dispatch);
+    utils.removeFromCart(user?.userId, config?.shoe, dispatch);
   }
 
   return (
-    <div
-      className={`cartfunction ${
-        cart?.length &&
-        (utils?.isProductInCart(shoe, cart) > -1
-          ? "showcartfunction"
-          : "hidecartfunction")
-      }`}
-    >
-      <RemoveRounded
-        className="removeCart"
-        fontSize="medium"
-        onClick={() => removeCart()}
-      ></RemoveRounded>
-      <div className="totalItem">
-        {cart?.length && utils.itemCountInCart(shoe, cart)}
-      </div>
-      <AddRoundedIcon
-        onClick={() => addCart()}
-        className="addCart"
-        fontSize="medium"
-      ></AddRoundedIcon>
+    <div className="cartfunction">
+      {config?.addCart && (
+        <Button className="addCart" onClick={() => addCart()}>
+          Add to Cart
+        </Button>
+      )}
+      {config?.removeCart && (
+        <Button className="removeCart" onClick={() => removeCart()}>
+          Delete
+        </Button>
+      )}
       <div style={{ display: "none" }}>
         <Suspense fallback={<LinearProgress />}>
           <LoginDialog open={open} setOpen={setOpen}></LoginDialog>

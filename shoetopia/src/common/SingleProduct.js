@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SingleProduct.scss";
 
 import StarIcon from "@mui/icons-material/Star";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import Button from "@mui/material/Button";
 
 import CartButton from "./CartButton";
 import ShoeCarousel from "./ShoeCarousel";
 
 function SingleProduct({ config }) {
+
+  const [product, setProduct] = useState(config.singleProduct);
+
+  function addSize(value) {
+    setProduct({...config.singleProduct, ...{size: value}})
+    console.log(product);
+  }
+  
+  
   return (
     <div className="productWrapper">
       <div className="productFirstfold">
@@ -18,9 +28,7 @@ function SingleProduct({ config }) {
         ></img>
         <div className="productDescription">
           <div className="productTitle">
-            <div className="productType">
-              {config.singleProduct.division}s
-            </div>
+            <div className="productType">{config.singleProduct.division}</div>
             <div className="productName">
               {config.singleProduct.productName}
             </div>
@@ -30,17 +38,17 @@ function SingleProduct({ config }) {
               ${config.singleProduct.listPrice}
             </div>
             <div className="productRating">
-              <StarIcon></StarIcon>
-              <StarIcon></StarIcon>
-              <StarIcon></StarIcon>
-              <StarIcon></StarIcon>
-              <StarIcon></StarIcon>
+              {Array(config.singleProduct.rating)
+                .fill("")
+                .map((no) => (
+                  <StarIcon key={no}></StarIcon>
+                ))}
             </div>
             <div className="productSizes">
               <div className="sizeTitle">Sizes</div>
               <div className="sizeList">
-                {[1, 2, 3, 4, 5].map((item) => (
-                  <div key={item} className="sizeBox">
+                {config.singleProduct.sizes.map((item) => (
+                  <div key={item} className={`sizeBox ${product.size === item ? 'active' : ''}`} onClick={() => addSize(item)}>
                     {item}
                   </div>
                 ))}
@@ -48,38 +56,66 @@ function SingleProduct({ config }) {
             </div>
             <div className="productButtons">
               <div className="cartButton">
-                <CartButton shoe={config.singleProduct}></CartButton>
+                <CartButton config={{shoe:product, addCart: true}}></CartButton>
               </div>
-              <div className="buyNow">Buy Now</div>
+              <Button className="buyNow" variant="contained">
+                Buy Now
+              </Button>
             </div>
           </div>
         </div>
         <div className="productDetails">
           <ul>
             <li>
-              <CheckCircleRoundedIcon></CheckCircleRoundedIcon>Regular fit
+              <CheckCircleRoundedIcon
+                fontSize="small"
+                className="tick"
+              ></CheckCircleRoundedIcon>
+              Regular fit
             </li>
             <li>
-              <CheckCircleRoundedIcon></CheckCircleRoundedIcon>Lace Closure
+              <CheckCircleRoundedIcon
+                fontSize="small"
+                className="tick"
+              ></CheckCircleRoundedIcon>
+              Lace Closure
             </li>
             <li>
-              <CheckCircleRoundedIcon></CheckCircleRoundedIcon>Textile Lining
+              <CheckCircleRoundedIcon
+                fontSize="small"
+                className="tick"
+              ></CheckCircleRoundedIcon>
+              Textile Lining
             </li>
             <li>
-              <CheckCircleRoundedIcon></CheckCircleRoundedIcon>Soft Feel
+              <CheckCircleRoundedIcon
+                fontSize="small"
+                className="tick"
+              ></CheckCircleRoundedIcon>
+              Soft Feel
             </li>
             <li>
-              <CheckCircleRoundedIcon></CheckCircleRoundedIcon>Responsive Boost
+              <CheckCircleRoundedIcon
+                fontSize="small"
+                className="tick"
+              ></CheckCircleRoundedIcon>
+              Responsive Boost
             </li>
           </ul>
         </div>
       </div>
       <div className="productSecondfold">
-        {config.featured && 
-        <ShoeCarousel
-          config={{ title: "Featured", shoes: config.featured }}
-        ></ShoeCarousel>
-        }
+        <div className="shoeDescription">
+          <div className="descTitle">Description</div>
+          <div className="descBody">{config.singleProduct.description}</div>
+        </div>
+      </div>
+      <div className="productThirdfold">
+        {config.featured && (
+          <ShoeCarousel
+            config={{ title: "Featured", shoes: config.featured }}
+          ></ShoeCarousel>
+        )}
       </div>
     </div>
   );

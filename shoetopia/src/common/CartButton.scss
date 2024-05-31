@@ -1,119 +1,29 @@
 @import "../variables.scss";
 
-
 .cartfunction {
-  width: 40px;
-  overflow: hidden;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   background: $primary4;
-  border: 1px solid $primary1;
-  border-radius: 10px;
- 
+  border-radius: 12px;
   gap: 10px;
+  .addCart,
   .removeCart {
     cursor: pointer;
-    pointer-events: auto;
-    width: 40px;
+    @include flex(center, center);
+    width: max-content;
     height: 40px;
+    text-transform: none;
+    padding: 10px 30px;
+    box-shadow: none;
+    border-radius: 10px;
+    background-color: white;
     color: $primary3;
+    transition-timing-function: ease-in;
+    transition: 0.5s;
     &:hover {
-      transform: scale(1.1);
+      background-color: $primary1;
+      color: $primary4;
     }
-    &.show {
-      display: block;
-    }
-  }
-  .totalItem {
-    display: none;
-  }
-  .addCart {
-    cursor: pointer;
-    pointer-events: auto;
-    width: 40px;
-    height: 40px;
-    color: $primary3;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-}
-.showcartfunction {
-  width: auto;
-  bottom: 12px;
-  right: 5px;
-  animation-name: cartanimation;
-  animation-duration: 1s;
-  .removeCart {
-    animation-name: cartbuttonanim;
-    animation-duration: 1s;
-    scale: 0.7;
-    display: block;
-  }
-  .totalItem {
-    display: block;
-  }
-  .addCart {
-    animation-name: cartbuttonanim;
-    animation-duration: 1s;
-    scale: 0.7;
-  }
-}
-
-.hidecartfunction {
-  width: 40px;
-  animation-name: cartanimationhide;
-  animation-duration: 1s;
-  .removeCart {
-    animation-name: cartbuttonanimhide;
-    animation-duration: 1s;
-    scale: 1;
-    display: none;
-  }
-  .totalItem {
-    display: none;
-  }
-  .addCart {
-    animation-name: cartbuttonanimhide;
-    animation-duration: 1s;
-    scale: 1;
-  }
-}
-
-
-@keyframes cartanimation {
-  from {
-    width: 30px;
-  }
-  to {
-    width: 100px;
-  }
-}
-
-@keyframes cartanimationhide {
-  from {
-    width: 100px;
-  }
-  to {
-    width: 30px;
-  }
-}
-
-@keyframes cartbuttonanim {
-  from {
-    scale: 1;
-  }
-  to {
-    scale: 0.7;
-  }
-}
-
-@keyframes cartbuttonanimhide {
-  from {
-    scale: 0.7;
-  }
-  to {
-    scale: 1;
   }
 }

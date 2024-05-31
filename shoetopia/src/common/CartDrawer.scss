@@ -1,0 +1,9 @@
+@import "../variables.scss";
+
+.cartItem {
+  @include flex(flex-start, center);
+  padding: 10px;
+  .cartImage {
+    width: 50%;
+  }
+}

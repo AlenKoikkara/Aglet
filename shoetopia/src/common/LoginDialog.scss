@@ -8,6 +8,45 @@
   color: #FF3333;
 }
 
+.dialogWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  padding: 30px;
+  height: 300px;
+  .dialogbanner {
+    .logo {
+      width: 200px;
+      margin-bottom: 40px;
+    }
+  }
+  .form {
+    text-align: center;
+    .signUpdirect {
+      margin-top: 15px;
+      text-align: start;
+      @include text-style(12px, 400, 13px);
+    }
+    .signUp {
+      cursor: pointer;
+      margin-top: 4px;
+      text-align: start;
+      @include text-style(12px, 400, 13px);
+      text-decoration: underline;
+      color: $primary3;
+    }
+    .submitbutton {
+      margin-top: 30px;
+      padding: 8px 50px;
+      background-color: $primary3;
+      color: $primary4;
+      text-transform: none;
+
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .dialogTitle {
     @include text-style(25px, 700, 26px);

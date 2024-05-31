@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import SingleProduct from "../common/SingleProduct";
+import React, { Suspense, lazy, useState } from "react";
+// import SingleProduct from "../common/SingleProduct";
 import NavBar from "../common/NavBar";
 import { useEffect } from "react";
 import axios from "../axios";
 import requests from "../requests";
 
-import './ProductPage.scss'
+import "./ProductPage.scss";
 import Footer from "../common/Footer";
 import { useParams } from "react-router-dom";
+import { LinearProgress } from "@mui/material";
 
 const ProductPage = () => {
+  const SingleProduct = lazy(() => import("../common/SingleProduct"));
+
   const [singleProduct, setSingleProduct] = useState();
   const [featured, setFeatured] = useState();
 
@@ -19,7 +22,7 @@ const ProductPage = () => {
     await axios
       .get(requests.fetchProduct(id))
       .then((res) => {
-        console.log(res)
+        console.log(res);
         setSingleProduct(res.data);
       })
       .catch((error) => {
@@ -41,14 +44,20 @@ const ProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct();
-    fetchFeatured()
+    fetchFeatured();
     return () => {};
-  }, []);
+  }, [id]);
 
   return (
     <div className="body">
       <NavBar></NavBar>
-      {(singleProduct && featured) && <SingleProduct config={{ singleProduct: singleProduct, featured: featured }}></SingleProduct>}
+      <Suspense fallback={<LinearProgress />}>
+        {singleProduct && featured && (
+          <SingleProduct
+            config={{ singleProduct: singleProduct, featured: featured }}
+          ></SingleProduct>
+        )}
+      </Suspense>
       <Footer></Footer>
     </div>
   );

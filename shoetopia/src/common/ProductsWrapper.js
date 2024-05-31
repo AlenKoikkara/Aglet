@@ -63,9 +63,6 @@ function ProductWrapper({ title, fetchUrl, products, setProducts }) {
                       src={product.imageUrl}
                       alt={product.producName}
                     ></img>
-                    <div className="cartButton">
-                    <CartButton shoe={product}></CartButton>
-                    </div>
                   </div>
                   <div className="shoedetails">
                     <div className="desc">

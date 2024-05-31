@@ -34,10 +34,6 @@ function App() {
         dispatch(removeCart([]))
       }
     });
-
-    if (user) {
-    }
-    // console.log(user)
     return () => {};
   }, [dispatch]);
 
