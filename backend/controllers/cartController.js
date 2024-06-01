@@ -47,7 +47,6 @@ const addCart = async (req, res) => {
   }
 
   if (userCart.length !== 0 && item.length !== 0) {
-    console.log("here");
     const cart = await Cart.findOneAndUpdate(
       {
         userId: req.body.userId,

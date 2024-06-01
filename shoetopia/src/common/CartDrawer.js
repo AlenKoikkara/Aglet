@@ -30,7 +30,7 @@ const CartDrawer = () => {
           <div className="cartItem">
             <img className="cartImage" src={item.imageUrl} alt=""></img>
             <div className="cartBody">
-              <div className="productName">{item.productName}</div>
+              <div className="productName"><a href={`/products/${item.productId}`}>{item.productName}</a></div>
               <div className="productSize">Size: {item.size}</div>
               <div className="productQty">Quantity: {item.count}</div>
               <div className="productprice">${item.listPrice}</div>

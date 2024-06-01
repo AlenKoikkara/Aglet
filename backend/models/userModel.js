@@ -21,9 +21,6 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  cart: {
-    type: [{}]
-  },
   orderHistory: {
     type: [{}]
   }

@@ -37,7 +37,7 @@ const getProduct = async (req, res) => {
 
 const getFeatured = async (req, res) => {
   const queryObj = req.body
-  const products = await Product.find(queryObj).limit(4)
+  const products = await Product.find(queryObj).limit(6)
   if (!products) {
     return res.status(404).json({ error: "no products" });
   }

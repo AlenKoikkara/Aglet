@@ -1,0 +1,57 @@
+@import "../variables.scss";
+
+.profileCardWrapper {
+  width: 85%;
+  .profileCard {
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 20px;
+    @include flex(space-between, center, row);
+    .displayImage {
+      @include flex(space-between, center, row);
+      .profilePic {
+        margin-right: 30px;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 200px;
+      }
+      .editButton {
+        cursor: pointer;
+        padding: 3px;
+        position: absolute;
+        color: $primary3;
+        bottom: 10px;
+        right: 0px;
+        &:hover {
+          color: $primary1;
+        }
+      }
+      .profileHeader {
+        @include flex(space-between, center, column);
+        width: 100%;
+        .profileTitle {
+          @include text-style(40px, 600, 52px);
+        }
+        .userName {
+          color: rgba($color: $primary1, $alpha: 0.7);
+          @include text-style(25px, 600, 28px);
+        }
+      }
+    }
+    .editProfile {
+      @include flex(center, flex-start, column);
+      .editButton {
+        color: $primary1;
+      }
+      .editButton,
+      .logout {
+        text-transform: none;
+      }
+      
+      .logout {
+        color: $primary3;
+      }
+    }
+  }
+}

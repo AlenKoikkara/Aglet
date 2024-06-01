@@ -24,8 +24,16 @@
     }
     .cartBody {
       .productName {
+        cursor: pointer;
         margin-bottom: 10px;
         @include text-style(16px, 600, 15px);
+        a {
+          color: $primary1;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
       .productSize {
         @include text-style(12px, 400, 15px);
