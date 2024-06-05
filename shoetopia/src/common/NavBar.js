@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./NavBar.scss";
 
 import HamburgerMenu from "./HamburgerMenu";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import FaceIcon from "@mui/icons-material/Face";
 import authFunctions from "../authFunctions";
 import { selectUser } from "../features/userSlice";
@@ -15,7 +14,7 @@ import LoginDialog from "./LoginDialog";
 import { selectCart } from "../features/cartSlice";
 import CartDrawer from "./CartDrawer";
 
-function NavBar({ products, setProducts }) {
+function NavBar() {
   const user = useSelector(selectUser);
   const cart = useSelector(selectCart);
   const [hide, handleHide] = useState("top");
@@ -51,9 +50,6 @@ function NavBar({ products, setProducts }) {
         <div className="menuandlogo">
           <div className="navHamburger">
             <HamburgerMenu
-              config={{ products: products, setProducts: setProducts }}
-              products={products}
-              setProducts={setProducts}
             ></HamburgerMenu>
           </div>
           <img

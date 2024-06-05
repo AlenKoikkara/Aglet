@@ -3,40 +3,32 @@ import "./CategoryPage.scss";
 import requests from "../requests";
 
 import NavBar from "../common/NavBar";
-// import ProductWrapper from "../common/ProductWrapper";
-import { useSearchParams } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
 
 const CategoryPage = () => {
   const ProductsWrapper = lazy(() => import('../common/ProductsWrapper'));
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [products, setProducts] = useState([]);
   const location = useLocation();
+  const [queryParam, setQueryParam] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  
   useEffect(() => {
-
-    setProducts([])
+    
+    const param = searchParams.get('category');
+    setQueryParam(param);
     return () => {
       
     }
-  }, [location.search])
+  }, [queryParam])
   
   return (
     <div className="body">
-      <NavBar
-      products={products}
-      setProducts={setProducts}>
+      <NavBar>
       </NavBar>
       {searchParams?.get('category') && (
         <Suspense fallback={<LinearProgress />}>
           <ProductsWrapper
              title={searchParams?.get('category')}
-             fetchUrl={requests.fetchProducts(
-               `limit=20&category=Shoes&division=${searchParams?.get('category')}&productCount=20`
-             )}
-             products={products}
-             setProducts={setProducts}
           ></ProductsWrapper>
         </Suspense>
       )}

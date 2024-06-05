@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import "./HamburgerMenu.scss";
 
-import authFunctions from "../authFunctions";
 import { selectUser } from "../features/userSlice";
 
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import LoginDialog from "./LoginDialog";
 import utils from "../utils";
 
-function HamburgerMenu ({config}) {
+function HamburgerMenu() {
   const user = useSelector(selectUser);
   const [clicked, setClicked] = useState(false);
   const [open, setOpen] = useState(false);
@@ -25,13 +22,10 @@ function HamburgerMenu ({config}) {
   function handleClose() {
     setOpen(false);
   }
-
-  const navigateTo = (category) =>{
-    navigate(utils.getUrlWithParams("/products?", {category: category}))
-    if(config.products) {
-      config.setProducts([])
-    }
-  }
+  
+  const navigateTo = (category) => {
+    navigate(utils.getUrlWithParams("/products?", { category: category }));
+  };
 
   const handleClick = () => {
     const element = document.getElementById("hamburger");
@@ -76,19 +70,19 @@ function HamburgerMenu ({config}) {
         <div className="blurfilterdiv"></div>
         <div className="navlink">
           <div className="mens">
-            <div onClick={() => navigateTo("Men")} className="link">
+            <a href={utils.getUrlWithParams("/products?", { category: 'Men' })} className="link">
               Shop men
-            </div>
+            </a>
           </div>
           <div className="womens">
-            <div onClick={() => navigateTo("Women")} className="link">
-            Shop women
-            </div>
+            <a href={utils.getUrlWithParams("/products?", { category: 'Women' })} className="link">
+              Shop women
+            </a>
           </div>
           <div className="kids">
-            <div onClick={() => navigateTo("Kids")} className="link">
-            Shop kids
-            </div>
+            <a href={utils.getUrlWithParams("/products?", { category: 'Kids' })} className="link">
+              Shop kids
+            </a>
           </div>
         </div>
         <div style={{ display: "none" }}>
@@ -97,6 +91,6 @@ function HamburgerMenu ({config}) {
       </div>
     </div>
   );
-};
+}
 
 export default HamburgerMenu;

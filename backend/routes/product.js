@@ -2,10 +2,12 @@ const express = require('express')
 const {
   getProducts, 
   getProduct,
-  getFeatured
+  getFeatured,
+  getPaginatedProducts
 } = require('../controllers/productController')
 
 const router = express.Router()
+router.get('/paginated', getPaginatedProducts)
 
 router.get('/featured', getFeatured)
 

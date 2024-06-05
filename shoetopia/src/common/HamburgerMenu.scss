@@ -17,10 +17,14 @@
       div {
         cursor: pointer;
         margin-bottom: 22px;
-        transition-timing-function: ease-in;
-        transition: 0.5s;
-        &:hover {
-          color: $primary3;
+        a {
+          transition-timing-function: ease-in;
+          transition: 0.5s;
+          color: $primary1;
+          text-decoration: none;
+          &:hover {
+            color: $primary3;
+          }
         }
       }
     }

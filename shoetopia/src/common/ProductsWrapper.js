@@ -1,49 +1,36 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import "./ProductsWrapper.scss";
-import axios from "../axios";
-import { useSearchParams } from "react-router-dom";
+import { usePaginatedTransactions } from "../hooks/paginatedData";
 
-import CartButton from "./CartButton";
-
-function ProductWrapper({ title, fetchUrl, products, setProducts }) {
-  const [pageNo, setPageNo] = useState(0);
-  const [productCount, setProductCount] = useState(0);
-  const page = useMemo(() => ({ pageNo }), [pageNo]);
-  const [searchParams, setSearchParams] = useSearchParams();
+function ProductWrapper({ title }) {
+  const { data: products, ...productsUtils } = usePaginatedTransactions()
 
   const scroller = () => {
     const scrolledTo = window.scrollY + window.innerHeight;
-    const isReachBottom =
-      Math.round(scrolledTo) < document.body.scrollHeight - 200 &&
-      Math.round(scrolledTo) > document.body.scrollHeight - 250;
+    var isReachBottom = Math.round(scrolledTo) < document.body.scrollHeight - 200 &&
+    Math.round(scrolledTo) > document.body.scrollHeight - 250;;
     if (isReachBottom) {
-      setPageNo(pageNo + 1);
+      if (products.nextPage) {
+        window.removeEventListener("scroll", scroller)
+        fetchPaginatedData()
+      }
     }
   };
-
-  async function fetchData(page) {
-    const url = fetchUrl.concat(`&page=${page}`);
-    await axios.get(url).then((request) => {
-      setProducts([...products, ...request.data.products]);
-      setProductCount(request.data.productCount);
-      return request;
-    })
-    .catch((error) => {
-      console.log(error.message)
-    });
-  }
-
+  const fetchPaginatedData = useCallback(async () => {
+        productsUtils.fetchAll()
+    }, [productsUtils]) 
+  
   useEffect(() => {
-    if (searchParams?.get("category") && products.length <= productCount) {
-      fetchData(pageNo);
-    }
+      if (products === null) {
+        fetchPaginatedData();
+      }
     window.addEventListener("scroll", scroller);
     return () => window.removeEventListener("scroll", scroller);
-  }, [fetchUrl, page]);
+  }, [products]);
 
   return (
     <>
-      {products?.length > 0 && (
+      {true && (
         <div className="categoryWrapper">
           <div className="titleContent">
             <div className="title">{title}'s Shoes</div>
@@ -54,7 +41,7 @@ function ProductWrapper({ title, fetchUrl, products, setProducts }) {
           </div>
           <div className="content">
             <div className="productsList">
-              {products?.map((product) => (
+              {products?.products?.map((product) => (
                 <div key={product._id} className="productWrapper">
                   <div className="imgCart">
                     <img

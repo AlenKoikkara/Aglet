@@ -71,7 +71,7 @@ const utils = {
 
   getCart: async (userId, dispatch) => {
     await axios.get(requests.fetchCart(userId)).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.data?.cart) {
         dispatch(addCart(res.data?.cart));
       }
