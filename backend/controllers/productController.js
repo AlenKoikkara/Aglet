@@ -22,6 +22,7 @@ const getPaginatedProducts = async (req, res) => {
   excludeFields.forEach((item) => {
     delete querObj[item];
   })
+  const data = await Product.countDocuments(querObj)
   const start = page * req?.query?.limit
   const end = start + parseInt(req?.query?.limit)
   const products = await Product.find(querObj).limit(req?.query?.limit || "").skip(start);

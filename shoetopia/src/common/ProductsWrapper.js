@@ -1,29 +1,37 @@
 import React, { useCallback, useEffect } from "react";
 import "./ProductsWrapper.scss";
 import { usePaginatedTransactions } from "../hooks/paginatedData";
+import { useNavigate } from "react-router-dom";
 
 function ProductWrapper({ title }) {
-  const { data: products, ...productsUtils } = usePaginatedTransactions()
+  const { data: products, ...productsUtils } = usePaginatedTransactions();
+  const navigate = useNavigate();
 
   const scroller = () => {
     const scrolledTo = window.scrollY + window.innerHeight;
-    var isReachBottom = Math.round(scrolledTo) < document.body.scrollHeight - 200 &&
-    Math.round(scrolledTo) > document.body.scrollHeight - 250;;
+    var isReachBottom =
+      Math.round(scrolledTo) < document.body.scrollHeight - 200 &&
+      Math.round(scrolledTo) > document.body.scrollHeight - 250;
     if (isReachBottom) {
       if (products.nextPage) {
-        window.removeEventListener("scroll", scroller)
-        fetchPaginatedData()
+        window.removeEventListener("scroll", scroller);
+        fetchPaginatedData();
       }
     }
   };
+
   const fetchPaginatedData = useCallback(async () => {
-        productsUtils.fetchAll()
-    }, [productsUtils]) 
-  
+    productsUtils.fetchAll();
+  }, [productsUtils]);
+
+  function navigateTo(productId) {
+    navigate(`/products/${productId}`);
+  }
+
   useEffect(() => {
-      if (products === null) {
-        fetchPaginatedData();
-      }
+    if (products === null) {
+      fetchPaginatedData();
+    }
     window.addEventListener("scroll", scroller);
     return () => window.removeEventListener("scroll", scroller);
   }, [products]);
@@ -42,7 +50,7 @@ function ProductWrapper({ title }) {
           <div className="content">
             <div className="productsList">
               {products?.products?.map((product) => (
-                <div key={product._id} className="productWrapper">
+                <div key={product._id} className="productWrapper" onClick={() => navigateTo(product._id)}>
                   <div className="imgCart">
                     <img
                       loading="lazy"
