@@ -5,8 +5,17 @@ import image from '../assets/images/banner.png'
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 
 import "./ProfileCard.scss";
+import authFunctions from "../authFunctions";
+import { useDispatch } from "react-redux";
 
 const ProfileCard = () => {
+  const dispatch = useDispatch();
+
+  function logout() {
+    authFunctions.logoutUser(dispatch)
+  }
+
+
   return (
     <div className="profileCardWrapper">
       <div className="profileCard">
@@ -14,9 +23,8 @@ const ProfileCard = () => {
           <img className="profilePic" src={image} alt=""></img>
           {/* <FileUploadRoundedIcon className="editButton"></FileUploadRoundedIcon> */}
         <div className="profileHeader">
-          <div className="profileTitle">alen dennis</div>
+          <div className="userName">alen dennis</div>
           <div className="memberDate">Member Since February 2017</div>
-          <div className="userName">aaaa@gmail.com</div>
         </div>
         </div>
         <div className="editProfile">
@@ -27,7 +35,7 @@ const ProfileCard = () => {
               fontSize="small"
             ></EditRoundedIcon>
           </Button>
-          <Button className="logout">Logout</Button>
+          <Button className="logout" onClick={() => logout()}>Logout</Button>
         </div>
       </div>
     </div>

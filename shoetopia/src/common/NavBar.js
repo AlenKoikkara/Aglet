@@ -6,7 +6,6 @@ import "./NavBar.scss";
 
 import HamburgerMenu from "./HamburgerMenu";
 import FaceIcon from "@mui/icons-material/Face";
-import authFunctions from "../authFunctions";
 import { selectUser } from "../features/userSlice";
 import logo from "../assets/images/logo.png";
 import utils from "../utils";
@@ -20,7 +19,6 @@ function NavBar() {
   const [hide, handleHide] = useState("top");
   const [prevScrollpos, setPrevScrollpos] = useState(0);
   const [open, setOpen] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClickOpen = () => {
@@ -68,7 +66,7 @@ function NavBar() {
           </div>
           {user?.emailId ? (
             <div
-              onClick={() => authFunctions.logoutUser(dispatch)}
+              onClick={() => navigate(`/user/${123}`)}
               className="auth"
             >
               <div className="profile" fontSize="large">

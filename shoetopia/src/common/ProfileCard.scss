@@ -1,18 +1,19 @@
 @import "../variables.scss";
 
 .profileCardWrapper {
+  margin-top: 30px;
   width: 85%;
   .profileCard {
     width: 100%;
-    padding: 30px 40px;
+    padding: 30px 0px;
     border-radius: 20px;
     @include flex(space-between, center, row);
     .displayImage {
       @include flex(space-between, center, row);
       .profilePic {
         margin-right: 30px;
-        width: 200px;
-        height: 200px;
+        width: 120px;
+        height: 120px;
         object-fit: cover;
         border-radius: 200px;
       }
@@ -28,19 +29,20 @@
         }
       }
       .profileHeader {
-        @include flex(space-between, center, column);
+        @include flex(space-between, flex-start, column);
         width: 100%;
-        .profileTitle {
-          @include text-style(40px, 600, 52px);
-        }
         .userName {
+          @include text-style(30px, 600, 35px);
+        }
+        .memberDate {
           color: rgba($color: $primary1, $alpha: 0.7);
-          @include text-style(25px, 600, 28px);
+          @include text-style(15px, 400, 16px);
         }
       }
     }
     .editProfile {
-      @include flex(center, flex-start, column);
+      @include flex(center, flex-start, row);
+      gap: 30px;
       .editButton {
         color: $primary1;
       }

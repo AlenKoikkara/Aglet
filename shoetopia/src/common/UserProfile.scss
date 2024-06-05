@@ -5,56 +5,22 @@
   width: 85%;
   margin-left: auto;
   @include flex(flex-start, flex-start, column);
-  .orderCard {
-    margin-top: 80px;
-    padding: 25px;
-    border-radius: 20px;
-    .orderCartTitle {
-      text-align: start;
-      @include text-style(40px, 600, 52px);
-    }
-    .orderList {
-      height: 400px;
-      overflow-y: scroll;
-      .cartItem {
-        padding: 20px;
-        @include flex(flex-start, center);
-        margin: 20px;
-        width: 400px;
-        border: 1px solid $primary1;
-        .cartImage {
-          width: 40%;
-          margin-right: 20px;
-        }
-        .cartBody {
-          text-align: start;
-          .productName {
-            cursor: pointer;
-            margin-bottom: 10px;
-            @include text-style(16px, 600, 15px);
-            a {
-              color: $primary1;
-              text-decoration: none;
-              &:hover {
-                text-decoration: underline;
-              }
-            }
-          }
-          .productSize {
-            @include text-style(12px, 400, 15px);
-          }
-          .productQty {
-            margin-bottom: 4px;
-            @include text-style(12px, 400, 15px);
-          }
-          .productprice {
-            @include text-style(14px, 600, 15px);
-          }
-        }
-        .cartremovebutton {
-          margin-left: 30px;
-        }
-      }
-    }
-  }
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+  margin-right: 70px !important;
+  text-transform: none !important;
+  @include text-style(18px !important, 600, 20px)
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: $primary3 !important;
+}
+
+.css-1aquho2-MuiTabs-indicator {
+  background-color: $primary3 !important;
+}
+
+.css-19kzrtu {
+  padding: 0px !important;
 }
