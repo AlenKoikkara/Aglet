@@ -29,10 +29,13 @@
       .mens, .womens, .kids {
         cursor: pointer;
         background-color: white;
-        color: $primary3;
+        color: rgba($color: $primary3, $alpha: 1);
         padding: 10px 30px;
+        transition-timing-function: ease-in;
+        transition: 0.5s;
+        text-transform: none;
         &:hover {
-          color: $primary2;
+          color: $primary3;
         }
       }
     }

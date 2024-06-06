@@ -6,14 +6,12 @@
     width: 100px;
     padding: 0px;
     margin-right: 0px;
-    // margin-right: 20px;
-    // padding: 0px 20px;
     color: $primary1;
-    top: 70px;
     @include flex(center, flex-start, column);
     .navlink {
+      margin-left: 20px;
       @include flex(center, center);
-      gap: 20px;
+      gap: 40px;
       z-index: 1;
       @include text-style(20px, 400, 24px);
       text-align: start;
@@ -21,10 +19,10 @@
         cursor: pointer;
         width: max-content;
         a {
-          @include text-style(18px, 400, 21px);
+          @include text-style(17px, 400, 18px);
           transition-timing-function: ease-in;
           transition: 0.5s;
-          color: rgba($color: $primary1, $alpha: .5);
+          color: rgba($color: $primary1, $alpha: .7);
           text-decoration: none;
           &:hover {
             color: $primary1;

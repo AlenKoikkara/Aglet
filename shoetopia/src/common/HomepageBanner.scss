@@ -21,8 +21,8 @@
     }
     .desc {
       @include text-style(16px, 400, 22px);
-      margin-top: 10px;
-      width: 300px;
+      margin-top: 15px;
+      width: 220px;
     }
   }
 }
@@ -56,6 +56,11 @@
       .title2 {
         position: absolute;
         top: 105px;
+        .shoeword {
+          background: linear-gradient(to right, #f32170, $primary3,#cf23cf, #eedd44);
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+        }
       }
       .desc {
         position: absolute;

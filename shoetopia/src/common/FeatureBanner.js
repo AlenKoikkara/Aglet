@@ -1,6 +1,7 @@
 import React from "react";
 import "./FeatureBanner.scss";
 import video from "../assets/videos/feature.mp4";
+import { Button } from "@mui/material";
 
 function FeatureBanner({ title }) {
  
@@ -14,9 +15,9 @@ function FeatureBanner({ title }) {
             <div className="title">{title}</div>
             <div className="desc">For any and every look</div>
             <div className="buttons">
-              <div className="mens">Shop Mens</div>
-              <div className="womens">Shop Womens</div>
-              <div className="kids">Shop Kids</div>
+              <Button className="mens">Shop Mens</Button>
+              <Button className="womens">Shop Womens</Button>
+              <Button className="kids">Shop Kids</Button>
             </div>
           </div>
         </div>

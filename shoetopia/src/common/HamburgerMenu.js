@@ -71,17 +71,17 @@ function HamburgerMenu() {
         <div className="navlink">
           <div className="mens">
             <a href={utils.getUrlWithParams("/products?", { category: 'Men' })} className="link">
-              Shop men
+              men
             </a>
           </div>
           <div className="womens">
             <a href={utils.getUrlWithParams("/products?", { category: 'Women' })} className="link">
-              Shop women
+              women
             </a>
           </div>
           <div className="kids">
             <a href={utils.getUrlWithParams("/products?", { category: 'Kids' })} className="link">
-              Shop kids
+              kids
             </a>
           </div>
         </div>

@@ -9,13 +9,12 @@ const HomepageBanner = () => {
     <header className="bannerHeader">
       <div className="content">
         <div className="title1">find the</div>
-        <div className="title2">Perfect <span style={{color: '#F07635'}}>shoe.</span></div>
+        <div className="title2">Perfect <span className="shoeword">shoe.</span></div>
         <div className="desc">
           Step into a world where every shoe has a story and every sole has a
           goal.
         </div>
       </div>
-      {/* {!utils.isMobile() && <FeaturedCarousel></FeaturedCarousel>} */}
     </header>
   );
 };
