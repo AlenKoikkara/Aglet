@@ -15,7 +15,7 @@ const HomepageBanner = () => {
           goal.
         </div>
       </div>
-      {!utils.isMobile() && <FeaturedCarousel></FeaturedCarousel>}
+      {/* {!utils.isMobile() && <FeaturedCarousel></FeaturedCarousel>} */}
     </header>
   );
 };

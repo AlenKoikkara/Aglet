@@ -23,28 +23,31 @@
       color: $primary1;
       @include flex(space-between, start, column);
       .description {
+        margin-top: 8px;
         text-align: start;
         @include flex(center, start, column);
         gap: 5px;
         .brandName {
-          @include text-style(10px, 400, 16px);
+          color: rgba($color: $primary1, $alpha: .8);
+          @include text-style(10px, 400, 10px);
         }
         .productName {
-          @include text-style(17px, 400, 20px);
+          color: $primary1;
+          @include text-style(18px, 600, 20px);
         }
         .producttype {
-          @include text-style(15px, 400, 18px);
+          color: rgba($color: $primary1, $alpha: .5);
+          @include text-style(15px, 400, 15px);
         }
       }
       .cartandprice {
-        color: $primary3;
-        @include text-style(18px, 400, 18px);
-        @include flex(center, center);
+        color: $primary1;
+        @include text-style(18px, 400, 20px);
       }
     }
   }
   horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-    top: -6px;
+    top: -3px;
     left: 115px !important;
     width: 100%;
     .swiper-pagination-bullet-active {

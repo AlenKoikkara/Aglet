@@ -1,9 +1,7 @@
 @import "../variables.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 .navbarWrapper {
   display: block;
-  font-family: "Poppins";
   position: static;
   z-index: 99;
   transition: all 0.01s;
@@ -13,20 +11,23 @@
     align-items: center;
     justify-content: space-between;
     .menuandlogo {
-      @include flex(center, center);
+      min-width: 560px;
+      @include flex(flex-start, center);
       .logo {
+        transition-timing-function: ease-in;
+        transition: 0.5s;
         cursor: pointer;
-        width: 150px;
+        width: 120px;
         object-fit: contain;
       }
     }
     .rightsideContent {
       cursor: pointer;
-      @include flex(center, normal);
+      @include flex(center, center);
       padding: 0px 10px;
       color: $primary1;
       .profilepic {
-        margin-left: 20px;
+        margin-left: 40px;
         width: 50px;
       }
       .cartIcon {
@@ -55,26 +56,29 @@
       .profile {
         transition-timing-function: ease-in;
         transition: 0.5s;
-        color: $primary1;
-        width: 35px;
-        height: 35px;
+        color: $primary4;
+        width: 30px;
+        height: 30px;
         display: flex;
         align-items: center;
-        // background: purple;
         justify-content: center;
         border-radius: 20px;
-        border: 2px solid $primary1;
+        // border: 2px solid $primary1;
         &:hover {
           border: 2px solid $primary3;
         }
       }
       .auth {
-        margin-left: 10px;
+        border-radius: 20px;
+        background-color: rgba($color: $primary3, $alpha: .7);
+        @include flex(center, center);
+        width: 32px;
+        height: 32px;
         cursor: pointer;
         @include text-style(17px, 600, 20px);
         transition-timing-function: ease-in;
         transition: 0.5s;
-        color: $primary1;
+        color: $primary4;
         &:hover {
           color: $primary3;
         }
@@ -110,13 +114,13 @@
     .wrapper {
       border-bottom-right-radius: 40px;
       background-color: white;
-      padding: 25px 30px;
+      padding: 15px 30px;
       .menuandlogo {
         .navHamburger {
           margin-right: 40px;
         }
         .logo {
-          width: 150px;
+          width: 120px;
         }
       }
       .rightsideContent {

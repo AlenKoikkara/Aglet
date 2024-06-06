@@ -1,29 +1,33 @@
 @import "../variables.scss";
 
 .hamburgerWrapper {
-  position: relative;
+  @include flex(center, center);
   .navWrapper {
-    padding: 0px 20px;
+    width: 100px;
+    padding: 0px;
+    margin-right: 0px;
+    // margin-right: 20px;
+    // padding: 0px 20px;
     color: $primary1;
-    position: absolute;
     top: 70px;
-    width: 180px;
-    @include flex(top, flex-start, column);
+    @include flex(center, flex-start, column);
     .navlink {
-      padding: 20px 20px 0px 0px;
+      @include flex(center, center);
+      gap: 20px;
       z-index: 1;
       @include text-style(20px, 400, 24px);
       text-align: start;
       div {
         cursor: pointer;
-        margin-bottom: 22px;
+        width: max-content;
         a {
+          @include text-style(18px, 400, 21px);
           transition-timing-function: ease-in;
           transition: 0.5s;
-          color: $primary1;
+          color: rgba($color: $primary1, $alpha: .5);
           text-decoration: none;
           &:hover {
-            color: $primary3;
+            color: $primary1;
           }
         }
       }
@@ -37,15 +41,17 @@
     animation-name: closelinks;
     transition: ease-in;
     animation-duration: .5s;
-    display: none;
+    animation-fill-mode: forwards;
     
   }
   
   .navWrapper.opened {
+    overflow: hidden;
     animation-name: openlinks;
     transition: ease-in;
     animation-duration: .5s;
     display: flex;
+    animation-fill-mode: forwards;
   }
 
   .hamburger {
@@ -211,19 +217,24 @@
 
 @keyframes closelinks {
   from {
+    width: 350px;
     opacity: 1;
   }
   to {
+    width: 0px;
     opacity: 0;
+    display: none;
   }
 }
 
 @keyframes openlinks {
   from {
     opacity: 0;
+    width: 0px;
   }
   to {
     opacity: 1;
+    width: 350px;
   }
 }
 

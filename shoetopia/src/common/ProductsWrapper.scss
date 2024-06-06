@@ -1,5 +1,4 @@
 @import "../variables.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 .categoryWrapper {
   width: 100%;
@@ -12,7 +11,6 @@
       width: 85%;
       margin-left: auto;
       @include text-style(50px, 600, 51px);
-      font-family: "Poppins";
     }
     .filterOptions {
       gap: 40px;

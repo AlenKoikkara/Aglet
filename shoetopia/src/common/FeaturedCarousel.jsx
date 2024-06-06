@@ -65,7 +65,7 @@ const FeaturedCarousel = () => {
                   <div className="producttype">{product.division}</div>
                 </div>
                 <div className="cartandprice">
-                  <div>{product.listPrice}$</div>
+                  <div>${product.listPrice}</div>
                 </div>
               </div>
             </div>

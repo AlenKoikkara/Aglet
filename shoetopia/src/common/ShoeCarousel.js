@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import Line from "./Line";
 
 function ShoeCarousel({ config }) {
   const scrollable = useRef(null);
@@ -25,6 +26,7 @@ function ShoeCarousel({ config }) {
   return (
     <div className="shoeCarouselWrapper">
       <div className="title">{config?.title}</div>
+      <Line></Line>
       <ChevronLeftRoundedIcon
         onClick={() => scrollIt(false)}
         className="leftslide"

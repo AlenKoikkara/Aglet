@@ -1,5 +1,4 @@
 @import "../variables.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,700");
 
 
 .featureBannerWrapper {
@@ -18,18 +17,15 @@
     color: white;
     .title {
       margin-bottom: 15px;
-      font-family: "Poppins";
       @include text-style(35px, 700, 36px)
     }
     .desc {
-      font-family: "Poppins";
       @include text-style(20px, 400, 26px)  
     }
     .buttons {
       margin-top: 20px;
       display: flex;
       gap: 20px;
-      font-family: "Poppins";
       .mens, .womens, .kids {
         cursor: pointer;
         background-color: white;

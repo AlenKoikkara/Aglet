@@ -1,5 +1,4 @@
 @import "../variables.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,400,600,700");
 
 .bannerHeader {
   background-image: url(../assets/images/banner.png);
@@ -21,9 +20,9 @@
       background: white;
     }
     .desc {
-      @include text-style(15px, 400, 22px);
+      @include text-style(16px, 400, 22px);
       margin-top: 10px;
-      width: 350px;
+      width: 300px;
     }
   }
 }
@@ -59,10 +58,9 @@
         top: 105px;
       }
       .desc {
-        font-family: "Poppins";
         position: absolute;
-        top: 220px;
-        color: $primary1;
+        top: 230px;
+        color: rgba($color: $primary1, $alpha: .8);
       }
     }
   }
