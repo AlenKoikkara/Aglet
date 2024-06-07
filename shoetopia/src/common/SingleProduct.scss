@@ -6,10 +6,10 @@
   .productFirstfold {
     position: relative;
     z-index: 1;
-    max-width: 85%;
     margin-left: auto;
     height: max-content;
-    @include flex(flex-start, flex-start);
+    padding: 0px 40px;
+    @include flex(center, flex-start);
     .productDetails {
       padding: 10px;
       margin-right: 10px;
@@ -23,16 +23,17 @@
           margin-bottom: 10px;
           color: $primary1;
           .tick {
-            color: $primary3;
+            color: rgba($color: $primary3, $alpha: .7);          
           }
         }
       }
     }
     .productImg {
       border-radius: 20px;
-      width: 40%;
+      width: 36%;
       height: 550px;
       object-fit: cover;
+      margin-right: 40px;
     }
     .productDescription {
       max-height: 550px;
@@ -44,16 +45,18 @@
       .productTitle {
         margin-bottom: 80px;
         .productType {
+          margin-bottom: 5px;
+          color: rgba($color: $primary1, $alpha: .5);          
           @include text-style(15px, 600, 16px);
         }
         .productName {
           max-width: 350px;
-          @include text-style(40px, 600, 43px);
+          @include text-style(35px, 600, 38px);
         }
       }
       .productBody {
         .productPrice {
-          @include text-style(55px, 600, 58px);
+          @include text-style(50px, 600, 52px);
           margin-bottom: 10px;
         }
         .productRating {
@@ -62,6 +65,7 @@
         }
         .productSizes {
           .sizeTitle {
+            color: rgba($color: $primary1, $alpha: .5);          
             @include text-style(15px, 600, 18px);
             margin-bottom: 10px;
           }
@@ -116,24 +120,22 @@
     }
   }
   .productSecondfold {
-    margin-top: 80px;
-    max-width: 85%;
-    margin-left: auto;
+    margin-top: 40px;
+    padding: 0px 40px;
     .shoeDescription {
       width: 600px;
       text-align: start;
       .descTitle {
-        margin-bottom: 20px;
-        @include text-style(50px, 600, 52px);
+        @include text-style(35px, 600, 52px);
       }
       .descBody {
-        padding: 10px;
+        color: rgba($color: $primary1, $alpha: .7);
+        @include text-style(15px, 400, 19px);
+        padding: 10px 0px;
       }
     }
   }
   .productThirdfold {
-    margin-top: 80px;
-    max-width: 85%;
-    margin-left: auto;
+    margin-top: 100px;
   }
 }

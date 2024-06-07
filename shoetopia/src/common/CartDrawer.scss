@@ -1,11 +1,12 @@
 @import "../variables.scss";
 
 .cartDrawer {
-  padding: 20px 10px;
+  @include flex(center, center, column);
+  padding: 20px 20px;
   .header {
+    width: 100%;
     margin-bottom: 20px;
     @include flex(space-between, center);
-    padding: 20px;
     .title {
       @include text-style(30px, 600, 31px);
     }
@@ -49,5 +50,12 @@
     .cartremovebutton {
       margin-left: 30px;
     }
+  }
+  .placeOrder {
+    margin: auto;
+    text-transform: none;
+    border: 1px solid rgba($color: $primary3, $alpha: 1.0);
+    padding: 8px 30px;
+    color: $primary3;
   }
 }

@@ -9,6 +9,7 @@ const requests = {
   addToCart: 'api/cart/add',
   removeFromCart: 'api/cart/remove',
   fetchCart: (userId) => `api/cart/fetch/${userId}`,
+  placeOrder: (userId) => `api/order/placeorder/${userId}`
 }
 
 export default requests;

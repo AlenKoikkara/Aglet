@@ -18,6 +18,8 @@ app.use(function(req, res, next) {
 const productRoutes = require('./routes/product')
 const userRoutes = require('./routes/user')
 const cartRoutes = require('./routes/cart')
+const orderRoutes = require('./routes/order')
+
 
 // middleware
 app.use(express.json())
@@ -31,6 +33,8 @@ app.use((req, res, next) => {
 app.use('/api/products', productRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/cart', cartRoutes)
+app.use('/api/order', orderRoutes)
+
 
 
 // connect to db

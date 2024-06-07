@@ -10,10 +10,14 @@ import { selectCart } from "../features/cartSlice";
 import DeleteIcon from '@mui/icons-material/Delete';
 import CartButton from "./CartButton";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { Button } from "@mui/material";
+import utils from "../utils";
+import { selectUser } from "../features/userSlice";
 
 const CartDrawer = () => {
   const [open, setOpen] = React.useState(false);
   const cart = useSelector(selectCart);
+  const user = useSelector(selectUser)
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -41,6 +45,7 @@ const CartDrawer = () => {
           </div>
         ))}
       </List>
+      <Button className="placeOrder" onClick={() => utils.placeOrder(user,cart)}>Checkout</Button>
     </Box>
   );
 

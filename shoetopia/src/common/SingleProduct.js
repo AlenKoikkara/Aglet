@@ -113,7 +113,7 @@ function SingleProduct({ config }) {
       <div className="productThirdfold">
         {config.featured && (
           <ShoeCarousel
-            config={{ title: "Featured", shoes: config.featured }}
+            config={{ title: "Similar", shoes: config.featured }}
           ></ShoeCarousel>
         )}
       </div>

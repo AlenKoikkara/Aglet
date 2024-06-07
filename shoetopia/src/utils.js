@@ -78,6 +78,21 @@ const utils = {
     });
   },
 
+  placeOrder: async (user, cart) => {
+    const orderObj = {
+      order: cart,
+      success_url: window.location.href,
+      cancel_url: window.location.href,
+      emailId: user.emailId
+    }
+    await axios.post(requests.placeOrder(user.userId), orderObj).then((res) => {
+      console.log(res)
+      if (res) {
+        window.location.href = res.data.url
+      }
+    })
+  },
+
   isProductInCart: (product, cart) => {
     return cart?.findIndex((item) => item.productId === (product._id || product.productId));
   },

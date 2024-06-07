@@ -18,11 +18,11 @@
     box-shadow: none;
     border-radius: 10px;
     background-color: white;
-    color: $primary3;
+    color: $primary1;
     transition-timing-function: ease-in;
     transition: 0.5s;
     &:hover {
-      color: $primary1;
+      color: $primary3;
     }
   }
 }
