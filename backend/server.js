@@ -19,7 +19,9 @@ const productRoutes = require('./routes/product')
 const userRoutes = require('./routes/user')
 const cartRoutes = require('./routes/cart')
 const orderRoutes = require('./routes/order')
+const webhookRoutes = require('./routes/webhooks')
 
+app.use('/api/webhooks', webhookRoutes)
 
 // middleware
 app.use(express.json())
