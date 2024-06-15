@@ -9,7 +9,7 @@ logs
 **/*.back.*
 
 node_modules
-
+.env
 *.sublime*
 
 # End of https://www.toptal.com/developers/gitignore/api/react
