@@ -21,6 +21,7 @@ const cartRoutes = require('./routes/cart')
 const orderRoutes = require('./routes/order')
 
 
+app.use('/api/order', orderRoutes)
 // middleware
 app.use(express.json())
 
@@ -33,7 +34,9 @@ app.use((req, res, next) => {
 app.use('/api/products', productRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/cart', cartRoutes)
-app.use('/api/order', orderRoutes)
+app.use('/', (req, res) => {
+  res.send('server is running')
+})
 
 
 
