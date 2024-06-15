@@ -2,7 +2,7 @@ const Order = require("../models/orderModel");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const placeOrder = async (req, res) => {
-  const line_items = req.body.order.map((item) => {
+  const line_items = req.body?.order.map((item) => {
     return {
       price_data: {
         currency: "usd",
