@@ -18,7 +18,7 @@ function CartButton({ config }) {
 
   function addCart() {
     if (user && config?.shoe?.size) {
-      utils.addtoCart(user?.userId, config?.shoe, dispatch, cart);
+      utils.addtoCart(user, config?.shoe, dispatch, cart);
     }
 
     if (user && !config?.shoe?.size) {

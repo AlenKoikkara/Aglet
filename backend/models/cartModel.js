@@ -8,6 +8,11 @@ const cartSchema = new Schema({
     required: true,
     unique: true,
   },
+  emailId: {
+    type: String,
+    required: true,
+    unique: true
+  },
   cart: {
     type: [{}]
   }

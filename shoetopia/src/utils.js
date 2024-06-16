@@ -38,7 +38,8 @@ const utils = {
 
   addtoCart: async (user, product, dispatch) => {
     var cartObj = {
-      userId: user,
+      userId: user.userId,
+      emailId: user.emailId,
       cart: {
         productId: product._id || product.productId,
         productName: product.productName,

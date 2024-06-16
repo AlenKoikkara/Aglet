@@ -8,6 +8,11 @@ const orderSchema = new Schema({
     required: true,
     unique: true,
   },
+  emailId: {
+    type: String,
+    required: true,
+    unique: true
+  },
   order: {
     type: [{}]
   }

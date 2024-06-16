@@ -1,33 +1,43 @@
 const stripe = require("stripe")(process.env.STRIPE_KEY);
+const Order = require("../models/orderModel");
 
-const placeorder_webhook = async(req, res) => {
-  console.log('here')
-  const sig = req.headers['stripe-signature'];
+const placeorder_webhook = async (req, res) => {
+  console.log("here");
+  const sig = req.headers["stripe-signature"];
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(req.body, sig, process.env.WEBHOOK_SECRET);
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      sig,
+      process.env.WEBHOOK_SECRET
+    );
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     res.status(400).send(`Webhook Error: ${err.message}`);
     return;
   }
 
   // Handle the event
   switch (event.type) {
-    case 'checkout.session.completed':
+    case "checkout.session.completed":
       const checkoutSessionCompleted = event.data.object;
-      console.log(checkoutSessionCompleted)
+      if (checkoutSessionCompleted) {
+        console.log("checkoutSessionCompleted");
+      }
       // Then define and call a function to handle the event checkout.session.completed
       break;
-    case 'payment_intent.created':
+    case "payment_intent.created":
       const paymentIntentCreated = event.data.object;
-      console.log(paymentIntentCreated)
+      if (paymentIntentCreated) {
+        console.log("paymentIntentCreated");
+      }
       // Then define and call a function to handle the event payment_intent.created
       break;
-    case 'payment_intent.succeeded':
+    case "payment_intent.succeeded":
       const paymentIntentSucceeded = event.data.object;
-      console.log(paymentIntentSucceeded)
+      console.log(paymentIntentSucceeded);
+      console.log("paymentIntentSucceeded");
       // Then define and call a function to handle the event payment_intent.succeeded
       break;
     // ... handle other event types
@@ -37,9 +47,8 @@ const placeorder_webhook = async(req, res) => {
 
   // Return a 200 response to acknowledge receipt of the event
   res.send();
-}
-
+};
 
 module.exports = {
-  placeorder_webhook
+  placeorder_webhook,
 };
