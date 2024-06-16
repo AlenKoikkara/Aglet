@@ -25,8 +25,8 @@ const placeOrder = async (req, res) => {
     };
   });
   const session = await stripe.checkout.sessions.create({
-    customer_email: customer.emailId,
-    customer: customer.userId,
+    customer_email: customer.email,
+    customer: customer.id,
     line_items,
     mode: "payment",
     success_url: req.body.success_url,
