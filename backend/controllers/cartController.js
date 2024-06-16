@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const addCart = async (req, res) => {
   var cartObj = {
     userId: req.body.userId,
+    emailId: req.body.emailId,
     cart: req.body.cart,
   };
 

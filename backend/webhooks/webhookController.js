@@ -1,8 +1,7 @@
 const stripe = require("stripe")(process.env.STRIPE_KEY);
-const Order = require("../models/orderModel");
+const { addOrder } = require("../controllers/orderController");
 
 const placeorder_webhook = async (req, res) => {
-  console.log("here");
   const sig = req.headers["stripe-signature"];
   let event;
 
@@ -24,6 +23,11 @@ const placeorder_webhook = async (req, res) => {
       const checkoutSessionCompleted = event.data.object;
       if (checkoutSessionCompleted) {
         console.log("checkoutSessionCompleted");
+        stripe.customers
+        .retrieve(event.customer)
+        .then((customer) => {
+          addOrder()
+        })
       }
       // Then define and call a function to handle the event checkout.session.completed
       break;
