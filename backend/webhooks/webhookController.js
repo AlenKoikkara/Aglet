@@ -1,8 +1,8 @@
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const placeorder_webhook = async(req, res) => {
-  const sig = req.headers['stripe-signature'];
   console.log('here')
+  const sig = req.headers['stripe-signature'];
   let event;
 
   try {

@@ -16,7 +16,6 @@ import { removeCart } from "./features/cartSlice";
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
