@@ -25,7 +25,7 @@ function ProductWrapper({ title }) {
   }, [productsUtils]);
 
   function navigateTo(productId) {
-    navigate(`/products/${productId}`);
+    navigate(`/product/${productId}`);
   }
 
   useEffect(() => {

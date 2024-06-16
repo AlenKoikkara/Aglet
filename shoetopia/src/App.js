@@ -45,14 +45,14 @@ function App() {
       },
     },
     {
-      path: "/products/:id",
+      path: "/product/:id",
       async lazy() {
         let ProductPage = await import("./pages/ProductPage");
         return { Component: ProductPage.default };
       },
     },
     {
-      path: "/products/",
+      path: "/products",
       async lazy() {
         let CategoryPage = await import("./pages/CategoryPage");
         return { Component: CategoryPage.default };
@@ -65,10 +65,10 @@ function App() {
         return { Component: HomePage.default };
       }
     },
-    {
-      path: "*",
-      element: <Navigate to="/"></Navigate>,
-    },
+    // {
+    //   path: "*",
+    //   element: <Navigate to="/"></Navigate>,
+    // },
   ]);
 
   return (
