@@ -30,7 +30,6 @@ function HamburgerMenu() {
   const handleClick = () => {
     const element = document.getElementById("hamburger");
     const navWrapper = document.getElementById("navWrapper");
-    console.log(navWrapper);
     if (clicked === true) {
       element.classList.remove("open");
       element.classList.add("closed");
