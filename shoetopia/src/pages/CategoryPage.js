@@ -6,8 +6,8 @@ import NavBar from "../common/NavBar";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
 
+const ProductsWrapper = lazy(() => import('../common/ProductsWrapper'));
 const CategoryPage = () => {
-  const ProductsWrapper = lazy(() => import('../common/ProductsWrapper'));
   const location = useLocation();
   const [queryParam, setQueryParam] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();

@@ -52,7 +52,7 @@ function App() {
       },
     },
     {
-      path: "/products",
+      path: "/products/*",
       async lazy() {
         let CategoryPage = await import("./pages/CategoryPage");
         return { Component: CategoryPage.default };
