@@ -24,10 +24,10 @@ const placeorder_webhook = async (req, res) => {
       if (checkoutSessionCompleted) {
         console.log("checkoutSessionCompleted");
         stripe.customers
-        .retrieve(event.customer)
-        .then((customer) => {
-          addOrder()
-        })
+          .retrieve(checkoutSessionCompleted.customer_email)
+          .then((customer) => {
+            console.log(customer);
+          });
       }
       // Then define and call a function to handle the event checkout.session.completed
       break;
