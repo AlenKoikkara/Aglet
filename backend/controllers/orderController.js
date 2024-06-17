@@ -49,12 +49,13 @@ const addOrder = async (checkoutObject) => {
   const item = await Cart.find({
     emailId: checkoutObject.customer_details.email,
   });
-  console.log(item.cart)
+  console.log(JSON.stringify(item.cart));
   const orderObj = {
     userId: checkoutObject.metadata.customerDb_id,
     emailId: checkoutObject.customer_details.email,
-    order: item.cart
+    order: []
   }
+  orderObj.order.push(item.cart);
   console.log(orderObj)
   const order = await Order.create(orderObj).catch((error) => {
     console.log(error.message);
