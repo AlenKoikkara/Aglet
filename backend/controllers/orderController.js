@@ -51,8 +51,8 @@ const addOrder = async (checkoutObject) => {
   });
 
   const orderObj = {
-    emailId: req.emailId,
     userId: checkoutObject.metadata.customerDb_id,
+    emailId: checkoutObject.emailId,
     order: item
   }
   console.log(orderObj)
