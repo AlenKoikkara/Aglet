@@ -1,5 +1,6 @@
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const Order = require("../models/orderModel");
+const Cart = require("../models/cartModel");
 
 const placeOrder = async (req, res) => {
   let customerObj;
@@ -25,6 +26,9 @@ const placeOrder = async (req, res) => {
   customerObj = {
     customer_email: req.body?.emailId,
     line_items,
+    metadata: {
+      customerDb_id: req.body?.userId
+    },
     customer_creation: "always",
     mode: "payment",
     success_url: req.body?.success_url,
@@ -41,9 +45,21 @@ const placeOrder = async (req, res) => {
   res.send({ url: session.url });
 };
 
-const addOrder = async (req, res) => {
-  const items = JSON.parse(req.metadata.cart);
-  console.log(items);
+const addOrder = async (checkoutObject) => {
+  const item = await Cart.find({
+    emailId: checkoutObject.emailId,
+  });
+
+  const orderObj = {
+    emailId: req.emailId,
+    userId: checkoutObject.metadata.customerDb_id,
+    order: item
+  }
+  console.log(orderObj)
+  const order = await Order.create(orderObj).catch((error) => {
+    console.log(error.message);
+  })
+  console.log(order);
 };
 
 const getOrder = async (req, res) => {

@@ -21,13 +21,8 @@ const placeorder_webhook = async (req, res) => {
   switch (event.type) {
     case "checkout.session.completed":
       const checkoutSessionCompleted = event.data.object;
-      if (checkoutSessionCompleted) {
-        console.log("checkoutSessionCompleted");
-        await stripe.customers
-          .retrieve(checkoutSessionCompleted.customer)
-          .then((customer) => {
-            console.log(customer);
-          });
+      if (checkoutSessionCompleted.status === "complete") {
+        addOrder(checkoutSessionCompleted);
       }
       // Then define and call a function to handle the event checkout.session.completed
       break;
