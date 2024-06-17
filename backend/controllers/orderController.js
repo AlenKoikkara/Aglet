@@ -49,7 +49,7 @@ const addOrder = async (checkoutObject) => {
   const item = await Cart.find({
     emailId: checkoutObject.customer_details.email,
   });
-  console.log(JSON.stringify(item.cart));
+  console.log(item);
   const orderObj = {
     userId: checkoutObject.metadata.customerDb_id,
     emailId: checkoutObject.customer_details.email,
