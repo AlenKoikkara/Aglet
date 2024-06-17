@@ -53,7 +53,7 @@ const addOrder = async (checkoutObject) => {
   const orderObj = {
     userId: checkoutObject.metadata.customerDb_id,
     emailId: checkoutObject.customer_details.email,
-    order: item
+    order: item.cart
   }
   console.log(orderObj)
   const order = await Order.create(orderObj).catch((error) => {
