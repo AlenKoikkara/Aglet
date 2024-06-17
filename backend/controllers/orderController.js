@@ -47,7 +47,7 @@ const placeOrder = async (req, res) => {
 
 const addOrder = async (checkoutObject) => {
   const item = await Cart.find({
-    emailId: checkoutObject.emailId,
+    emailId: checkoutObject.customer_details.email,
   });
   console.log(item)
   const orderObj = {
