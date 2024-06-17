@@ -84,7 +84,8 @@ const utils = {
       order: cart,
       success_url: window.location.href,
       cancel_url: window.location.href,
-      emailId: user.emailId
+      emailId: user.emailId,
+      userId: user.userId
     }
     await axios.post(requests.placeOrder(user.userId), orderObj).then((res) => {
       console.log(res)
