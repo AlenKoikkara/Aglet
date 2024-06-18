@@ -217,8 +217,10 @@
 
 @media (max-width: 768px) {
   .hamburgerWrapper {
-    width: 41px;
     height: 41px;
+    .hamburger {
+      width: 41px;
+    }
   }
 }
 
