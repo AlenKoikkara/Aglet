@@ -26,19 +26,6 @@ const placeorder_webhook = async (req, res) => {
       }
       // Then define and call a function to handle the event checkout.session.completed
       break;
-    case "payment_intent.created":
-      const paymentIntentCreated = event.data.object;
-      if (paymentIntentCreated) {
-        console.log("paymentIntentCreated");
-      }
-      // Then define and call a function to handle the event payment_intent.created
-      break;
-    case "payment_intent.succeeded":
-      const paymentIntentSucceeded = event.data.object;
-      console.log("paymentIntentSucceeded");
-      // Then define and call a function to handle the event payment_intent.succeeded
-      break;
-    // ... handle other event types
     default:
       console.log(`Unhandled event type ${event.type}`);
   }

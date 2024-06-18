@@ -59,8 +59,8 @@
         margin-top: 20px;
         display: flex;
         gap: 20px;
-        @include text-style(10px, 400, 11px);
         .mens, .womens, .kids {
+          @include text-style(10px, 400, 11px);
           cursor: pointer;
           background-color: white;
           color: black;

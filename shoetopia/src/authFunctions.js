@@ -10,6 +10,7 @@ const authFunctions = {
     .then(async (authUser) => {
       await axios.post(requests.addUser(authUser.user.uid).concat(`?emailId=${authUser.user.email}`)).then((user) => {
         dispatch(login(user.data));
+        localStorage.setItem("user", JSON.stringify(user.data));
         formData.resetForm()
         handleClose()
       })
@@ -24,6 +25,7 @@ const authFunctions = {
     .then(async (authUser) => {
       await axios.get(requests.fetchUser(authUser.user.uid)).then((user) => {
         dispatch(login(user.data));
+        localStorage.setItem("user", JSON.stringify(user.data));
         formData.resetForm()
         handleClose()
       })
@@ -39,6 +41,7 @@ const authFunctions = {
     signOut(auth)
     .then(() => {
       dispatch(logout())
+      localStorage.removeItem("user");
       console.log('userSigned out')
     })
     .catch((error) => {

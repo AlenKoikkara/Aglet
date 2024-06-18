@@ -29,9 +29,9 @@ const ProfileCard = () => {
         </div>
         <div className="editProfile">
           <Button className="editButton">
-            Edit Profile{" "}
+            Edit Profile
             <EditRoundedIcon
-              style={{ "margin-left": "10px" }}
+              // style={{ "margin-left": "10px" }}
               fontSize="small"
             ></EditRoundedIcon>
           </Button>

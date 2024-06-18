@@ -8,7 +8,6 @@ import { LinearProgress } from "@mui/material";
 
 const CategoryPage = () => {
   const ProductsWrapper = lazy(() => import('../common/ProductsWrapper'));
-  const location = useLocation();
   const [queryParam, setQueryParam] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   

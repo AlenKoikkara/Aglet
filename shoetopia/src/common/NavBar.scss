@@ -11,7 +11,6 @@
     align-items: center;
     justify-content: space-between;
     .menuandlogo {
-      min-width: 560px;
       @include flex(flex-start, center);
       .logo {
         transition-timing-function: ease-in;
@@ -116,6 +115,7 @@
       background-color: white;
       padding: 15px 30px;
       .menuandlogo {
+        min-width: 560px;
         .navHamburger {
           margin-right: 40px;
         }
@@ -132,6 +132,7 @@
 
 @media (max-width: 768px) {
   .navbarWrapper {
+    overflow: hidden;
     background: black;
     .wrapper {
       border-bottom-right-radius: 20px;

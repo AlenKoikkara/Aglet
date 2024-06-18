@@ -20,9 +20,7 @@
       background: white;
     }
     .desc {
-      @include text-style(16px, 400, 22px);
       margin-top: 15px;
-      width: 220px;
     }
   }
 }
@@ -63,8 +61,10 @@
         }
       }
       .desc {
+        @include text-style(16px, 400, 22px);
         position: absolute;
         top: 230px;
+        width: 270px;
         color: rgba($color: $primary1, $alpha: .8);
       }
     }
@@ -73,29 +73,35 @@
 
 @media (max-width: 768px) {
   .bannerHeader {
-    width: 230px;
-    height: 580px;
+    width: 85%;
+    height: 280px;
     margin-left: auto;
+    margin-bottom: 160px;
     .content {
       top: 190px;
-      left: -70%;
+      left: -15%;
       .title1,
       .title2 {
-        padding: 5px 20px;
-        @include text-style(50px, 400, 51px);
+        padding: 9px 20px;
+        @include text-style(50px, 600, 51px);
         width: max-content;
       }
       .title2 {
         position: absolute;
-        top: 48px;
+        top: 53px;
+        .shoeword {
+          background: linear-gradient(to right, #f32170, $primary3,#cf23cf, #eedd44);
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+        }
       }
       .desc {
         position: absolute;
-        top: 120px;
+        top: 100px;
         padding: 5px 20px;
-        color: $primary1;
+        color: rgba($color: $primary1, $alpha: .8);
         @include text-style(15px, 400, 20px);
-        width: 150px;
+        width: 200px;
       }
     }
   }

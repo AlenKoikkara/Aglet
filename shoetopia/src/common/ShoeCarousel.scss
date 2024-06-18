@@ -1,12 +1,10 @@
 @import "../variables.scss";
 
 .shoeCarouselWrapper {
-  margin: 80px 40px;
   position: relative;
   .title {
     margin-bottom: 15px;
     color: $primary1;
-    @include text-style(50px, 600, 52px);
     text-align: left;
   }
   .leftslide {
@@ -34,7 +32,6 @@
     }
   }
   .shoeRows {
-    padding: 40px;
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -86,6 +83,13 @@
 
 @media (min-width: 767px) {
   .shoeCarouselWrapper {
+    margin: 80px 40px;
+    .title {
+      @include text-style(50px, 600, 52px);
+    }
+    .shoeRows {
+      padding: 40px;
+    }
     .shoeRows::-webkit-scrollbar {
       display: none;
     }
@@ -100,11 +104,16 @@
 
 @media (max-width: 768px) {
   .shoeCarouselWrapper {
+    margin: 80px 30px;
+    .title {
+      @include text-style(40px, 600, 42px);
+    }
     .leftslide,
     .rightslide {
       display: none;
     }
     .shoeRows {
+      padding: 20px;
       .productWrapper {
         .imgCart {
           .shoeimg {

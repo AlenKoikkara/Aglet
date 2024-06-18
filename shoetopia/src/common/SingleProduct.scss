@@ -8,12 +8,8 @@
     z-index: 1;
     margin-left: auto;
     height: max-content;
-    padding: 0px 40px;
     @include flex(center, flex-start);
     .productDetails {
-      padding: 10px;
-      margin-right: 10px;
-      width: 20%;
       ul {
         padding-left: 0px;
         list-style-type: none;
@@ -23,40 +19,26 @@
           margin-bottom: 10px;
           color: $primary1;
           .tick {
-            color: rgba($color: $primary3, $alpha: .7);          
+            color: rgba($color: $primary3, $alpha: 0.7);
           }
         }
       }
     }
     .productImg {
       border-radius: 20px;
-      width: 36%;
-      height: 550px;
-      object-fit: cover;
-      margin-right: 40px;
     }
     .productDescription {
-      max-height: 550px;
-      padding: 20px 55px;
-      max-width: 45%;
       text-align: start;
       color: $primary1;
-      @include flex(space-between, flex-start, column);
       .productTitle {
-        margin-bottom: 80px;
         .productType {
           margin-bottom: 5px;
-          color: rgba($color: $primary1, $alpha: .5);          
+          color: rgba($color: $primary1, $alpha: 0.5);
           @include text-style(15px, 600, 16px);
-        }
-        .productName {
-          max-width: 350px;
-          @include text-style(35px, 600, 38px);
         }
       }
       .productBody {
         .productPrice {
-          @include text-style(50px, 600, 52px);
           margin-bottom: 10px;
         }
         .productRating {
@@ -65,7 +47,7 @@
         }
         .productSizes {
           .sizeTitle {
-            color: rgba($color: $primary1, $alpha: .5);          
+            color: rgba($color: $primary1, $alpha: 0.5);
             @include text-style(15px, 600, 18px);
             margin-bottom: 10px;
           }
@@ -89,7 +71,7 @@
             }
             .sizeBox.active {
               background-color: $primary1;
-                color: $primary4;
+              color: $primary4;
             }
           }
         }
@@ -121,15 +103,12 @@
   }
   .productSecondfold {
     margin-top: 40px;
-    padding: 0px 40px;
+   
     .shoeDescription {
       width: 600px;
       text-align: start;
-      .descTitle {
-        @include text-style(35px, 600, 52px);
-      }
       .descBody {
-        color: rgba($color: $primary1, $alpha: .7);
+        color: rgba($color: $primary1, $alpha: 0.7);
         @include text-style(15px, 400, 19px);
         padding: 10px 0px;
       }
@@ -137,5 +116,98 @@
   }
   .productThirdfold {
     margin-top: 100px;
+  }
+}
+
+@media (min-width: 767px) {
+  .productWrapper {
+    margin: 30px;
+    .productFirstfold {
+      padding: 0px 40px;
+      .productDetails {
+        width: 20%;
+        padding: 10px;
+        margin-right: 10px;
+      }
+      .productImg {
+        width: 36%;
+        height: 550px;
+        object-fit: cover;
+        margin-right: 40px;
+      }
+      .productDescription {
+        max-height: 550px;
+        padding: 20px 55px;
+        max-width: 45%;
+        @include flex(space-between, flex-start, column);
+        .productTitle {
+          margin-bottom: 80px;
+          .productName {
+            max-width: 350px;
+            @include text-style(35px, 600, 38px);
+          }
+        }
+        .productBody {
+          .productPrice {
+            @include text-style(50px, 600, 52px);
+          }
+        }
+      }
+    }
+    .productSecondfold {
+      padding: 0px 40px;
+      .shoeDescription {
+        .descTitle {
+          @include text-style(35px, 600, 52px);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .productWrapper {
+    margin: 30px;
+    .productFirstfold {
+      padding: 0px 10px;
+      flex-direction: column;
+      .productDetails {
+        margin-top: 20px;
+      }
+      .productImg {
+        margin-bottom: 20px;
+        width: 300px;
+        object-fit: contain;
+      }
+      .productDescription {
+        .productTitle {
+          margin-bottom: 40px;
+          .productName {
+            @include text-style(30px, 600, 32px);
+          }
+        }
+        .productBody {
+          .productPrice {
+            @include text-style(40px, 600, 42px);
+          }
+        }
+      }
+    }
+    .productSecondfold {
+      padding: 0px 10px;
+      .shoeDescription {
+        .descTitle {
+          @include text-style(30px, 600, 32px);
+        }
+        .descBody {
+          width: 300px;
+        }
+      }
+    }
+    .productThirdfold {
+      .shoeCarouselWrapper {
+        margin: 0px 10px;
+      }
+    }
   }
 }

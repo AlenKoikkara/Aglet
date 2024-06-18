@@ -9,39 +9,45 @@
     @include text-style(40px, 600, 52px);
   }
   .orderList {
-    .cartItem {
-      padding: 20px;
-      @include flex(flex-start, center);
-      margin: 20px;
+    .orderContent {
+      padding: 20px 0px;
+      @include flex(flex-start, flex-start, column);
+      margin: 20px 0px 40px;
       width: 600px;
-      border: 1px solid $primary1;
-      .cartImage {
-        width: 40%;
-        margin-right: 20px;
+      .orderdate {
+        color: rgba($color: $primary1, $alpha: .5);
+        @include text-style(15px, 400, 15px);
       }
-      .cartBody {
-        text-align: start;
-        .productName {
-          cursor: pointer;
-          margin-bottom: 10px;
-          @include text-style(16px, 600, 15px);
-          a {
-            color: $primary1;
-            text-decoration: none;
-            &:hover {
-              text-decoration: underline;
+      .orderId {
+        color: rgba($color: $primary3, $alpha: .7);
+      }
+      .orderItems {
+        color: rgba($color: $primary1, $alpha: .5);
+        @include flex(flex-start, center);
+        .cartImage {
+          width: 100px;
+          margin-right: 20px;
+        }
+        .cartBody {
+          text-align: start;
+          .productName {
+            cursor: pointer;
+            margin-bottom: 10px;
+            @include text-style(16px, 600, 15px);
+            a {
+              color: $primary1;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
             }
           }
-        }
-        .productSize {
-          @include text-style(12px, 400, 15px);
-        }
-        .productQty {
-          margin-bottom: 4px;
-          @include text-style(12px, 400, 15px);
-        }
-        .productprice {
-          @include text-style(14px, 600, 15px);
+          .productSize {
+            @include text-style(12px, 400, 15px);
+          }
+          .productQty {
+            @include text-style(12px, 400, 15px);
+          }
         }
       }
       .cartremovebutton {

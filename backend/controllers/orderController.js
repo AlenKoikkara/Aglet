@@ -40,7 +40,6 @@ const placeOrder = async (req, res) => {
     delete customerObj.customer_email;
     delete customerObj.customer_creation;
   }
-  console.log(customerObj)
   const session = await stripe.checkout.sessions.create(customerObj);
   res.send({ url: session.url });
 };
@@ -64,11 +63,12 @@ const addOrder = async (checkoutObject) => {
 };
 
 const getOrder = async (req, res) => {
-  const { id } = req.params;
-
-  const cart = await Cart.findOne({ userId: id });
-
-  res.status(200).json(cart);
+  console.log(req.params.id)
+  const order = await Order.find({ "emailId": req.params.id });
+  if (!order) {
+    return res.status(404).json({ error: "no orderfound" });
+  }
+  res.status(200).json(order);
 };
 
 module.exports = {

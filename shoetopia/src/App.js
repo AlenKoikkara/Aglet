@@ -17,22 +17,16 @@ function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // console.log("usersigned in");
-        dispatch(
-          login({
-            userId: user.uid,
-            emailId: user.email,
-          })
-        );
-        utils.getCart(user.uid, dispatch)
-      } else {
-        // console.log("user signed out");
-        dispatch(logout());
-        dispatch(removeCart([]))
-      }
-    });
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      dispatch(
+        login({
+          userId: user.userId,
+          emailId: user.emailId
+          ,
+        })
+      );
+    }
     return () => {};
   }, [dispatch]);
 
