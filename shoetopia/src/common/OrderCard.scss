@@ -13,7 +13,7 @@
       padding: 20px 0px;
       @include flex(flex-start, flex-start, column);
       margin: 20px 0px 40px;
-      width: 600px;
+      max-width: 600px;
       .orderdate {
         color: rgba($color: $primary1, $alpha: .5);
         @include text-style(15px, 400, 15px);

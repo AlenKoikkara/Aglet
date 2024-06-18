@@ -1,16 +1,11 @@
 @import "../variables.scss";
 
 .userProfileWrapper {
-  margin-top: 40px;
-  width: 85%;
-  margin-left: auto;
   @include flex(flex-start, flex-start, column);
 }
 
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
-  margin-right: 70px !important;
   text-transform: none !important;
-  @include text-style(18px !important, 600, 20px)
 }
 
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
@@ -23,4 +18,28 @@
 
 .css-19kzrtu {
   padding: 0px !important;
+}
+
+
+@media (min-width: 767px) {
+  .userProfileWrapper {
+    margin-top: 40px;
+    width: 85%;
+    margin-left: auto;
+  }
+
+  .css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+    margin-right: 70px !important;
+    @include text-style(18px !important, 600, 20px)
+  }
+}
+
+@media (max-width: 768px) {
+  .userProfileWrapper {
+    padding: 0px 20px;
+  }
+  .css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+    margin-right: 2% !important;
+    @include text-style(15px !important, 600, 16px)
+  }
 }

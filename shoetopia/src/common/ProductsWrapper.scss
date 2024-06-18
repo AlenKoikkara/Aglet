@@ -4,11 +4,9 @@
   position: relative;
   padding: 40px 0px;
   .titleContent {
-    padding: 40px;
     @include flex(space-between, center);
     .title {
       text-align: start;
-      @include text-style(50px, 600, 51px);
     }
     .filterOptions {
       gap: 40px;
@@ -16,7 +14,6 @@
     }
   }
   .content {
-    padding: 0px 40px;
     margin-top: 20px;
     .productsList {
       max-width: 100%;
@@ -76,8 +73,31 @@
 
 @media (max-width: 768px) {
   .categoryWrapper {
-    padding: 100px 20px 0px;
+    padding: 20px 30px;
+    .titleContent {
+      .title {
+        @include text-style(35px, 600, 36px);
+      }
+    }
     .content {
+      .productsList {
+        grid-template-columns: auto;
+      }
+    }
+  }
+}
+
+@media (min-width: 767px) {
+  .categoryWrapper {
+    padding: 0px 30px;
+    .titleContent {
+      padding: 40px;
+      .title {
+        @include text-style(50px, 600, 51px);
+      }
+    }
+    .content {
+      padding: 0px 40px;
       .productsList {
         grid-template-columns: auto;
       }
