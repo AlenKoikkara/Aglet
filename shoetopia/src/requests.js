@@ -4,6 +4,7 @@ const requests = {
   fetchProduct: (value) => `api/products/${value}`,
   fetchFeatured: `api/products/featured`,
   fetchPaginated: `api/products/paginated`,
+  searchProducts: `api/products/search`,
   fetchUser: (userId) => `api/user/${userId}`,
   addUser: (userId) => `api/user/add/${userId}`,
   addToCart: 'api/cart/add',

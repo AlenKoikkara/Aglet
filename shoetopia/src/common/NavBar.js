@@ -12,6 +12,7 @@ import utils from "../utils";
 import LoginDialog from "./LoginDialog";
 import { selectCart } from "../features/cartSlice";
 import CartDrawer from "./CartDrawer";
+import SearchBar from "./SearchBar";
 
 function NavBar() {
   const user = useSelector(selectUser);
@@ -59,9 +60,9 @@ function NavBar() {
           ></img>
         </div>
         <div className="rightsideContent">
+          <SearchBar></SearchBar>
           <div className="cartIcon">
             <CartDrawer></CartDrawer>
-           
             {cart?.length > 0 && <div className="cartCount">{cart?.length}</div>}
           </div>
           {user?.emailId ? (

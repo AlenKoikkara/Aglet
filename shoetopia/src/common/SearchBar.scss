@@ -1,0 +1,67 @@
+@import "../variables.scss";
+
+.MuiInputBase-root {
+  border-radius: 40px !important;
+}
+
+.MuiInputBase-input {
+  padding: 10px 14px !important;
+}
+
+.searchBarbody {
+  .barInput {
+    width: 35px;
+    overflow: hidden;
+    height: 35px;
+    position: relative;
+    @include flex(flex-end, center);
+    .searchText {
+      height: 35px;
+      border-radius: 40px;
+      border: none;
+    }
+    input:focus {
+      outline: none;
+      border: none;
+    }
+    .barIcon {
+      height: 35px;
+      cursor: pointer;
+      color: $primary1;
+      transition-timing-function: ease-in;
+      transition: 0.5s;
+      &:hover {
+        color: $primary3;
+      }
+    }
+  }
+  .barInput.open {
+    animation-name: showBar;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+  }
+  .barInput.closed {
+    animation-name: hideBar;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+  }
+}
+
+
+@keyframes showBar {
+  from {
+    width: 35px;
+  }
+  to {
+    width: 200px;
+  }
+}
+
+@keyframes hideBar {
+  from {
+    width: 200px;
+  }
+  to {
+    width: 35px;
+  }
+}
