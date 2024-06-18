@@ -54,7 +54,7 @@ const CartDrawer = () => {
       <ShoppingBagOutlinedIcon
         onClick={toggleDrawer(true)}
         className="carticon"
-        fontSize="large"
+        fontSize={utils.isMobile() ? "medium" : "large"}
       ></ShoppingBagOutlinedIcon>
       {cart?.length > 0 && 
         <Drawer anchor="right" open={open}>

@@ -8,42 +8,94 @@
   padding: 10px 14px !important;
 }
 
-.searchBarbody {
-  .barInput {
-    width: 35px;
-    overflow: hidden;
-    height: 35px;
-    position: relative;
-    @include flex(flex-end, center);
-    .searchText {
+@media (min-width: 767px) {
+  .searchBarbody {
+    .barInput {
+      width: 35px;
+      overflow: hidden;
       height: 35px;
-      border-radius: 40px;
-      border: none;
+      position: relative;
+      @include flex(flex-end, center);
+      .searchText {
+        height: 35px;
+        border: none;
+      }
+      input:focus {
+        outline: none;
+        border: none;
+      }
+      .barIcon {
+        height: 35px;
+        cursor: pointer;
+        color: $primary1;
+        transition-timing-function: ease-in;
+        transition: 0.5s;
+        &:hover {
+          color: $primary3;
+        }
+      }
     }
-    input:focus {
-      outline: none;
-      border: none;
+    .barInput.open {
+      animation-name: showBar;
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
     }
-    .barIcon {
-      height: 35px;
-      cursor: pointer;
-      color: $primary1;
-      transition-timing-function: ease-in;
-      transition: 0.5s;
-      &:hover {
-        color: $primary3;
+    .barInput.closed {
+      animation-name: hideBar;
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .searchBarbody {
+    border-bottom-right-radius: 20px;
+    .barInput {
+      .searchText {
+        display: none;
+      }
+      .barIcon {
+        height: 24px;
+        display: flex;
       }
     }
   }
-  .barInput.open {
-    animation-name: showBar;
-    animation-duration: .5s;
-    animation-fill-mode: forwards;
+
+  .searchBarbody.open {
+    height: 83.7px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    position: absolute;
+    background: white;
+    width: 100vw;
+    margin: auto;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    .barInput {
+      @include flex(center, center);
+      width: 80%;
+      padding: 0px 20px;
+      .searchText {
+        width: 80%;
+        display: block;
+        border: none;
+      }
+      input:focus {
+        outline: none;
+        border: none;
+      }
+      
+    }
   }
-  .barInput.closed {
-    animation-name: hideBar;
-    animation-duration: .5s;
-    animation-fill-mode: forwards;
+
+  .searchBarbody.closed {
+    .searchText {
+      display: none;
+    }
   }
 }
 

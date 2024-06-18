@@ -13,6 +13,7 @@
     .menuandlogo {
       @include flex(flex-start, center);
       .logo {
+        margin-top: 4px;
         transition-timing-function: ease-in;
         transition: 0.5s;
         cursor: pointer;
@@ -71,8 +72,6 @@
         border-radius: 20px;
         background-color: rgba($color: $primary3, $alpha: .7);
         @include flex(center, center);
-        width: 32px;
-        height: 32px;
         cursor: pointer;
         @include text-style(17px, 600, 20px);
         transition-timing-function: ease-in;

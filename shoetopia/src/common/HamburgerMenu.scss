@@ -70,8 +70,10 @@
   }
   
   .burger-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    padding: 20px 16px;
     height: 68px;
     width: 68px;
   }
@@ -211,6 +213,13 @@
     animation-fill-mode: forwards;
   }
   
+}
+
+@media (max-width: 768px) {
+  .hamburgerWrapper {
+    width: 41px;
+    height: 41px;
+  }
 }
 
 @keyframes closelinks {

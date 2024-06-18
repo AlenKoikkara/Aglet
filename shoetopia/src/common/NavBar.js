@@ -48,8 +48,7 @@ function NavBar() {
       <div className="wrapper">
         <div className="menuandlogo">
           <div className="navHamburger">
-            <HamburgerMenu
-            ></HamburgerMenu>
+            <HamburgerMenu></HamburgerMenu>
           </div>
           <img
             loading="lazy"
@@ -63,20 +62,22 @@ function NavBar() {
           <SearchBar></SearchBar>
           <div className="cartIcon">
             <CartDrawer></CartDrawer>
-            {cart?.length > 0 && <div className="cartCount">{cart?.length}</div>}
+            {cart?.length > 0 && (
+              <div className="cartCount">{cart?.length}</div>
+            )}
           </div>
           {user?.emailId ? (
-            <div
-              onClick={() => navigate(`/user/${123}`)}
-              className="auth"
-            >
-              <div className="profile" fontSize="large">
+            <div onClick={() => navigate(`/user/${123}`)} className="auth">
+              <div className="profile">
                 {utils.getUserInitial(user?.emailId)}
               </div>
             </div>
           ) : (
             <div onClick={() => handleClickOpen()} className="auth">
-              <FaceIcon className="login" fontSize="large"></FaceIcon>
+              <FaceIcon
+                className="login"
+                fontSize={utils.isMobile() ? "medium" : "large"}
+              ></FaceIcon>
             </div>
           )}
         </div>
