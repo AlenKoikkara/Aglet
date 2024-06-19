@@ -132,7 +132,7 @@
       .productImg {
         width: 36%;
         height: 550px;
-        object-fit: cover;
+        object-fit: contain;
         margin-right: 40px;
       }
       .productDescription {

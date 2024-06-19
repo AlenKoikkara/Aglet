@@ -12,7 +12,7 @@ import utils from "../utils";
 import LoginDialog from "./LoginDialog";
 import { selectCart } from "../features/cartSlice";
 import CartDrawer from "./CartDrawer";
-import SearchBar from "./SearchBar";
+import { SearchBar } from "./SearchBar";
 
 function NavBar() {
   const user = useSelector(selectUser);

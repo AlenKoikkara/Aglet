@@ -58,11 +58,29 @@ const getFeatured = async (req, res) => {
   res.status(200).json(products)
 }
 
-
+const searchProducts = async (req, res) => {
+  const query = req.query.qs;
+  console.log(req.query?.qs)
+  let products = [];
+  if (query) {
+    products = await Product.aggregate().search({
+      text: {
+        query: query,
+        path: {
+          wildcard: "*",
+        },
+      },
+      index: "productSearch",
+    }
+  ).limit(5)
+  }
+  res.status(200).json(products)
+}
 
 module.exports = {
   getProducts,
   getProduct,
   getFeatured,
-  getPaginatedProducts
+  getPaginatedProducts,
+  searchProducts
 }

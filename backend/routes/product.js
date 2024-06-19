@@ -3,10 +3,14 @@ const {
   getProducts, 
   getProduct,
   getFeatured,
-  getPaginatedProducts
+  getPaginatedProducts,
+  searchProducts
 } = require('../controllers/productController')
 
 const router = express.Router()
+
+router.get('/search', searchProducts)
+
 router.get('/paginated', getPaginatedProducts)
 
 router.get('/featured', getFeatured)
