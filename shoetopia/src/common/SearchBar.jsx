@@ -33,6 +33,7 @@ export const SearchBar = () => {
 
   const handleClose = (value) => {
     setOpen(false);
+    setProducts(null)
   };
 
   return (
