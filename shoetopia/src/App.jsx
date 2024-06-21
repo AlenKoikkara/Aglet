@@ -1,15 +1,19 @@
-import React, { useEffect, lazy } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { login, selectUser } from "./features/userSlice";
-import HomePage from "./pages/HomePage";
-import CategoryPage from "./pages/CategoryPage";
-import ProductPage from "./pages/ProductPage";
-import UserPage from "./pages/UserPage";
+// import HomePage from "./pages/HomePage";
+// import CategoryPage from "./pages/CategoryPage";
+// import ProductPage from "./pages/ProductPage";
+// import UserPage from "./pages/UserPage";
 import ProtectedRoutes from "./common/ProtectedRoutes";
 
+const HomePage = lazy(() => import("./pages/HomePage"));
+const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const ProductPage = lazy(() => import("./pages/ProductPage"));
+const UserPage = lazy(() => import("./pages/UserPage"));
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,14 +32,16 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/user/:id" element={<UserPage />} />
-          </Route>
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/products" element={<CategoryPage />} />
-          <Route path="/" element={<HomePage />} />
-        </Routes>
+        <Suspense fallback={<>loading...</>}>
+          <Routes>
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/user/:id" element={<UserPage />} />
+            </Route>
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/products" element={<CategoryPage />} />
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </div>
   );

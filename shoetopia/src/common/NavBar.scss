@@ -7,6 +7,7 @@
   transition: all 0.01s;
   transition-timing-function: ease-in;
   .wrapper {
+    border-bottom-right-radius: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -110,7 +111,6 @@
   .navbarWrapper {
     background: black;
     .wrapper {
-      border-bottom-right-radius: 40px;
       background-color: white;
       padding: 15px 30px;
       .menuandlogo {
