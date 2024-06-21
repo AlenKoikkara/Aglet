@@ -65,7 +65,7 @@ function HamburgerMenu() {
           </div>
         </div>
       </div>
-      <div id="navWrapper" className="navWrapper closenav">
+      <div id="navWrapper" className="navWrapper">
         <div className="blurfilterdiv"></div>
         <div className="navlink">
           <div className="mens">

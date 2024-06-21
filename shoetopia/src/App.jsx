@@ -9,6 +9,7 @@ import { login, selectUser } from "./features/userSlice";
 // import ProductPage from "./pages/ProductPage";
 // import UserPage from "./pages/UserPage";
 import ProtectedRoutes from "./common/ProtectedRoutes";
+import PageNotFound from "./common/PageNotFound";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -40,6 +41,7 @@ function App() {
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/products" element={<CategoryPage />} />
             <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<PageNotFound/>} />
           </Routes>
         </Suspense>
       </BrowserRouter>

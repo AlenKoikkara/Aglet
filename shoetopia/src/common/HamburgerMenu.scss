@@ -3,10 +3,12 @@
 .hamburgerWrapper {
   @include flex(center, center);
   .navWrapper {
-    width: 100px;
     padding: 0px;
     margin-right: 0px;
     color: $primary1;
+    width: 0px;
+    opacity: 0;
+    display: none;
     @include flex(center, flex-start, column);
     .navlink {
       margin-left: 20px;
@@ -226,7 +228,7 @@
 
 @keyframes closelinks {
   from {
-    width: 350px;
+    width: 250px;
     opacity: 1;
   }
   to {
@@ -243,7 +245,7 @@
   }
   to {
     opacity: 1;
-    width: 350px;
+    width: 250px;
   }
 }
 
