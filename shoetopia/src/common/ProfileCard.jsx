@@ -2,11 +2,11 @@ import React from "react";
 import FileUploadRoundedIcon from "@mui/icons-material/FileUploadRounded";
 import { Button } from "@mui/material";
 import image from '../assets/images/banner.png'
-import EditRoundedIcon from "@mui/icons-material/EditRounded";
 
 import "./ProfileCard.scss";
 import authFunctions from "../authFunctions";
 import { useDispatch } from "react-redux";
+import EditProfileDialog from "./EditProfileDialog";
 
 const ProfileCard = () => {
   const dispatch = useDispatch();
@@ -28,13 +28,7 @@ const ProfileCard = () => {
         </div>
         </div>
         <div className="editProfile">
-          <Button className="editButton">
-            Edit Profile
-            <EditRoundedIcon
-              // style={{ "margin-left": "10px" }}
-              fontSize="small"
-            ></EditRoundedIcon>
-          </Button>
+          <EditProfileDialog></EditProfileDialog>
           <Button className="logout" onClick={() => logout()}>Logout</Button>
         </div>
       </div>

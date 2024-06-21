@@ -21,6 +21,12 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  address: {
+    type: String
+  },
+  savedAddresses: {
+    type: [{}]
+  },
   orderHistory: {
     type: [{}]
   }
