@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './CartDrawer.scss';
 
 import Box from "@mui/material/Box";
@@ -15,7 +15,7 @@ import utils from "../utils";
 import { selectUser } from "../features/userSlice";
 
 const CartDrawer = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const cart = useSelector(selectCart);
   const user = useSelector(selectUser)
 
@@ -30,7 +30,7 @@ const CartDrawer = () => {
         <CloseRoundedIcon className="cartClose" onClick={toggleDrawer(false)}></CloseRoundedIcon>
       </div>
       <List>
-        {cart?.map((item) => (
+        {cart?.cart?.map((item) => (
           <div className="cartItem">
             <img className="cartImage" src={item.imageUrl} alt=""></img>
             <div className="cartBody">
@@ -56,7 +56,7 @@ const CartDrawer = () => {
         className="carticon"
         fontSize={utils.isMobile() ? "medium" : "large"}
       ></ShoppingBagOutlinedIcon>
-      {cart?.length > 0 && 
+      {cart.cart?.length > 0 && 
         <Drawer anchor="right" open={open}>
           {DrawerList}
         </Drawer>

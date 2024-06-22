@@ -2,7 +2,7 @@
 
 .cartDrawer {
   height: 24px;
-  @include flex(center, center, column);
+  // @include flex(center, center, column);
   padding: 20px 20px;
   .header {
     width: 100%;

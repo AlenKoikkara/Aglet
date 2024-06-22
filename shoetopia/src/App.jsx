@@ -10,6 +10,7 @@ import { login, selectUser } from "./features/userSlice";
 // import UserPage from "./pages/UserPage";
 import ProtectedRoutes from "./common/ProtectedRoutes";
 import PageNotFound from "./common/PageNotFound";
+import utils from "./utils";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -26,6 +27,7 @@ function App() {
           emailId: user.emailId,
         })
       );
+      utils.getCart(user.userId, dispatch)
     }
     return () => {};
   }, [dispatch]);

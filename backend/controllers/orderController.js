@@ -9,7 +9,7 @@ const placeOrder = async (req, res) => {
     query: `email:\'${req.body?.emailId}\'`,
   });
  
-  const line_items = req.body?.order.map((item) => {
+  const line_items = req.body?.order?.cart.map((item) => {
     return {
       price_data: {
         currency: "usd",
@@ -27,7 +27,8 @@ const placeOrder = async (req, res) => {
     customer_email: req.body?.emailId,
     line_items,
     metadata: {
-      customerDb_id: req.body?.userId
+      customerDb_id: req.body?.userId,
+      orderId: req.body.order._id
     },
     customer_creation: "always",
     mode: "payment",
@@ -49,6 +50,7 @@ const addOrder = async (checkoutObject) => {
     emailId: checkoutObject.customer_details.email,
   });
   const orderObj = {
+    cartId: checkoutObject.metadata.customerDb_id,
     userId: checkoutObject.metadata.customerDb_id,
     emailId: checkoutObject.customer_details.email,
     order: item[0]?.cart

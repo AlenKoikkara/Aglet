@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const orderSchema = new Schema({
+  cartId: {
+    type: String,
+  },
   userId: {
     type: String,
     required: true,

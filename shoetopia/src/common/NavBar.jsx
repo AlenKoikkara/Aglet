@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import "./NavBar.scss";
@@ -62,8 +62,8 @@ function NavBar() {
           <SearchBar></SearchBar>
           <div className="cartIcon">
             <CartDrawer></CartDrawer>
-            {cart?.length > 0 && (
-              <div className="cartCount">{cart?.length}</div>
+            {cart.cart?.length > 0 && (
+              <div className="cartCount">{cart.cart?.length}</div>
             )}
           </div>
           {user?.emailId ? (
