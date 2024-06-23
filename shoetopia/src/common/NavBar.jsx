@@ -62,8 +62,8 @@ function NavBar() {
           <SearchBar></SearchBar>
           <div className="cartIcon">
             <CartDrawer></CartDrawer>
-            {cart.cart?.length > 0 && (
-              <div className="cartCount">{cart.cart?.length}</div>
+            {cart?.length > 0 && (
+              <div className="cartCount">{cart?.length}</div>
             )}
           </div>
           {user?.emailId ? (
@@ -76,7 +76,7 @@ function NavBar() {
             <div onClick={() => handleClickOpen()} className="auth">
               <FaceIcon
                 className="login"
-                fontSize={utils.isMobile() ? "medium" : "large"}
+                fontSize={utils?.isMobile() ? "medium" : "large"}
               ></FaceIcon>
             </div>
           )}

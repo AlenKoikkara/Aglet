@@ -17,21 +17,27 @@ function CartButton({ config }) {
   const [open, setOpen] = useState(false);
 
   function addCart() {
-    if (user && config?.shoe?.size) {
-      utils.addtoCart(user, config?.shoe, dispatch, cart);
+    if (user && config?.size) {
+      utils.addtoCart(user, config?.shoe, config?.size, dispatch, cart);
     }
 
-    if (user && !config?.shoe?.size) {
+    if (user && !config?.size) {
       alert("Please enter shoe size!!");
     }
 
     if (!user) {
-      setOpen(true);
+      utils.addSessionCart(config?.shoe, config?.size, dispatch);
     }
   }
 
   function removeCart() {
-    utils.removeFromCart(user?.userId, config?.shoe, dispatch);
+    if (user) {
+      utils.removeFromCart(user?.userId, config?.shoe, dispatch);
+    }
+
+    if (!user) {
+      utils.removeSessionCart(config?.shoe, dispatch)
+    }
   }
 
   return (

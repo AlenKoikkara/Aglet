@@ -1,12 +1,5 @@
 @import "../variables.scss";
 
-.MuiInputBase-root {
-  border-radius: 40px !important;
-}
-
-.MuiInputBase-input {
-  padding: 10px 14px !important;
-}
 
 .barIcon {
   height: 35px;
@@ -21,6 +14,13 @@
 
 @media (min-width: 766px) {
   .searchBarbody {
+    .MuiInputBase-root {
+      border-radius: 40px !important;
+    }
+    
+    .MuiInputBase-input {
+      padding: 10px 14px !important;
+    }
     position: relative;
     .barInput {
       width: 35px;

@@ -8,7 +8,6 @@ const orderSchema = new Schema({
   },
   userId: {
     type: String,
-    required: true,
   },
   emailId: {
     type: String,

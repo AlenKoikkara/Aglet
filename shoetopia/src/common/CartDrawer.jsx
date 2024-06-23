@@ -30,7 +30,7 @@ const CartDrawer = () => {
         <CloseRoundedIcon className="cartClose" onClick={toggleDrawer(false)}></CloseRoundedIcon>
       </div>
       <List>
-        {cart?.cart?.map((item) => (
+        {cart?.map((item) => (
           <div className="cartItem">
             <img className="cartImage" src={item.imageUrl} alt=""></img>
             <div className="cartBody">
@@ -56,7 +56,7 @@ const CartDrawer = () => {
         className="carticon"
         fontSize={utils.isMobile() ? "medium" : "large"}
       ></ShoppingBagOutlinedIcon>
-      {cart.cart?.length > 0 && 
+      {cart?.length > 0 && 
         <Drawer anchor="right" open={open}>
           {DrawerList}
         </Drawer>

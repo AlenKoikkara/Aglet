@@ -36,10 +36,10 @@ const utils = {
     return url;
   },
 
-  addtoCart: async (user, product, dispatch) => {
+  addtoCart: async (user, product, size, dispatch) => {
     var cartObj = {
-      userId: user.userId,
-      emailId: user.emailId,
+      userId: user?.userId,
+      emailId: user?.emailId,
       cart: {
         productId: product._id || product.productId,
         productName: product.productName,
@@ -48,7 +48,7 @@ const utils = {
         imageUrl: product.imageUrl,
         listPrice: product.listPrice,
         count: 1,
-        size: product.size,
+        size: size,
       },
     };
 
@@ -56,6 +56,45 @@ const utils = {
       console.log(res);
       dispatch(addCart(res.data.cart));
     });
+  },
+
+  addSessionCart: (product, size, dispatch) => {
+    var cart = []
+    var cartObj = {
+      productId: product._id || product.productId,
+      productName: product.productName,
+      subCategory: product.subCategory,
+      company: product.company,
+      imageUrl: product.imageUrl,
+      listPrice: product.listPrice,
+      count: 1,
+      size: size,
+    };
+
+    var sessCart = JSON.parse(sessionStorage.getItem("cart"));
+
+    if (!sessCart) {
+      cart.push(cartObj)
+      sessionStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    if (sessCart) {
+      sessCart.map((item, index) => {
+        if ((item.productId === (product._id || product.productId))) {
+          if (item.size === size) {
+            sessCart[index].count += 1;
+          }
+          sessionStorage.setItem("cart", JSON.stringify(sessCart));
+        } 
+      })
+
+      var item = sessCart.filter((value) => (value.productId === (product._id || product.productId)) && value.size === size)
+      if (!item.length) {
+        sessCart.push(cartObj);
+        sessionStorage.setItem("cart", JSON.stringify(sessCart));
+      }
+    }
+    dispatch(addCart(JSON.parse(sessionStorage.getItem("cart"))));
   },
 
   removeFromCart: async (user, product, dispatch) => {
@@ -68,6 +107,26 @@ const utils = {
       console.log(res);
       dispatch(removeCart(res.data?.cart));
     });
+  },
+
+  removeSessionCart: (product, dispatch) => {
+    var sessCart = JSON.parse(sessionStorage.getItem("cart"));
+    sessCart.map((item, index) => {
+      if ((item?.productId === (product?._id || product?.productId))) {
+        if (item.size === product?.size && item.count > 0) {
+          sessCart[index].count -= 1;
+        }
+        sessionStorage.setItem("cart", JSON.stringify(sessCart));
+      }
+      if (item?.count === 0) {
+        sessCart.splice(index, 1)
+        sessionStorage.setItem("cart", JSON.stringify(sessCart));
+      } 
+    })
+    if (!sessCart.length) {
+      sessionStorage.removeItem("cart")
+    }
+    dispatch(removeCart(JSON.parse(sessionStorage.getItem("cart"))));
   },
 
   getCart: async (userId, dispatch) => {
@@ -84,10 +143,10 @@ const utils = {
       order: cart,
       success_url: window.location.href,
       cancel_url: window.location.href,
-      emailId: user.emailId,
-      userId: user.userId
+      emailId: user?.emailId,
+      userId: user?.userId
     }
-    await axios.post(requests.placeOrder(user.userId), orderObj).then((res) => {
+    await axios.post(requests.placeOrder(user?.userId), orderObj).then((res) => {
       console.log(res)
       if (res) {
         window.location.href = res.data.url

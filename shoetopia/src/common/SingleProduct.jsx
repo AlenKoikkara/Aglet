@@ -9,15 +9,20 @@ import CartButton from "./CartButton";
 import ShoeCarousel from "./ShoeCarousel";
 
 function SingleProduct({ config }) {
-
-  const [product, setProduct] = useState(config.singleProduct);
-
+  const [size, setSize] = useState();
+  
   function addSize(value) {
-    setProduct({...config.singleProduct, ...{size: value}})
-    console.log(product);
+    setSize(value)
+    console.log(config.singleProduct);
   }
+
+  useEffect(() => {
+    setSize(null)
+    return () => {
+    }
+  }, [config.id])
   
-  
+
   return (
     <div className="productWrapper">
       <div className="productFirstfold">
@@ -47,8 +52,14 @@ function SingleProduct({ config }) {
             <div className="productSizes">
               <div className="sizeTitle">Sizes</div>
               <div className="sizeList">
-                {config.singleProduct.sizes.map((item) => (
-                  <div key={item} className={`sizeBox ${product.size === item ? 'active' : ''}`} onClick={() => addSize(item)}>
+                {config.singleProduct?.sizes.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`sizeBox ${
+                      size === item ? "active" : ""
+                    }`}
+                    onClick={() => addSize(item)}
+                  >
                     {item}
                   </div>
                 ))}
@@ -56,7 +67,9 @@ function SingleProduct({ config }) {
             </div>
             <div className="productButtons">
               <div className="cartButton">
-                <CartButton config={{shoe:product, addCart: true}}></CartButton>
+                <CartButton
+                  config={{ shoe: config.singleProduct, addCart: true, size: size }}
+                ></CartButton>
               </div>
               <Button className="buyNow" variant="contained">
                 Buy Now
