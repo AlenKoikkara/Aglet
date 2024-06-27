@@ -11,6 +11,7 @@ import { login, selectUser } from "./features/userSlice";
 import ProtectedRoutes from "./common/ProtectedRoutes";
 import PageNotFound from "./common/PageNotFound";
 import utils from "./utils";
+import { addCart } from "./features/cartSlice";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -28,6 +29,10 @@ function App() {
         })
       );
       utils.getCart(user.userId, dispatch)
+    }
+    if (!user) {
+      const cart = JSON.parse(sessionStorage.getItem("cart"))
+      dispatch(addCart(cart))
     }
     return () => {};
   }, [dispatch]);

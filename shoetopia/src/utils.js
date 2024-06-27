@@ -40,7 +40,7 @@ const utils = {
     var cartObj = {
       userId: user?.userId,
       emailId: user?.emailId,
-      cart: {
+      cart: [{
         productId: product._id || product.productId,
         productName: product.productName,
         subCategory: product.subCategory,
@@ -49,12 +49,26 @@ const utils = {
         listPrice: product.listPrice,
         count: 1,
         size: size,
-      },
+      }],
     };
 
     await axios.post(requests.addToCart, cartObj).then((res) => {
       console.log(res);
       dispatch(addCart(res.data.cart));
+    });
+  },
+
+  bulkaddCart: async (user, cart, dispatch) => {
+    var cartObj = {
+      userId: user?.userId,
+      emailId: user?.emailId,
+      cart: cart,
+    };
+
+    await axios.post(requests.addToCart, cartObj).then((res) => {
+      console.log(res);
+      dispatch(addCart(res.data.cart));
+      sessionStorage.removeItem("cart");
     });
   },
 
@@ -100,7 +114,7 @@ const utils = {
   removeFromCart: async (user, product, dispatch) => {
     var cartObj = {
       userId: user,
-      productId: product._id || product.productId,
+      productId: product.productId,
       size: product.size,
     };
     await axios.post(requests.removeFromCart, cartObj).then((res) => {
@@ -133,7 +147,7 @@ const utils = {
     await axios.get(requests.fetchCart(userId)).then((res) => {
       // console.log(res);
       if (res.data?.cart) {
-        dispatch(addCart(res.data));
+        dispatch(addCart(res.data.cart));
       }
     });
   },
