@@ -61,7 +61,7 @@ function NavBar() {
         <div className="rightsideContent">
           <SearchBar></SearchBar>
           <div className="cartIcon">
-            <CartDrawer></CartDrawer>
+            <CartDrawer setOpen={setOpen}></CartDrawer>
             {cart?.length > 0 && (
               <div className="cartCount">{cart?.length}</div>
             )}

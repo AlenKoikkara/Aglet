@@ -14,15 +14,23 @@ import { Button } from "@mui/material";
 import utils from "../utils";
 import { selectUser } from "../features/userSlice";
 
-const CartDrawer = () => {
-  const [open, setOpen] = useState(false);
+function CartDrawer({setOpen}) {
+  const [draweropen, setDrawerOpen] = useState(false);
   const cart = useSelector(selectCart);
   const user = useSelector(selectUser)
 
   const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
+    setDrawerOpen(newOpen);
   };
 
+  const placeOrder = () => {
+    if (user) {
+      utils.placeOrder(user,cart)
+    } else {
+      setOpen(true)
+    }
+  }
+  
   const DrawerList = (
     <Box className="cartDrawer" role="presentation">
       <div className="header">
@@ -45,7 +53,7 @@ const CartDrawer = () => {
           </div>
         ))}
       </List>
-      <Button className="placeOrder" onClick={() => utils.placeOrder(user,cart)}>Checkout</Button>
+      <Button className="placeOrder" onClick={() =>placeOrder()}>Checkout</Button>
     </Box>
   );
 
@@ -57,7 +65,7 @@ const CartDrawer = () => {
         fontSize={utils.isMobile() ? "medium" : "large"}
       ></ShoppingBagOutlinedIcon>
       {cart?.length > 0 && 
-        <Drawer anchor="right" open={open}>
+        <Drawer anchor="right" open={draweropen}>
           {DrawerList}
         </Drawer>
       }

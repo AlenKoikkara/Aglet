@@ -2,103 +2,76 @@ const Cart = require("../models/cartModel");
 const mongoose = require("mongoose");
 
 const addCart = async (req, res) => {
-  var cartObj = {
-    userId: req.body.userId,
-    emailId: req.body.emailId,
-    cart: req.body.cart,
-  };
+  const { userId, cart } = req.body;  // Destructure userId and cart from request body
 
-  const item = await Cart.find({
-    userId: req.body.userId,
-    cart: {
-      $elemMatch: {
-        productId: req.body.cart.productId,
-        size: req.body.cart.size,
-      },
-    },
-  });
+  let userCart = await Cart.findOne({ userId });
 
-  const userCart = await Cart.find({
-    userId: req.body.userId,
-  });
-
-  if (userCart.length === 0) {
-    const cart = await Cart.create(cartObj).catch((error) => {
-      return res.status(404).json({ error: error.message });
+  if (!userCart) {
+    // If user cart doesn't exist, create a new cart document
+    userCart = new Cart({
+      userId,
+      emailId: req.body.emailId, // Assuming emailId is also sent in the request body
+      cart: cart, // Initialize with the entire cart from request body
     });
 
-    return res.status(200).json(cart);
-  }
-
-  if (userCart.length !== 0 && item.length === 0) {
-    const cart = await Cart.findOneAndUpdate(
-      {
-        userId: req.body.userId,
-      },
-      {
-        $push: {
-          cart: req.body.cart,
-        },
-      },
-      { new: true }
-    ).catch((error) => {
-      return res.status(404).json({ error: error.message });
+    await userCart.save();
+  } else {
+    // If user cart exists, update the cart items
+    cart.forEach((item) => {
+      // Find the corresponding item in the existing cart or create new if not found
+      const existingItem = userCart.cart.find(
+        (i) => ((i.productId === item.productId) && (i.size === item.size))
+      );
+      console.log(existingItem)
+      if (existingItem) {
+        // Increment the count of the existing item
+        existingItem.count += item.count;
+      } else {
+        // Add the new item to the cart
+        userCart.cart.push({
+          productId: item.productId,
+          productName: item.productName,
+          subCategory: item.subCategory,
+          company: item.company,
+          imageUrl: item.imageUrl,
+          listPrice: item.listPrice,
+          count: item.count,
+          size: item.size,
+        });
+      }
     });
-    return res.status(200).json(cart);
-  }
 
-  if (userCart.length !== 0 && item.length !== 0) {
-    const cart = await Cart.findOneAndUpdate(
-      {
-        userId: req.body.userId,
-        "cart.productId": req.body.cart.productId,
-        "cart.size": req.body.cart.size,
-
-      },
-      { $inc: { "cart.$.count": 1 } },
-      { new: true }
-    ).catch((error) => {
-      return res.status(404).json({ error: error.message });
-    });
-    res.status(200).json(cart);
+    // Save the updated cart document
+    await userCart.save();
   }
+  userCart = await Cart.findOne({ userId });
+  res.status(200).json(userCart);
 };
 
 const removeCart = async (req, res) => {
-  let cart;
+  const { userId, productId, size } = req.body;  // Destructure userId and cart from request body
+  let userCart = await Cart.findOne({ userId });
 
-  cart = await Cart.findOneAndUpdate(
-    {
-      userId: req.body.userId,
-      "cart.productId": req.body?.productId,
-      "cart.size": req.body?.size,
-    },
-    { $inc: { "cart.$.count": -1 } },
-    { new: true }
-  ).catch((error) => {
-    return res.status(404).json({ error: error.message });
-  });
+  if (userCart) {
+    const itemIndex = userCart.cart.findIndex(
+      (i) => ((i.productId === productId) && (i.size === size))
+    )
 
-  const item = await Cart.find({
-    userId: req.body.userId,
-    cart: { $elemMatch: { count: 0 } },
-  });
-  console.log(item);
-  if (item.length > 0) {
-    cart = await Cart.findOneAndUpdate(
-      {
-        userId: req.body.userId,
-      },
-      {
-        $pull: {
-          cart: { count: 0 },
-        },
-      },
-      { new: true }
-    );
+    if (userCart.cart[itemIndex].count > 1) {
+      userCart.cart[itemIndex].count -= 1;
+    } else {
+      userCart.cart.splice(itemIndex, 1); // Remove the item if count is zero
+    }
+
+    if (userCart.cart.length === 0) {
+      await Cart.deleteOne({ userId });
+    } else {
+      await userCart.save();
+    }
   }
-  await Cart.deleteOne({ cart: { $exists: true, $size: 0 } });
-  res.status(200).json(cart);
+
+  userCart = await Cart.findOne({ userId });
+  res.status(200).json(userCart);
 };
 
 const getCart = async (req, res) => {
