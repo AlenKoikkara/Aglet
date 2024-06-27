@@ -1,6 +1,14 @@
 @import "../variables.scss";
 
 
+.MuiPaper-root-MuiDialog-paper {
+  border-radius: 20px;
+}
+.dialogTitleImg {
+  margin-bottom: 30px;
+  width: 140px;
+}
+
 .dialogWrapper {
   display: flex;
   align-items: center;
@@ -16,6 +24,7 @@
   }
   .form {
     text-align: center;
+    
     .errorText {
       margin-top: 2px;
       text-align: start;
@@ -42,6 +51,21 @@
       color: $primary4;
       text-transform: none;
 
+    }
+    .or {
+      margin: 20px 0px;
+    }
+    .socialLogin {
+      @include flex(center,center);
+      gap: 24px;
+      .MuiSvgIcon-root.appleIcon {
+        height: 29px;
+        width: 29px;
+        margin-bottom: 5px;
+      }
+      .MuiSvgIcon-root {
+        cursor: pointer;
+      }
     }
   }
 }

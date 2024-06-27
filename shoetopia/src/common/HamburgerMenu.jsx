@@ -59,14 +59,8 @@ function HamburgerMenu() {
             <span className="bot"></span>
           </div>
         </div>
-        <div className="path-burger">
-          <div className="animate-path">
-            <div className="path-rotation"></div>
-          </div>
-        </div>
       </div>
       <div id="navWrapper" className="navWrapper">
-        <div className="blurfilterdiv"></div>
         <div className="navlink">
           <div className="mens">
             <a href={utils.getUrlWithParams("/products?", { category: 'Men' })} className="link">

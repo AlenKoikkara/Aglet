@@ -33,7 +33,7 @@
   .searchDialog {
     .MuiPaper-root {
       border-radius: 20px;
-      right: 82px;
+      right: 7.5%;
     }
     .searchHeader {
       @include flex(center, center);
@@ -46,7 +46,7 @@
 .searchDialog {
   .MuiPaper-root {
     position: absolute !important;
-    top: -12px;
+    top: -22px;
   }
   .searchHeader {
     padding: 20px 20px;

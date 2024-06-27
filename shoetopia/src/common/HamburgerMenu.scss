@@ -7,9 +7,7 @@
     margin-right: 0px;
     color: $primary1;
     width: 0px;
-    opacity: 0;
     display: none;
-    @include flex(center, flex-start, column);
     .navlink {
       margin-left: 20px;
       @include flex(center, center);
@@ -53,6 +51,33 @@
     display: flex;
     animation-fill-mode: forwards;
   }
+
+  @keyframes closelinks {
+    from {
+      width: 350px;
+      opacity: 1;
+      @include flex(center, flex-start, column);
+    }
+    to {
+      width: 0px;
+      opacity: 0;
+      display: none;
+    }
+  }
+  
+  @keyframes openlinks {
+    from {
+      opacity: 0;
+      width: 0px;
+      display: none;
+    }
+    to {
+      opacity: 1;
+      width: 350px;
+      @include flex(center, flex-start, column);
+    }
+  }
+  
 
   .hamburger {
     cursor: pointer;
@@ -167,17 +192,6 @@
     animation: burger-fill-in 0.6s linear normal;
   }
   
-  .path-burger {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 68px;
-    width: 68px;
-    -webkit-mask: url(#mask);
-    mask: url(#mask);
-    -webkit-mask-box-image: url(../assets/images/mask.svg);
-  }
-  
   .animate-path {
     position: absolute;
     top: 0;
@@ -225,31 +239,6 @@
     }
   }
 }
-
-@keyframes closelinks {
-  from {
-    width: 250px;
-    opacity: 1;
-  }
-  to {
-    width: 0px;
-    opacity: 0;
-    display: none;
-  }
-}
-
-@keyframes openlinks {
-  from {
-    opacity: 0;
-    width: 0px;
-  }
-  to {
-    opacity: 1;
-    width: 250px;
-  }
-}
-
-
 
 @-webkit-keyframes dash-in {
   0% {

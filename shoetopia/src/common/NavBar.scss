@@ -64,10 +64,6 @@
         align-items: center;
         justify-content: center;
         border-radius: 20px;
-        // border: 2px solid $primary1;
-        &:hover {
-          border: 2px solid $primary3;
-        }
       }
       .auth {
         border-radius: 20px;
@@ -78,9 +74,6 @@
         transition-timing-function: ease-in;
         transition: 0.5s;
         color: $primary4;
-        &:hover {
-          color: $primary3;
-        }
       }
     }
   }
@@ -115,9 +108,6 @@
       padding: 15px 30px;
       .menuandlogo {
         min-width: 560px;
-        .navHamburger {
-          margin-right: 40px;
-        }
         .logo {
           width: 120px;
         }

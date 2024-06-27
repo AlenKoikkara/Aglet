@@ -5,6 +5,7 @@ import requests from "../requests";
 import NavBar from "../common/NavBar";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
+import Footer from "../common/Footer";
 
 const CategoryPage = () => {
   const ProductsWrapper = lazy(() => import('../common/ProductsWrapper'));
@@ -31,6 +32,7 @@ const CategoryPage = () => {
           ></ProductsWrapper>
         </Suspense>
       )}
+      <Footer></Footer>
     </div>
   );
 };

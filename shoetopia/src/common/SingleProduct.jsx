@@ -46,7 +46,7 @@ function SingleProduct({ config }) {
               {Array(config.singleProduct.rating)
                 .fill("")
                 .map((no) => (
-                  <StarIcon key={no}></StarIcon>
+                  <StarIcon key={no} fontSize="small"></StarIcon>
                 ))}
             </div>
             <div className="productSizes">
@@ -66,14 +66,14 @@ function SingleProduct({ config }) {
               </div>
             </div>
             <div className="productButtons">
+              <Button className="buyNow" variant="contained">
+                Buy Now
+              </Button>
               <div className="cartButton">
                 <CartButton
                   config={{ shoe: config.singleProduct, addCart: true, size: size }}
                 ></CartButton>
               </div>
-              <Button className="buyNow" variant="contained">
-                Buy Now
-              </Button>
             </div>
           </div>
         </div>

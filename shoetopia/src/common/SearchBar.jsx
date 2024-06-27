@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "./SearchBar.scss";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import {
-  Dialog,
-} from "@mui/material";
+import { Dialog } from "@mui/material";
 import utils from "../utils";
 import axios from "../axios";
 import requests from "../requests";
@@ -29,18 +27,20 @@ export const SearchBar = () => {
 
   const handleClose = (value) => {
     setOpen(false);
-    setProducts(null)
+    setProducts(null);
   };
 
   return (
     <div className="searchBarbody" id="searchBarbody">
-      <div className="barInput" id="barInput">
-        <SearchRoundedIcon
-          className="barIcon"
-          onClick={() => handleClickOpen()}
-          fontSize={utils.isMobile() ? "medium" : "large"}
-        ></SearchRoundedIcon>
-      </div>
+      {!open && (
+        <div className="barInput" id="barInput">
+          <SearchRoundedIcon
+            className="barIcon"
+            onClick={() => handleClickOpen()}
+            fontSize={utils.isMobile() ? "medium" : "large"}
+          ></SearchRoundedIcon>
+        </div>
+      )}
       <Dialog className="searchDialog" onClose={handleClose} open={open}>
         <div className="searchHeader">
           <input
