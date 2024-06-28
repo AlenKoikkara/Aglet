@@ -1,8 +1,9 @@
 @import "../variables.scss";
 
 .navbarWrapper {
+  width: 100%;
   display: block;
-  position: static;
+  position: sticky;
   z-index: 99;
   transition: all 0.01s;
   transition-timing-function: ease-in;
@@ -84,13 +85,12 @@
 }
 
 .navfadeout {
+  width: 100%;
   opacity: 0;
-  position: static;
 }
 
 .navfadein {
   opacity: 1;
-  position: fixed;
   background: white !important;
   width: 100%;
 }
