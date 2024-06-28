@@ -68,6 +68,14 @@
         box-shadow: 0 4px 30px rgba($color: $primary3, $alpha: 0.15);
       }
     }
+    .MuiCircularProgress-root {
+      margin: 30px;
+      width: 30px !important;
+      height: 30px !important;
+      color: $primary3;
+    }
+    .circularProgress {
+    }
   }
 }
 

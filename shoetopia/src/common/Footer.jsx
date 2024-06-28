@@ -2,12 +2,15 @@ import React from "react";
 import "./Footer.scss";
 import logo from "../assets/images/logo.png";
 import utils from "../utils";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="footerBody">
       <div className="leftside">
-        <img className="logo" src={logo} alt=""></img>
+        <img className="logo" onClick={() => navigate("/")} src={logo} alt=""></img>
         <div className="useFulLinks">
           <div className="mens">
             <a

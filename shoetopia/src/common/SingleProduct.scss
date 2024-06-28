@@ -56,7 +56,7 @@
             @include flex();
             gap: 5px;
             flex-wrap: wrap;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             .sizeBox {
               cursor: pointer;
               @include flex(center, center);
@@ -129,7 +129,7 @@
       }
       .productImg {
         width: 36%;
-        height: 470px;
+        height: 400px;
         object-fit: contain;
         margin-right: 40px;
       }

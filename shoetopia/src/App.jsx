@@ -12,6 +12,7 @@ import ProtectedRoutes from "./common/ProtectedRoutes";
 import PageNotFound from "./common/PageNotFound";
 import utils from "./utils";
 import { addCart } from "./features/cartSlice";
+import { LinearProgress } from "@mui/material";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -40,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Suspense fallback={<>loading...</>}>
+        <Suspense fallback={<LinearProgress color="inherit" className="linearprogress" />}>
           <Routes>
             <Route element={<ProtectedRoutes />}>
               <Route path="/user/:id" element={<UserPage />} />

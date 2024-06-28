@@ -51,10 +51,15 @@ const ProductPage = () => {
   return (
     <div className="body">
       <NavBar></NavBar>
-      <Suspense fallback={<LinearProgress />}>
+      <Suspense fallback={<LinearProgress color="inherit" />}>
         {singleProduct && (
           <SingleProduct
-            config={{ id:id, singleProduct: singleProduct, featured: featured, setSingleProduct: setSingleProduct }}
+            config={{
+              id: id,
+              singleProduct: singleProduct,
+              featured: featured,
+              setSingleProduct: setSingleProduct,
+            }}
           ></SingleProduct>
         )}
       </Suspense>

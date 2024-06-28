@@ -2,9 +2,14 @@ import React, { useCallback, useEffect } from "react";
 import "./ProductsWrapper.scss";
 import { usePaginatedTransactions } from "../hooks/paginatedData";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 function ProductWrapper({ title }) {
-  const { data: products, ...productsUtils } = usePaginatedTransactions();
+  const {
+    data: products,
+    loading,
+    ...productsUtils
+  } = usePaginatedTransactions();
   const navigate = useNavigate();
 
   const scroller = () => {
@@ -50,7 +55,11 @@ function ProductWrapper({ title }) {
           <div className="content">
             <div className="productsList">
               {products?.products?.map((product) => (
-                <div key={product._id} className="productWrapper" onClick={() => navigateTo(product._id)}>
+                <div
+                  key={product._id}
+                  className="productWrapper"
+                  onClick={() => navigateTo(product._id)}
+                >
                   <div className="imgCart">
                     <img
                       loading="lazy"
@@ -69,6 +78,12 @@ function ProductWrapper({ title }) {
                 </div>
               ))}
             </div>
+            {loading && (
+              <CircularProgress
+                className="circularProgress"
+                fontSize="small"
+              ></CircularProgress>
+            )}
           </div>
         </div>
       )}

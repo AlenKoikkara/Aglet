@@ -1,17 +1,24 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import authFunctions from "../authFunctions";
-import { Button, DialogContent, TextField } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  DialogContent,
+  TextField,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
-import GoogleIcon from '@mui/icons-material/Google';
-import AppleIcon from '@mui/icons-material/Apple';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from "@mui/icons-material/Google";
+import AppleIcon from "@mui/icons-material/Apple";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import logo from "../assets/images/logo.png";
-import './LoginForm.scss';
+import "./LoginForm.scss";
+import { useAuthHooks } from "../hooks/authHook";
 function LoginForm({ handleClose }) {
   const dispatch = useDispatch();
   const [isSignup, setIsSignup] = useState(false);
-  
+  const { loading, ...authUtils } = useAuthHooks();
+
   const handleSignup = () => {
     setIsSignup(!isSignup);
     formData.setTouched(true);
@@ -56,14 +63,14 @@ function LoginForm({ handleClose }) {
     onSubmit: (values) => {
       formData.setTouched(true);
       isSignup
-        ? authFunctions.registerUser(
+        ? authUtils.registerUser(
             values.email,
             values.password,
             handleClose,
             formData,
             dispatch
           )
-        : authFunctions.loginUser(
+        : authUtils.loginUser(
             values.email,
             values.password,
             handleClose,
@@ -143,8 +150,8 @@ function LoginForm({ handleClose }) {
               disabled={!(formData.isValid && formData.values)}
               className="submitbutton"
               type="submit"
-            >
-              {isSignup ? `Sign Up` : `Login`}
+            > 
+            {loading ? <CircularProgress fontSize="small"></CircularProgress> : (isSignup ? `Sign Up` : `Login`)}
             </Button>
             <div className="or">or</div>
             <div className="socialLogin">

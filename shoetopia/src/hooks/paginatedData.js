@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom"
 export function usePaginatedTransactions() {
   const [products, setProducts] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
 
   const fetchAll = useCallback(async () => {
     var paginatedObj = {
@@ -16,6 +17,7 @@ export function usePaginatedTransactions() {
       productCount: 20,
       page: products === null ? 0 : products.nextPage
     }
+    setLoading(true)
     await axios.get(
       requests.fetchPaginated,
       {params: paginatedObj}
@@ -28,7 +30,9 @@ export function usePaginatedTransactions() {
         const updatedData = previousResponse.products.concat(res.data.products)
         return { products: updatedData, nextPage: res.data.nextPage }
       })
+    setLoading(false)
     }).catch((error) => {
+      setLoading(false)
       console.log(error.message)
     });
   }, [products, searchParams?.get('category')])
@@ -36,5 +40,5 @@ export function usePaginatedTransactions() {
   const invalidateData = useCallback(() => {
     setProducts(null)
   }, [])
-  return { data: products, fetchAll, invalidateData }
+  return { data: products, loading, fetchAll, invalidateData }
 }

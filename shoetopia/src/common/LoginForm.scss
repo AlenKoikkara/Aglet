@@ -32,13 +32,13 @@
       color: #FF3333;
     }
     .signUpdirect {
-      margin-top: 15px;
+      margin-top: 16px;
       text-align: start;
       @include text-style(12px, 400, 13px);
     }
     .signUp {
       cursor: pointer;
-      margin-top: 4px;
+      margin-top: 6px;
       text-align: start;
       @include text-style(12px, 400, 13px);
       text-decoration: underline;
@@ -50,7 +50,11 @@
       background-color: $primary3;
       color: $primary4;
       text-transform: none;
-
+      .MuiCircularProgress-root {
+        width: 25px !important;
+        height: 25px !important;
+        color: $primary4;
+      }
     }
     .or {
       margin: 20px 0px;
