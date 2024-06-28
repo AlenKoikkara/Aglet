@@ -9,7 +9,9 @@ export const UserPage = () => {
     <div className="body">
       <NavBar></NavBar>
       <UserProfile></UserProfile>
-      <Footer></Footer>
+      <div className="footer">
+        <Footer></Footer>
+      </div>
     </div>
   );
 };

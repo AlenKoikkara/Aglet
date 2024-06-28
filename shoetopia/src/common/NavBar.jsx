@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./NavBar.scss";
 
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import HamburgerMenu from "./HamburgerMenu";
 import FaceIcon from "@mui/icons-material/Face";
 import { selectUser } from "../features/userSlice";
@@ -60,6 +61,7 @@ function NavBar() {
         </div>
         <div className="rightsideContent">
           <SearchBar></SearchBar>
+          <FavoriteBorderIcon onClick={() => navigate(`/favourites`)} fontSize={utils?.isMobile() ? "medium" : "large"}></FavoriteBorderIcon>
           <div className="cartIcon">
             <CartDrawer setOpen={setOpen}></CartDrawer>
             {cart?.length > 0 && (

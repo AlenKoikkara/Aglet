@@ -48,6 +48,7 @@ function App() {
             </Route>
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/products" element={<CategoryPage />} />
+            <Route path="/favourites" element={<CategoryPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={<PageNotFound/>} />
           </Routes>

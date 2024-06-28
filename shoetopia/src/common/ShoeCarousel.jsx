@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 
 import "./ShoeCarousel.scss";
 import { useNavigate } from "react-router-dom";
-
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import Line from "./Line";
@@ -34,11 +34,7 @@ function ShoeCarousel({ config }) {
       ></ChevronLeftRoundedIcon>
       <div className="shoeRows" ref={scrollable}>
         {config.shoes?.map((shoe) => (
-          <div
-            
-            key={shoe._id}
-            className="productWrapper"
-          >
+          <div key={shoe._id} className="productWrapper">
             <div className="imgCart">
               <img
                 onClick={() => navigateTo(shoe._id)}
@@ -47,6 +43,9 @@ function ShoeCarousel({ config }) {
                 src={shoe.imageUrl}
                 alt={shoe.producName}
               ></img>
+              <div className="favIcon">
+                <FavoriteBorderIcon clas></FavoriteBorderIcon>
+              </div>
             </div>
             <div className="shoedetails">
               <div className="desc">

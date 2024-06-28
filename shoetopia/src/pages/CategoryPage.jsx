@@ -23,8 +23,7 @@ const CategoryPage = () => {
   
   return (
     <div className="body">
-      <NavBar>
-      </NavBar>
+      <NavBar></NavBar>
       {searchParams?.get('category') && (
         <Suspense fallback={<LinearProgress />}>
           <ProductsWrapper

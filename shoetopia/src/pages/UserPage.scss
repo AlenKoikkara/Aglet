@@ -1,8 +1,15 @@
 @import "../variables.scss";
 
 .body {
+  position: relative;
+  height: 100vh;
   .navbarWrapper {
     top: 0px;
     background: white;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
   }
 }

@@ -55,7 +55,9 @@ const utils = {
     await axios.post(requests.addToCart, cartObj).then((res) => {
       console.log(res);
       dispatch(addCart(res.data.cart));
-    });
+    }).catch((error => {
+      console.log(error.message)
+    }))
   },
 
   bulkaddCart: async (user, cart, dispatch) => {
@@ -69,7 +71,9 @@ const utils = {
       console.log(res);
       dispatch(addCart(res.data.cart));
       sessionStorage.removeItem("cart");
-    });
+    }).catch((error => {
+      console.log(error.message)
+    }))
   },
 
   addSessionCart: (product, size, dispatch) => {
@@ -120,7 +124,9 @@ const utils = {
     await axios.post(requests.removeFromCart, cartObj).then((res) => {
       console.log(res);
       dispatch(removeCart(res.data?.cart));
-    });
+    }).catch((error => {
+      console.log(error.message)
+    }))
   },
 
   removeSessionCart: (product, dispatch) => {
@@ -149,7 +155,9 @@ const utils = {
       if (res.data?.cart) {
         dispatch(addCart(res.data.cart));
       }
-    });
+    }).catch((error => {
+      console.log(error.message)
+    }))
   },
 
   placeOrder: async (user, cart) => {
@@ -165,7 +173,36 @@ const utils = {
       if (res) {
         window.location.href = res.data.url
       }
-    })
+    }).catch((error => {
+      console.log(error.message)
+    }))
+  },
+
+  addFav: async (user, favItem) => {
+    const favObj = {
+      userId: user?.userId,
+      emailId: user?.emailId,
+      favourites: [favItem],
+    }
+    await axios.post(requests.addFavourite(), favObj).then((res) => {
+      console.log(res)
+    }).catch((error => {
+      console.log(error.message)
+    }))
+  },
+
+  removeFav: async (user, favItem) => {
+    const favObj = {
+      userId: user?.userId,
+      emailId: user?.emailId,
+      productId: favItem?.productId
+    }
+    
+    await axios.post(requests.removeFavourite(), favObj).then((res) => {
+      console.log(res)
+    }).catch((error => {
+      console.log(error.message)
+    }))
   },
 
   isProductInCart: (product, cart) => {

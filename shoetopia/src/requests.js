@@ -11,7 +11,10 @@ const requests = {
   removeFromCart: 'api/cart/remove',
   fetchCart: (userId) => `api/cart/fetch/${userId}`,
   placeOrder: (userId) => `api/order/placeorder/${userId}`,
-  getOrder: (emailId) => `api/order/getorder/${emailId}`
+  getOrder: (emailId) => `api/order/getorder/${emailId}`,
+  addFavourite: `api/favourite/addfavourite`,
+  removeFavourite: `api/favourite/removefavourite`,
+  getFavourite: `api/favourite/getfavourites`,
 }
 
 export default requests;

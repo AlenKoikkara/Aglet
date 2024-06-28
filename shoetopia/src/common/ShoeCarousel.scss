@@ -52,6 +52,13 @@
           object-fit: cover;
           width: 308px;
         }
+        .favIcon {
+          cursor: pointer;
+          pointer-events: auto;
+          top: 20px;
+          right: 20px;
+          position: absolute;
+        }
       }
       .shoedetails {
         padding: 20px 30px;
