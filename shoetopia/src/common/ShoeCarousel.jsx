@@ -3,13 +3,21 @@ import React, { useRef } from "react";
 import "./ShoeCarousel.scss";
 import { useNavigate } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import Line from "./Line";
+import utils from "../utils";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+import { selectFav } from "../features/favSlice";
 
 function ShoeCarousel({ config }) {
   const scrollable = useRef(null);
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
+  const fav = useSelector(selectFav);
+  const dispatch = useDispatch();
 
   const scrollIt = (toRight) => {
     const scrollLength = 1000;
@@ -18,6 +26,10 @@ function ShoeCarousel({ config }) {
       behavior: "smooth",
     });
   };
+
+  function handleFav(shoe) {
+    utils.toggleFav(user, shoe, dispatch);
+  }
 
   function navigateTo(productId) {
     navigate(`/product/${productId}`);
@@ -43,8 +55,8 @@ function ShoeCarousel({ config }) {
                 src={shoe.imageUrl}
                 alt={shoe.producName}
               ></img>
-              <div className="favIcon">
-                <FavoriteBorderIcon clas></FavoriteBorderIcon>
+              <div className="favIcon" onClick={() => {handleFav(shoe)}}>
+                {fav?.find((item) => item.productId === shoe._id) ? <FavoriteIcon></FavoriteIcon> : <FavoriteBorderIcon></FavoriteBorderIcon>}
               </div>
             </div>
             <div className="shoedetails">

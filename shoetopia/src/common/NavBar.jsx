@@ -61,7 +61,7 @@ function NavBar() {
         </div>
         <div className="rightsideContent">
           <SearchBar></SearchBar>
-          <FavoriteBorderIcon onClick={() => navigate(`/favourites`)} fontSize={utils?.isMobile() ? "medium" : "large"}></FavoriteBorderIcon>
+          <FavoriteBorderIcon onClick={() => navigate(`/user/favourites`)} fontSize={utils?.isMobile() ? "medium" : "large"}></FavoriteBorderIcon>
           <div className="cartIcon">
             <CartDrawer setOpen={setOpen}></CartDrawer>
             {cart?.length > 0 && (
@@ -69,7 +69,7 @@ function NavBar() {
             )}
           </div>
           {user?.emailId ? (
-            <div onClick={() => navigate(`/user/${123}`)} className="auth">
+            <div onClick={() => navigate(`/user/profile`)} className="auth">
               <div className="profile">
                 {utils.getUserInitial(user?.emailId)}
               </div>

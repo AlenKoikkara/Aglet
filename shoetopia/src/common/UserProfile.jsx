@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./UserProfile.scss";
 import ProfileCard from "./ProfileCard";
 import OrderCard from "./OrderCard";
@@ -8,6 +8,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useLocation } from "react-router-dom";
+import Favourites from "./Favourites";
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -42,10 +44,24 @@ function a11yProps(index) {
 }
 const UserProfile = () => {
   const [value, setValue] = React.useState(0);
+  let location = useLocation();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (location.pathname.match("favourites")) {
+      setValue(2)
+    }
+    if (location.pathname.match("profile")) {
+      setValue(0)
+    }
+    return () => { 
+    }
+  }, [location])
+  
+
   return (
     <div className="userProfileWrapper">
       <Box sx={{ width: "100%" }}>
@@ -67,7 +83,7 @@ const UserProfile = () => {
           <OrderCard></OrderCard>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          Item Three
+          <Favourites></Favourites>
         </CustomTabPanel>
       </Box>
     </div>

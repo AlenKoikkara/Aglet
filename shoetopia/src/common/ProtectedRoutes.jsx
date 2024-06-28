@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoutes = () => {
-  const user = useSelector(selectUser);
-  return user ? <Outlet/> : <Navigate to="/"/>
+  let user = JSON.parse(localStorage.getItem("user"));
+  return user?.userId ? <Outlet/> : <Navigate to="/"/>
 }
 
 export default ProtectedRoutes

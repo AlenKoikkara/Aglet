@@ -37,6 +37,16 @@
             max-width: 100%;
             height: auto;
           }
+          .favIcon {
+            cursor: pointer;
+            pointer-events: auto;
+            top: 20px;
+            right: 20px;
+            position: absolute;
+            .MuiSvgIcon-root {
+              color: $primary3;
+            }
+          }
         }
         .shoedetails {
           padding: 10px 10px 30px;

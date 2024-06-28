@@ -1,4 +1,5 @@
 import { addCart, removeCart } from "./features/cartSlice";
+import { toggleFav } from "./features/favSlice";
 import axios from "./axios";
 import requests from "./requests";
 
@@ -149,8 +150,8 @@ const utils = {
     dispatch(removeCart(JSON.parse(sessionStorage.getItem("cart"))));
   },
 
-  getCart: async (userId, dispatch) => {
-    await axios.get(requests.fetchCart(userId)).then((res) => {
+  getCart: async (user, dispatch) => {
+    await axios.get(requests.fetchCart(user.userId)).then((res) => {
       // console.log(res);
       if (res.data?.cart) {
         dispatch(addCart(res.data.cart));
@@ -178,28 +179,34 @@ const utils = {
     }))
   },
 
-  addFav: async (user, favItem) => {
+  toggleFav: async (user, favItem, dispatch) => {
+    var favItemObj = {
+      productId: favItem._id,
+      productName: favItem.productName,
+      subCategory: favItem.subCategory,
+      company: favItem.company,
+      imageUrl: favItem.imageUrl,
+      listPrice: favItem.listPrice,
+    };
     const favObj = {
       userId: user?.userId,
       emailId: user?.emailId,
-      favourites: [favItem],
+      favourites: [favItemObj],
     }
-    await axios.post(requests.addFavourite(), favObj).then((res) => {
-      console.log(res)
+    await axios.post(requests.toggleFavourite, favObj).then((res) => {
+      if (res.data.favourites) {
+        dispatch(toggleFav(res.data?.favourites));
+      }
     }).catch((error => {
       console.log(error.message)
     }))
   },
 
-  removeFav: async (user, favItem) => {
-    const favObj = {
-      userId: user?.userId,
-      emailId: user?.emailId,
-      productId: favItem?.productId
-    }
-    
-    await axios.post(requests.removeFavourite(), favObj).then((res) => {
-      console.log(res)
+  getFav: async (user, dispatch) => {
+    await axios.get(requests.getFavourite(user.userId)).then((res) => {
+      if (res.data.favourites) {
+        dispatch(toggleFav(res.data?.favourites));
+      }
     }).catch((error => {
       console.log(error.message)
     }))

@@ -58,6 +58,9 @@
           top: 20px;
           right: 20px;
           position: absolute;
+          .MuiSvgIcon-root {
+            color: $primary3;
+          }
         }
       }
       .shoedetails {

@@ -1,15 +1,17 @@
-import React, { useCallback, useEffect, useState } from "react";
-import "./ProductsWrapper.scss";
-import { usePaginatedTransactions } from "../hooks/paginatedData";
+import React, { useEffect, useState } from "react";
+import "./Favourites.scss";
 import { useNavigate } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
 
-function ProductWrapper({ title }) {
+function Favourites({ config }) {
   const [products, setProducts] = useState()
   const navigate = useNavigate();
   
   function navigateTo(productId) {
     navigate(`/product/${productId}`);
+  }
+
+  function fetchFav() {
+    
   }
 
   useEffect(() => {
@@ -20,7 +22,7 @@ function ProductWrapper({ title }) {
       {true && (
         <div className="categoryWrapper">
           <div className="titleContent">
-            <div className="title">{title}'s Shoes</div>
+            <div className="title">Favourites</div>
           </div>
           <div className="content">
             <div className="productsList">
@@ -55,4 +57,4 @@ function ProductWrapper({ title }) {
   );
 }
 
-export default ProductWrapper;
+export default Favourites;

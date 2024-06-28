@@ -3,6 +3,12 @@ import "./ProductsWrapper.scss";
 import { usePaginatedTransactions } from "../hooks/paginatedData";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+import { selectFav } from "../features/favSlice";
+import utils from "../utils";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function ProductWrapper({ title }) {
   const {
@@ -11,6 +17,9 @@ function ProductWrapper({ title }) {
     ...productsUtils
   } = usePaginatedTransactions();
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
+  const fav = useSelector(selectFav);
+  const dispatch = useDispatch();
 
   const scroller = () => {
     const scrolledTo = window.scrollY + window.innerHeight;
@@ -24,6 +33,11 @@ function ProductWrapper({ title }) {
       }
     }
   };
+
+  function handleFav(shoe) {
+    utils.toggleFav(user, shoe, dispatch);
+  }
+
 
   const fetchPaginatedData = useCallback(async () => {
     productsUtils.fetchAll();
@@ -58,7 +72,6 @@ function ProductWrapper({ title }) {
                 <div
                   key={product._id}
                   className="productWrapper"
-                  onClick={() => navigateTo(product._id)}
                 >
                   <div className="imgCart">
                     <img
@@ -66,7 +79,20 @@ function ProductWrapper({ title }) {
                       className="shoeimg"
                       src={product.imageUrl}
                       alt={product.producName}
+                      onClick={() => navigateTo(product._id)}
                     ></img>
+                    <div
+                      className="favIcon"
+                      onClick={() => {
+                        handleFav(product);
+                      }}
+                    >
+                      {fav?.find((item) => item.productId === product._id) ? (
+                        <FavoriteIcon></FavoriteIcon>
+                      ) : (
+                        <FavoriteBorderIcon></FavoriteBorderIcon>
+                      )}
+                    </div>
                   </div>
                   <div className="shoedetails">
                     <div className="desc">
