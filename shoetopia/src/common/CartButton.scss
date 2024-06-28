@@ -14,7 +14,6 @@
     width: max-content;
     height: 40px;
     text-transform: none;
-    padding: 10px 30px;
     box-shadow: none;
     border-radius: 10px;
     background-color: white;
@@ -23,6 +22,25 @@
     transition: 0.5s;
     &:hover {
       color: $primary3;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cartfunction {
+    .removeCart {
+      margin-left: 20px;
+      height: 30px;
+     @include text-style(12px, 400, 13px);
+    }
+  }
+}
+
+@media (min-width: 767px) {
+  .cartfunction {
+    .addCart,
+    .removeCart {
+      padding: 10px 30px;
     }
   }
 }

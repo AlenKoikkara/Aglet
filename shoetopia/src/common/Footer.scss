@@ -45,3 +45,16 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .footerBody {
+    @include flex(center, center, column);
+    .rightside {
+      margin-left: auto;
+      margin-top: 10px;
+      .developer {
+        @include text-style(10px, 200, 11px);
+      }
+    }
+  }
+}
