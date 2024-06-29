@@ -9,12 +9,10 @@ import utils from "../utils";
 import { Button, LinearProgress } from "@mui/material";
 
 function CartButton({ config }) {
-  const LoginDialog = lazy(() => import("./LoginDialog"));
 
   const dispatch = useDispatch();
   const cart = useSelector(selectCart);
   const user = useSelector(selectUser);
-  const [open, setOpen] = useState(false);
 
   function addCart() {
     if (user && config?.size) {
@@ -52,11 +50,6 @@ function CartButton({ config }) {
           Delete
         </Button>
       )}
-      <div style={{ display: "none" }}>
-        <Suspense fallback={<LinearProgress />}>
-          <LoginDialog open={open} setOpen={setOpen}></LoginDialog>
-        </Suspense>{" "}
-      </div>
     </div>
   );
 }

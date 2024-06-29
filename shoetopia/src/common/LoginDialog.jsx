@@ -8,6 +8,7 @@ function LoginDialog({ open, setOpen }) {
   
   function handleClose() {
     setOpen(false);
+    console.log(open)
   }
 
   const closeDialog = () => {

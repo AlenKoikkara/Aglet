@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { lazy, useRef, useState } from "react";
 
 import "./ShoeCarousel.scss";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import { selectFav } from "../features/favSlice";
 
+const LoginDialog = lazy(() => import("./LoginDialog"));
 function ShoeCarousel({ config }) {
+  const [open, setOpen] = useState(false);
   const scrollable = useRef(null);
   const navigate = useNavigate();
   const user = useSelector(selectUser);
@@ -28,7 +30,12 @@ function ShoeCarousel({ config }) {
   };
 
   function handleFav(shoe) {
-    utils.toggleFav(user, shoe, dispatch);
+    if (user) {
+      utils.toggleFav(user, shoe, dispatch);
+    }
+    if (!user) {
+      setOpen(true)
+    }
   }
 
   function navigateTo(productId) {
@@ -74,6 +81,9 @@ function ShoeCarousel({ config }) {
         className="rightslide"
         fontSize="large"
       ></ChevronRightRoundedIcon>
+       <div style={{ display: "none" }}>
+          <LoginDialog open={open} setOpen={setOpen}></LoginDialog>
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./NavBar.scss";
 
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HamburgerMenu from "./HamburgerMenu";
 import FaceIcon from "@mui/icons-material/Face";
 import { selectUser } from "../features/userSlice";
@@ -14,10 +14,13 @@ import LoginDialog from "./LoginDialog";
 import { selectCart } from "../features/cartSlice";
 import CartDrawer from "./CartDrawer";
 import { SearchBar } from "./SearchBar";
+import { selectFav } from "../features/favSlice";
 
 function NavBar() {
   const user = useSelector(selectUser);
   const cart = useSelector(selectCart);
+  const fav = useSelector(selectFav);
+
   const [hide, handleHide] = useState("top");
   const [prevScrollpos, setPrevScrollpos] = useState(0);
   const [open, setOpen] = useState(false);
@@ -61,7 +64,12 @@ function NavBar() {
         </div>
         <div className="rightsideContent">
           <SearchBar></SearchBar>
-          <FavoriteBorderIcon onClick={() => navigate(`/user/favourites`)} fontSize={utils?.isMobile() ? "medium" : "large"}></FavoriteBorderIcon>
+          {fav.length > 0 && (
+            <FavoriteBorderIcon
+              onClick={() => navigate(`/user/favourites`)}
+              fontSize={utils?.isMobile() ? "medium" : "large"}
+            ></FavoriteBorderIcon>
+          )}
           <div className="cartIcon">
             <CartDrawer setOpen={setOpen}></CartDrawer>
             {cart?.length > 0 && (
