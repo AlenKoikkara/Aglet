@@ -49,6 +49,7 @@ export const SearchBar = () => {
             id="searchText"
             name="searchText"
             type="text"
+            autoFocus
             placeholder="start typing..."
             value={searchInput}
             onChange={handleSearch}

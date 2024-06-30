@@ -93,6 +93,7 @@ function LoginForm({ handleClose }) {
               label="Email Address"
               type="email"
               fullWidth
+              autoFocus
               variant="standard"
               onBlur={formData.handleBlur}
               value={formData.values.email}
