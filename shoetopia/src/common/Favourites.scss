@@ -2,7 +2,6 @@
 
 .categoryWrapper {
   position: relative;
-  padding: 40px 0px;
   .titleContent {
     @include flex(space-between, center);
     .title {
@@ -16,15 +15,14 @@
   .content {
     margin-top: 20px;
     .productsList {
-      max-width: 100%;
-      display: grid;
-      justify-content: space-between;
-      grid-template-columns: auto auto auto;
+      max-width: fit-content;
+      gap: 30px;
+      flex-wrap: wrap;
       .productWrapper {
         cursor: pointer;
         margin-bottom: 20px;
         padding: 20px;
-        max-width: 350px;
+        max-width: 200px;
         transition-timing-function: ease;
         transition: 0.3s;
         border-radius: 30px;
@@ -64,7 +62,6 @@
         }
       }
       .productWrapper:hover {
-        transform: scale(1.09);
         box-shadow: 0 4px 30px rgba($color: $primary3, $alpha: 0.15);
       }
     }
@@ -89,7 +86,7 @@
     }
     .content {
       .productsList {
-        grid-template-columns: auto;
+        @include flex(center, center);
       }
     }
   }
@@ -97,7 +94,6 @@
 
 @media (min-width: 767px) {
   .categoryWrapper {
-    padding: 0px 30px;
     .titleContent {
       padding: 40px;
       .title {
@@ -106,6 +102,9 @@
     }
     .content {
       padding: 0px 40px;
+      .productsList {
+        @include flex(flex-start, center);
+      }
     }
   }
 }

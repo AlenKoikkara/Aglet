@@ -9,6 +9,11 @@
   width: 140px;
 }
 
+.dWrapper {
+  min-width: 460px;
+  padding: 30px !important;
+}
+
 .dialogWrapper {
   display: flex;
   align-items: center;
@@ -26,6 +31,7 @@
     text-align: center;
     
     .errorText {
+      max-width: 280px;
       margin-top: 2px;
       text-align: start;
       @include text-style(13px, 400, 14px);
@@ -75,6 +81,10 @@
 }
 
 @media (max-width: 768px) {
+  .dWrapper {
+    min-width: 280px;
+    padding: 50px 30px!important;
+  }
   .dialogTitle {
     @include text-style(25px, 700, 26px);
   }
