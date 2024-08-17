@@ -15,7 +15,7 @@ import { addCart } from "./features/cartSlice";
 import { LinearProgress } from "@mui/material";
 
 function App() {
-  const HomePage = lazy(() => import("./pages/HomePage"));
+  // const HomePage = lazy(() => import("./pages/HomePage"));
   const CategoryPage = lazy(() => import("./pages/CategoryPage"));
   const ProductPage = lazy(() => import("./pages/ProductPage"));
   const UserPage = lazy(() => import("./pages/UserPage"));
