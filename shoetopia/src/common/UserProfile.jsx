@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import { useLocation } from "react-router-dom";
 import Favourites from "./Favourites";
 function CustomTabPanel(props) {
+  // const { children, value, index, ...other } = props;
   const { children, value, index, ...other } = props;
 
   return (
