@@ -3,6 +3,7 @@ var cors = require('cors');
 
 const express = require('express')
 const mongoose = require('mongoose')
+const serverless = require('serverless-http')
 
 // express app
 const app = express()
@@ -46,7 +47,7 @@ app.use('/', (req, res) => {
 
 
 // connect to db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
   .then(() => {
     console.log('connected to database')
     // listen to port
@@ -57,3 +58,5 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => {
     console.log(err)
   }) 
+
+  module.exports.handler = serverless(app);
